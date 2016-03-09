@@ -10,7 +10,7 @@ The following items are included in this repository:<br/>
 3. Unit test harness (zipped) - requires FRED® API key<br/>
 4. WinForms test harness (zipped) - requires FRED® API key
 
-DISCLOSURE STATEMENT:<br/>
+DISCLAIMER STATEMENT:<br/>
 This software is available on an "AS IS" basis, without warranties or conditions of any kind, 
 either express or implied, including, without limitation, 
 any warranties or conditions of merchantability, or fitness for a particular purpose.
