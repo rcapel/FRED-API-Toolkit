@@ -7,7 +7,7 @@ from "FRED Toolkit.pdf" in this repository. See also https://research.stlouisfed
 The following items are included in this repository:<br/>
 1. Toolkit (zipped)<br/>
 2. Toolkit documentation (pdf)<br/>
-2. Unit test harness (zipped)
+3. Unit test harness (zipped)
 
 DISCLOSURE STATEMENT:<br/>
 This software is available on an "AS IS" basis, without warranties or conditions of any kind, 
