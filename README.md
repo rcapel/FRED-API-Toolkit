@@ -8,7 +8,8 @@ The following items are included in this repository:<br/>
 1. Toolkit (zipped)<br/>
 2. Toolkit documentation (pdf)<br/>
 3. Unit test harness (zipped) - requires FRED® API key<br/>
-4. WinForms test harness (zipped) - requires FRED® API key
+4. WinForms test harness (zipped) - requires FRED® API key<br/>
+5. Angular SPA showing  basic consumption of the toolkit - requires FRED® API key
 
 DISCLAIMER STATEMENT:<br/>
 This software is available on an "AS IS" basis, without warranties or conditions of any kind, 
