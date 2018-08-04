@@ -9,7 +9,7 @@ namespace UnitTest1
     {
 		#region fields
 
-		private string apiKey = "2bb51ce5cf297e0a999c232d8b6238e5";
+		private string apiKey = "";
 
 		#endregion
 
