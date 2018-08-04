@@ -14,7 +14,20 @@ namespace UnitTest1
 		#endregion
 
 		[TestMethod]
-		public async Task FetchCategory()
+		public void FetchCategory()
+		{
+			var api = new Category() { ApiKey = apiKey };
+			api.Arguments.category_id = 13;
+			var categoryContainer = api.Fetch();
+
+			var expectedName = "U.S. Trade & International Transactions";
+
+			Assert.IsTrue(categoryContainer.Categories.Count == 1);
+			Assert.AreEqual<string>(expectedName, categoryContainer.Categories[0].name);
+		}
+
+		[TestMethod]
+		public async Task FetchCategoryAsync()
 		{
 			var api = new Category() { ApiKey = apiKey };
 			api.Arguments.category_id = 13;
