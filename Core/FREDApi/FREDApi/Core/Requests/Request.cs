@@ -150,7 +150,7 @@ namespace FRED.Api.Core.Requests
 				StreamReader reader = new StreamReader(responseStream);
 				responseString = reader.ReadToEnd();
 			}
-			//result = Deserialize ? JsonConvert.DeserializeObject<T>(responseString) : responseString as T;
+			responseString = Json ? responseString : responseString.Replace("\n", null);
 			return responseString;
 		}
 
