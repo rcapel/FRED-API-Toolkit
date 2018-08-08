@@ -16,7 +16,8 @@ namespace UnitTest1
 		[TestMethod]
 		public void FetchCategory()
 		{
-			var api = new Category() { ApiKey = apiKey };
+			var api = new Category();
+			api.Arguments.ApiKey = apiKey;
 			api.Arguments.category_id = 13;
 			var categoryContainer = api.Fetch();
 
@@ -29,7 +30,8 @@ namespace UnitTest1
 		[TestMethod]
 		public async Task FetchCategoryAsync()
 		{
-			var api = new Category() { ApiKey = apiKey };
+			var api = new Category();
+			api.Arguments.ApiKey = apiKey;
 			api.Arguments.category_id = 13;
 			var categoryContainer = await api.FetchAsync();
 
