@@ -1,19 +1,74 @@
 ﻿using FRED.Api.Core.ApiFacades;
+using FRED.Api.Core.Arguments;
 using FRED.Api.Core.Requests;
 using FRED.Api.Tags.Arguments;
 using FRED.Api.Tags.Data;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace FRED.Api.Tags.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/tags/series API endpoint. Results are returned in a TagSeriesContainer instance.
 	/// </summary>
-	public class TagsSeries : ApiBase0<TagsSeriesArguments, TagSeriesContainer>
+	public class TagsSeries : ApiBase, ITagsSeries
 	{
+		#region properties
+
+		/// <summary>
+		/// Argument values used in a fetch. Argument names match those in the FRED API.
+		/// </summary>
+		public TagsSeriesArguments Arguments { get; set; } = new TagsSeriesArguments();
+
+		#endregion
+
 		#region constructors
 
-		public TagsSeries(IRequest request) : base(request)
+		public TagsSeries(IRequest request = null) : base(request)
 		{
+		}
+
+		#endregion
+
+		#region public methods
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="TagSeriesContainer"/> containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new TagSeriesContainer Fetch()
+		{
+			string json = base.Fetch();
+			var result = JsonConvert.DeserializeObject<TagSeriesContainer>(json);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="TagSeriesContainer"/> containing FRED data.
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new async Task<TagSeriesContainer> FetchAsync()
+		{
+			string json = await base.FetchAsync();
+			var result = JsonConvert.DeserializeObject<TagSeriesContainer>(json);
+
+			return result;
+		}
+
+		#endregion
+
+		#region protected methods
+
+		protected override ArgumentsBase GetArguments()
+		{
+			return Arguments;
 		}
 
 		#endregion
@@ -21,34 +76,24 @@ namespace FRED.Api.Tags.ApiFacades
 	}
 
 	/// <summary>
-	/// Provides a facade for consuming the fred/tags/series API endpoint. Results are returned as a JSON string.
+	/// Defines the interface for TagsSeries types.
 	/// </summary>
-	public class TagsSeriesJson : ApiBase0<TagsSeriesArguments, string>
+	public interface ITagsSeries : IApiBase
 	{
-		#region constructors
+		#region properties
 
-		public TagsSeriesJson(IRequest request) : base(request)
-		{
-		}
+		TagsSeriesArguments Arguments { get; set; }
 
 		#endregion
 
-	}
+		#region public methods
 
-	/// <summary>
-	/// Provides a facade for consuming the fred/tags/series API endpoint. Results are returned as an XML string.
-	/// </summary>
-	public class TagsSeriesXml : XmlApiFacade<TagsSeriesArguments>
-	{
-		#region constructors
+		TagSeriesContainer Fetch();
 
-		public TagsSeriesXml(IRequest request) : base(request)
-		{
-		}
+		Task<TagSeriesContainer> FetchAsync();
 
 		#endregion
 
 	}
 
 }
-
