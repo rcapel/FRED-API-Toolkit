@@ -8,7 +8,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/updates API endpoint. Results are returned in a SeriesUpdateContainer instance.
 	/// </summary>
-	public class SeriesUpdates : ApiBase<SeriesUpdatesArguments, SeriesUpdateContainer>
+	public class SeriesUpdates : ApiBase0<SeriesUpdatesArguments, SeriesUpdateContainer>
 	{
 		#region constructors
 
@@ -23,7 +23,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/updates API endpoint. Results are returned as a JSON string.
 	/// </summary>
-	public class SeriesUpdatesJson : ApiBase<SeriesUpdatesArguments, string>
+	public class SeriesUpdatesJson : ApiBase0<SeriesUpdatesArguments, string>
 	{
 		#region constructors
 

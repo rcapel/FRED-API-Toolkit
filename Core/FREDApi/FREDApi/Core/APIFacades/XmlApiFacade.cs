@@ -6,7 +6,7 @@ namespace FRED.Api.Core.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/category API endpoint. Results are returned as an XML string.
 	/// </summary>
-	public abstract class XmlApiFacade<TArguments> : ApiBase<TArguments, string> where TArguments : ArgumentsBase, new()
+	public abstract class XmlApiFacade<TArguments> : ApiBase0<TArguments, string> where TArguments : ArgumentsBase, new()
 	{
 		#region properties
 

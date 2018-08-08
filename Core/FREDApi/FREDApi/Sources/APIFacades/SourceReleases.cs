@@ -8,7 +8,7 @@ namespace FRED.Api.Sources.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/source/releases API endpoint. Results are returned in a SourceReleasesContainer instance.
 	/// </summary>
-	public class SourceReleases : ApiBase<SourceReleasesArguments, SourceReleasesContainer>
+	public class SourceReleases : ApiBase0<SourceReleasesArguments, SourceReleasesContainer>
 	{
 		#region constructors
 
@@ -23,7 +23,7 @@ namespace FRED.Api.Sources.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/source/releases API endpoint. Results are returned as a JSON string.
 	/// </summary>
-	public class SourceReleasesJson : ApiBase<SourceReleasesArguments, string>
+	public class SourceReleasesJson : ApiBase0<SourceReleasesArguments, string>
 	{
 		#region constructors
 

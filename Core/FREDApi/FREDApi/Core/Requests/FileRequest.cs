@@ -29,27 +29,28 @@ namespace FRED.Api.Core.Requests
 		/// <summary>
 		/// Fetches data from a FRED service endpoint.
 		/// </summary>
-		/// <typeparam name="T">The type of container, containing fetch results, that this instance returns.
-		/// This type can be any class, since its return value will be null.</typeparam>
 		/// <param name="arguments">The arguments used in the FRED API call.</param>
 		/// <returns>A null valued instance.</returns>
-		protected override T InvokeService<T>()
+		protected override string InvokeService()
 		{
-			T result = default(T);
 			WebClient client = new WebClient();
 			Url += Excel ? "&file_type=xls" : "&file_type=txt";
 			client.DownloadFile(Url, FilePath);
-			return result;
+			return null;
 		}
 
-		protected override async Task<T> InvokeServiceAsync<T>()
+		/// <summary>
+		/// Fetches data asynchronously from a FRED service endpoint.
+		/// </summary>
+		/// <param name="arguments">The arguments used in the FRED API call.</param>
+		/// <returns>A null valued instance.</returns>
+		protected override async Task<string> InvokeServiceAsync()
 		{
-			T result = default(T);
 			WebClient client = new WebClient();
 			Url += Excel ? "&file_type=xls" : "&file_type=txt";
 			client.DownloadFile(new Uri(Url), FilePath);
 			await Task.Delay(0);
-			return result;
+			return null;
 		}
 
 		#endregion

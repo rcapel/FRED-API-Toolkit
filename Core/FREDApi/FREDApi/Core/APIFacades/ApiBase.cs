@@ -8,12 +8,14 @@ namespace FRED.Api.Core.ApiFacades
 	/// <summary>
 	/// Provides default behavior for FRED API facade classes.
 	/// </summary>
-	/// <typeparam name="TArguments">The type of arguments the API class uses for fetches.</typeparam>
-	/// <typeparam name="TContainer">The type of container, containing fetch results, that the API class returns.</typeparam>
-	public abstract class ApiBase<TArguments, TContainer> : IApiKeyed
-		where TArguments : ArgumentsBase, new() 
-		where TContainer : class
+	public abstract class ApiBase : IApiBase
 	{
+		//#region enumerations
+
+		//public enum OutputFormats { Class, Json, XML }
+
+		//#endregion
+
 		#region fields
 
 		/// <summary>
@@ -25,20 +27,18 @@ namespace FRED.Api.Core.ApiFacades
 
 		#region properties
 
-		/// <summary>
-		/// The API key required by FRED for all fetches.
-		/// </summary>
-		public string ApiKey { get; set; }
+		///// <summary>
+		///// The API key required by FRED for all fetches.
+		///// </summary>
+		//public string ApiKey { get; set; }
 
-		private TArguments arguments = new TArguments();
-		/// <summary>
-		/// Argument values used in a fetch. Argument names match those in the FRED API.
-		/// </summary>
-		public TArguments Arguments
-		{
-			get { return arguments; }
-			set { arguments = value; }
-		}
+		///// <summary>
+		///// Argument values used in a fetch. Argument names match those in the FRED API.
+		///// </summary>
+		//protected abstract ArgumentsBase CommonArguments
+		//{
+		//	get;
+		//}
 
 		/// <summary>
 		/// A message describing any abnormal response from a fetch, or null for a normal response.
@@ -57,16 +57,16 @@ namespace FRED.Api.Core.ApiFacades
 
 		/// <summary>
 		/// Indicates whether the API class expects JSON as the format for data returned from a fetch. If false, XML format is assumed.
-		/// Subclasses should override this property as appropriate.
 		/// </summary>
-		protected virtual bool Json
-		{
-			get { return true; }
-		}
+		public bool Json { get; set; } = true;
+
+		///// <summary>
+		///// The requested output format.
+		///// </summary>
+		//public OutputFormats OutputFormat { get; set; }
 
 		/// <summary>
-		/// Indicates whether the API class expects JSON as the format for data returned from a fetch. If false, XML format is assumed.
-		/// Subclasses should override this property as appropriate.
+		/// The request object for reteieving data from FRED.
 		/// </summary>
 		protected IRequest Request
 		{
@@ -77,11 +77,7 @@ namespace FRED.Api.Core.ApiFacades
 
 		#region constructors
 
-		public ApiBase()
-		{
-		}
-
-		public ApiBase(IRequest request)
+		public ApiBase(IRequest request = null)
 		{
 			this.request = request;
 		}
@@ -94,18 +90,69 @@ namespace FRED.Api.Core.ApiFacades
 		/// Fetches data from a FRED service endpoint.
 		/// </summary>
 		/// <returns>
-		/// An object containing FRED data, the type of which is determined by TContainer. 
+		/// A json string containing FRED data. 
 		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
 		/// </returns>
-		public virtual TContainer Fetch()
+		public string FetchJson()
 		{
-			TContainer container = null;
-            try
+			return Fetch(json: true);
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// An XML string containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public string FetchXml()
+		{
+			return Fetch(json: false);
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// A json string containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public async Task<string> FetchJsonAsync()
+		{
+			return await FetchAsync(json: true);
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// An XML string containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public async Task<string> FetchXmlAsync()
+		{
+			return await FetchAsync(json: false);
+		}
+
+		#endregion
+
+		#region protected methods
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// A json string containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		protected string Fetch()
+		{
+			string container = null;
+			try
 			{
-				Arguments.ApiKey = ApiKey;
-				Request.Deserialize = typeof(TContainer) != typeof(string);
+				//Request.Deserialize = typeof(T) != typeof(string);
 				Request.Json = Json;
-				container = Request.Fetch<TContainer>(Arguments);
+				container = Request.Fetch(GetArguments());
 				SetResultProperties();
 			}
 			catch (Exception exception)
@@ -119,18 +166,17 @@ namespace FRED.Api.Core.ApiFacades
 		/// Fetches data from a FRED service endpoint asynchronously.
 		/// </summary>
 		/// <returns>
-		/// A task that ultimately returns an object containing FRED data, the type of which is determined by this instance.
+		/// A json string containing FRED data. 
 		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
 		/// </returns>
-		public async Task<TContainer> FetchAsync()
+		protected async Task<string> FetchAsync()
 		{
-			TContainer container = null;
+			string container = null;
 			try
 			{
-				Arguments.ApiKey = ApiKey;
-				Request.Deserialize = typeof(TContainer) != typeof(string);
+				//Request.Deserialize = typeof(object) != typeof(string);
 				Request.Json = Json;
-				container = await Request.FetchAsync<TContainer>(Arguments);
+				container = await Request.FetchAsync(GetArguments());
 				SetResultProperties();
 			}
 			catch (Exception exception)
@@ -140,10 +186,6 @@ namespace FRED.Api.Core.ApiFacades
 			return container;
 		}
 
-		#endregion
-
-		#region protected methods
-
 		protected void SetResultProperties()
 		{
 			Url = Request.Url;
@@ -151,7 +193,48 @@ namespace FRED.Api.Core.ApiFacades
 			Exception = Request.Exception;
 		}
 
+		protected abstract ArgumentsBase GetArguments();
+
+		#endregion
+
+		#region private methods
+
+		private string Fetch(bool json)
+		{
+			bool savedJson = Json;
+			Json = json;
+			var result = Fetch();
+			Json = savedJson;
+
+			return result;
+		}
+
+		private async Task<string> FetchAsync(bool json)
+		{
+			bool savedJson = Json;
+			Json = json;
+			var result = await FetchAsync();
+			Json = savedJson;
+
+			return result;
+		}
+
 		#endregion
 
 	}
+
+	public interface IApiBase
+	{
+		#region metnods
+
+		string FetchJson();
+		string FetchXml();
+
+		Task<string> FetchJsonAsync();
+		Task<string> FetchXmlAsync();
+
+		#endregion
+
+	}
+
 }

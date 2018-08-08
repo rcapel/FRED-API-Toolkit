@@ -10,7 +10,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/observations API endpoint. Results are returned as multiple Excel spreadsheet files in ZIP format.
 	/// </summary>
-	public abstract class SeriesObservationsFile : ApiBase<SeriesObservationsArguments, object>
+	public abstract class SeriesObservationsFile : ApiBase0<SeriesObservationsArguments, object>
 	{
 		#region properties
 
@@ -52,7 +52,7 @@ namespace FRED.Api.Series.ApiFacades
 
 				var request = new FileRequest { FilePath = filePath, Excel = Excel };
 				Arguments.ApiKey = ApiKey;
-				request.Fetch<object>(Arguments);
+				request.Fetch(Arguments);
 				SetResultProperties();
 				return Exception == null;
 			}
@@ -68,7 +68,7 @@ namespace FRED.Api.Series.ApiFacades
 		/// </summary>
 		/// <param name="filePath">The file path at which to save the ZIP file.</param>
 		/// <param name="overwrite">Indicates whether or not to overwrite the contents of an existing ZIP file. The default is true.</param>
-		/// <returns>A Task of type Boolean, the resolution of which indicates whether or not the operation succeeded.</returns>
+		/// <returns>A boolean indicating whether or not the operation succeeded.</returns>
 		public async Task<bool> FetchAsync(string filePath, bool overwrite = true)
 		{
 			try
@@ -81,7 +81,7 @@ namespace FRED.Api.Series.ApiFacades
 
 				var request = new FileRequest { FilePath = filePath, Excel = Excel };
 				Arguments.ApiKey = ApiKey;
-				await request.FetchAsync<object>(Arguments);
+				await request.FetchAsync(Arguments);
 				SetResultProperties();
 				return Exception == null;
 			}

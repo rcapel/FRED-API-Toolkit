@@ -48,20 +48,19 @@ namespace FRED.Api.Core.Requests
 		/// <summary>
 		/// Fetches data from a FRED service endpoint.
 		/// </summary>
-		/// <typeparam name="T">The type of container, containing fetch results, that this instance returns.</typeparam>
 		/// <param name="arguments">The arguments used in the FRED API call.</param>
-		/// <returns>A container of type <paramref name="T"/> containing fetch results.</returns>
-		public T Fetch<T>(ArgumentsBase arguments) where T : class
+		/// <returns>A string containing fetch results.</returns>
+		public string Fetch(ArgumentsBase arguments)
 		{
-			T result = default(T);
+			string result = null;
 
 			Url = BuildUrl(arguments);
 			if (Url == null)
-				return result;
+				return null;
 
 			try
 			{
-				result = InvokeService<T>();
+				result = InvokeService();
 			}
 			catch (WebException exception)
 			{
@@ -74,12 +73,11 @@ namespace FRED.Api.Core.Requests
 		/// <summary>
 		/// Fetches data asynchronously from a FRED service endpoint.
 		/// </summary>
-		/// <typeparam name="T">The type of container, containing fetch results, that this instance returns.</typeparam>
 		/// <param name="arguments">The arguments used in the FRED API call.</param>
-		/// <returns>A Task of type <paramref name="T"/>, the resolution of which is a container of fetch results.</returns>
-		public async Task<T> FetchAsync<T>(ArgumentsBase arguments) where T : class
+		/// <returns>A string containing fetch results.</returns>
+		public async Task<string> FetchAsync(ArgumentsBase arguments)
 		{
-			T result = default(T);
+			string result = null;
 
 			Url = BuildUrl(arguments);
 			if (Url == null)
@@ -87,7 +85,7 @@ namespace FRED.Api.Core.Requests
 
 			try
 			{
-				result = await InvokeServiceAsync<T>();
+				result = await InvokeServiceAsync();
 			}
 			catch (WebException exception)
 			{
@@ -104,25 +102,28 @@ namespace FRED.Api.Core.Requests
 		/// <summary>
 		/// Invoke the actual FRED API endpoint. Subclasses can override this template method to provide specialized behavior.
 		/// </summary>
-		/// <typeparam name="T">The type of container, containing fetch results, that this instance returns.</typeparam>
-		/// <returns>A container of type <paramref name="T"/> containing fetch results.</returns>
-		protected virtual T InvokeService<T>() where T : class
+		/// <returns>A string containing fetch results.</returns>
+		protected virtual string InvokeService()
 		{
 			WebRequest request = WebRequest.Create(Url);
 			request.Credentials = CredentialCache.DefaultCredentials;
 			using (WebResponse response = request.GetResponse())
 			{
-				return BuildResult<T>(response);
+				return BuildResult(response);
 			}
 		}
 
-		protected virtual async Task<T> InvokeServiceAsync<T>() where T : class
+		/// <summary>
+		/// Invoke the actual FRED API endpoint asynchronously. Subclasses can override this template method to provide specialized behavior.
+		/// </summary>
+		/// <returns>A string containing fetch results.</returns>
+		protected virtual async Task<string> InvokeServiceAsync()
 		{
 			WebRequest request = WebRequest.Create(Url);
 			request.Credentials = CredentialCache.DefaultCredentials;
 			using (WebResponse response = await request.GetResponseAsync())
 			{
-				return BuildResult<T>(response);
+				return BuildResult(response);
 			}
 		}
 
@@ -141,17 +142,16 @@ namespace FRED.Api.Core.Requests
 			return url;
 		}
 
-		private T BuildResult<T>(WebResponse response) where T : class
+		private string BuildResult(WebResponse response)
 		{
-			T result = default(T);
 			string responseString = null;
             using (Stream responseStream = response.GetResponseStream())
 			{
 				StreamReader reader = new StreamReader(responseStream);
 				responseString = reader.ReadToEnd();
 			}
-			result = Deserialize ? JsonConvert.DeserializeObject<T>(responseString) : responseString as T;
-			return result;
+			//result = Deserialize ? JsonConvert.DeserializeObject<T>(responseString) : responseString as T;
+			return responseString;
 		}
 
 		/// <summary>

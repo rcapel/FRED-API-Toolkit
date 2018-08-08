@@ -8,7 +8,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/tags API endpoint. Results are returned in a TagContainer instance.
 	/// </summary>
-	public class SeriesTags : ApiBase<SeriesTagsArguments, TagContainer>
+	public class SeriesTags : ApiBase0<SeriesTagsArguments, TagContainer>
 	{
 		#region constructors
 
@@ -23,7 +23,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/tags API endpoint. Results are returned as a JSON string.
 	/// </summary>
-	public class SeriesTagsJson : ApiBase<SeriesTagsArguments, string>
+	public class SeriesTagsJson : ApiBase0<SeriesTagsArguments, string>
 	{
 		#region constructors
 

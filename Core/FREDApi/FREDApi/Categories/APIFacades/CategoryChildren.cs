@@ -1,19 +1,74 @@
 ﻿using FRED.Api.Categories.Arguments;
 using FRED.Api.Categories.Data;
 using FRED.Api.Core.ApiFacades;
+using FRED.Api.Core.Arguments;
 using FRED.Api.Core.Requests;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace FRED.Api.Categories.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/category/children API endpoint. Results are returned in a CategoryContainer instance.
 	/// </summary>
-	public class CategoryChildren : ApiBase<CategoryChildrenArguments, CategoryContainer>
+	public class CategoryChildren : ApiBase, ICategoryChildren
 	{
+		#region properties
+
+		/// <summary>
+		/// Argument values used in a fetch. Argument names match those in the FRED API.
+		/// </summary>
+		public CategoryChildrenArguments Arguments { get; set; } = new CategoryChildrenArguments();
+
+		#endregion
+
 		#region constructors
 
-		public CategoryChildren(IRequest request) : base(request)
+		public CategoryChildren(IRequest request = null) : base(request)
 		{
+		}
+
+		#endregion
+
+		#region public methods
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="CategoryContainer"/> containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new CategoryContainer Fetch()
+		{
+			string json = base.Fetch();
+			var result = JsonConvert.DeserializeObject<CategoryContainer>(json);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="CategoryContainer"/> containing FRED data.
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new async Task<CategoryContainer> FetchAsync()
+		{
+			string json = await base.FetchAsync();
+			var result = JsonConvert.DeserializeObject<CategoryContainer>(json);
+
+			return result;
+		}
+
+		#endregion
+
+		#region protected methods
+
+		protected override ArgumentsBase GetArguments()
+		{
+			return Arguments;
 		}
 
 		#endregion
@@ -21,30 +76,21 @@ namespace FRED.Api.Categories.ApiFacades
 	}
 
 	/// <summary>
-	/// Provides a facade for consuming the fred/category/children API endpoint. Results are returned as a JSON string.
+	/// Defines the interface for CategoryChildren types.
 	/// </summary>
-	public class CategoryChildrenJson : ApiBase<CategoryChildrenArguments, string>
+	public interface ICategoryChildren : IApiBase
 	{
-		#region constructors
+		#region properties
 
-		public CategoryChildrenJson(IRequest request) : base(request)
-		{
-		}
+		CategoryChildrenArguments Arguments { get; set; }
 
 		#endregion
 
-	}
+		#region public methods
 
-	/// <summary>
-	/// Provides a facade for consuming the fred/category/children API endpoint. Results are returned as an XML string.
-	/// </summary>
-	public class CategoryChildrenXml : XmlApiFacade<CategoryChildrenArguments>
-	{
-		#region constructors
+		CategoryContainer Fetch();
 
-		public CategoryChildrenXml(IRequest request) : base(request)
-		{
-		}
+		Task<CategoryContainer> FetchAsync();
 
 		#endregion
 

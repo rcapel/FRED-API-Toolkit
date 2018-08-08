@@ -8,7 +8,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/vintagedates API endpoint. Results are returned in a VintageDateContainer instance.
 	/// </summary>
-	public class SeriesVintageDates : ApiBase<SeriesVintageDatesArguments, VintageDateContainer>
+	public class SeriesVintageDates : ApiBase0<SeriesVintageDatesArguments, VintageDateContainer>
 	{
 		#region constructors
 
@@ -23,7 +23,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/vintagedates API endpoint. Results are returned as a JSON string.
 	/// </summary>
-	public class SeriesVintageDatesJson : ApiBase<SeriesVintageDatesArguments, string>
+	public class SeriesVintageDatesJson : ApiBase0<SeriesVintageDatesArguments, string>
 	{
 		#region constructors
 

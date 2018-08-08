@@ -8,7 +8,7 @@ namespace FRED.Api.Tags.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/tags API endpoint. Results are returned in a TagContainer instance.
 	/// </summary>
-	public class Tags : ApiBase<TagsArguments, TagContainer>
+	public class Tags : ApiBase0<TagsArguments, TagContainer>
 	{
 		#region constructors
 
@@ -23,7 +23,7 @@ namespace FRED.Api.Tags.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/tags API endpoint. Results are returned as a JSON string.
 	/// </summary>
-	public class TagsJson : ApiBase<TagsArguments, string>
+	public class TagsJson : ApiBase0<TagsArguments, string>
 	{
 		#region constructors
 

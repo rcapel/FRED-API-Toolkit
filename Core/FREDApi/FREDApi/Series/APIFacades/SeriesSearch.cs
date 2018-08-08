@@ -8,7 +8,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/search API endpoint. Results are returned in a SeriesSearchContainer instance.
 	/// </summary>
-	public class SeriesSearch : ApiBase<SeriesSearchArguments, SeriesSearchContainer>
+	public class SeriesSearch : ApiBase0<SeriesSearchArguments, SeriesSearchContainer>
 	{
 		#region constructors
 
@@ -23,7 +23,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/search API endpoint. Results are returned as a JSON string.
 	/// </summary>
-	public class SeriesSearchJson : ApiBase<SeriesSearchArguments, string>
+	public class SeriesSearchJson : ApiBase0<SeriesSearchArguments, string>
 	{
 		#region constructors
 

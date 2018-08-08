@@ -8,7 +8,7 @@ namespace FRED.Api.Sources.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/sources API endpoint. Results are returned in a SourcesContainer instance.
 	/// </summary>
-	public class Sources : ApiBase<SourcesArguments, SourcesContainer>
+	public class Sources : ApiBase0<SourcesArguments, SourcesContainer>
 	{
 		#region constructors
 
@@ -23,7 +23,7 @@ namespace FRED.Api.Sources.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/sources API endpoint. Results are returned as a JSON string.
 	/// </summary>
-	public class SourcesJson : ApiBase<SourcesArguments, string>
+	public class SourcesJson : ApiBase0<SourcesArguments, string>
 	{
 		#region constructors
 

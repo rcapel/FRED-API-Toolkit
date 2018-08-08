@@ -11,10 +11,10 @@ namespace FRED.Api.Core.Requests
     {
 		#region properties
 
-		/// <summary>
-		/// Indicates whether this instance will attempt to deserialize JSON returned from a fetch.
-		/// </summary>
-		bool Deserialize { get; set; }
+		///// <summary>
+		///// Indicates whether this instance will attempt to deserialize JSON returned from a fetch.
+		///// </summary>
+		//bool Deserialize { get; set; }
 
 		/// <summary>
 		/// Indicates whether this instance expects JSON as the format for data returned from a fetch. 
@@ -44,18 +44,16 @@ namespace FRED.Api.Core.Requests
 		/// <summary>
 		/// Fetches data from a FRED service endpoint.
 		/// </summary>
-		/// <typeparam name="T">The type of container, containing fetch results, that this instance returns.</typeparam>
 		/// <param name="arguments">The arguments used in the FRED API call.</param>
-		/// <returns>A container of type <paramref name="T"/> containing fetch results.</returns>
-		T Fetch<T>(ArgumentsBase arguments) where T : class;
+		/// <returns>A string containing fetch results.</returns>
+		string Fetch(ArgumentsBase arguments);
 
 		/// <summary>
 		/// Fetches data asynchronously from a FRED service endpoint.
 		/// </summary>
-		/// <typeparam name="T">The type of container, containing fetch results, that this instance returns.</typeparam>
 		/// <param name="arguments">The arguments used in the FRED API call.</param>
-		/// <returns>A Task of type <paramref name="T"/>, the resolution of which is a container of fetch results.</returns>
-		Task<T> FetchAsync<T>(ArgumentsBase arguments) where T : class;
+		/// <returns>A string containing fetch results.</returns>
+		Task<string> FetchAsync(ArgumentsBase arguments);
 
 		#endregion
 

@@ -8,7 +8,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/categories API endpoint. Results are returned in a CategoryContainer instance.
 	/// </summary>
-	public class SeriesCategories : ApiBase<SeriesCategoriesArguments, CategoryContainer>
+	public class SeriesCategories : ApiBase0<SeriesCategoriesArguments, CategoryContainer>
 	{
 		#region constructors
 
@@ -23,7 +23,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/categories API endpoint. Results are returned as a JSON string.
 	/// </summary>
-	public class SeriesCategoriesJson : ApiBase<SeriesCategoriesArguments, string>
+	public class SeriesCategoriesJson : ApiBase0<SeriesCategoriesArguments, string>
 	{
 		#region constructors
 

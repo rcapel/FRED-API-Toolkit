@@ -8,7 +8,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/release API endpoint. Results are returned in a ReleaseContainer instance.
 	/// </summary>
-	public class SeriesRelease : ApiBase<SeriesReleaseArguments, ReleaseContainer>
+	public class SeriesRelease : ApiBase0<SeriesReleaseArguments, ReleaseContainer>
 	{
 		#region constructors
 
@@ -23,7 +23,7 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/release API endpoint. Results are returned as a JSON string.
 	/// </summary>
-	public class SeriesReleaseJson : ApiBase<SeriesReleaseArguments, string>
+	public class SeriesReleaseJson : ApiBase0<SeriesReleaseArguments, string>
 	{
 		#region constructors
 

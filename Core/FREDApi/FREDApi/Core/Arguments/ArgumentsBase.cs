@@ -19,7 +19,7 @@ namespace FRED.Api.Core.Arguments
 		/// <summary>
 		/// The FRED API key.
 		/// </summary>
-		internal string ApiKey { get; set; }
+		public string ApiKey { get; set; }
 
 		/// <summary>
 		/// The FRED API url extension. For example, in "https://api.stlouisfed.org/fred/category", "category" is the extension.
