@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Core\APIFacades\ApiBase0.cs" />
+    <Compile Remove="Core\APIFacades\XmlApiFacade.cs" />
+    <Compile Remove="Core\IApi.cs" />
+    <Compile Remove="Core\XIApiKeyed.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
