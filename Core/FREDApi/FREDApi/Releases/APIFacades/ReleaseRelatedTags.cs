@@ -2,6 +2,9 @@
 using FRED.Api.Core.ApiFacades;
 using FRED.Api.Tags.Data;
 using FRED.Api.Core.Requests;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using FRED.Api.Core.Arguments;
 
 namespace FRED.Api.Releases.ApiFacades
 {
@@ -36,7 +39,7 @@ namespace FRED.Api.Releases.ApiFacades
 		/// A <see cref="TagContainer"/> containing FRED data. 
 		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
 		/// </returns>
-		public new ReleaseContainer Fetch()
+		public new TagContainer Fetch()
 		{
 			string json = base.Fetch();
 			var result = JsonConvert.DeserializeObject<TagContainer>(json);

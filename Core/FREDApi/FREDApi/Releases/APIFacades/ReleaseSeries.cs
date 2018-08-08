@@ -2,6 +2,9 @@
 using FRED.Api.Series.Data;
 using FRED.Api.Core.ApiFacades;
 using FRED.Api.Core.Requests;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using FRED.Api.Core.Arguments;
 
 namespace FRED.Api.Releases.ApiFacades
 {
@@ -75,7 +78,7 @@ namespace FRED.Api.Releases.ApiFacades
 	/// <summary>
 	/// Defines the interface for ReleaseSeries types.
 	/// </summary>
-	public interface ICategory : IApiBase
+	public interface IReleaseSeries : IApiBase
 	{
 		#region properties
 

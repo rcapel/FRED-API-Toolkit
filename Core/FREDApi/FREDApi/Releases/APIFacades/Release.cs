@@ -2,6 +2,9 @@
 using FRED.Api.Releases.Data;
 using FRED.Api.Core.ApiFacades;
 using FRED.Api.Core.Requests;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using FRED.Api.Core.Arguments;
 
 namespace FRED.Api.Releases.ApiFacades
 {

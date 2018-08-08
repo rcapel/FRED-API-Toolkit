@@ -2,6 +2,9 @@
 using FRED.Api.Releases.Data;
 using FRED.Api.Core.ApiFacades;
 using FRED.Api.Core.Requests;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using FRED.Api.Core.Arguments;
 
 namespace FRED.Api.Releases.ApiFacades
 {
@@ -79,7 +82,7 @@ namespace FRED.Api.Releases.ApiFacades
 	{
 		#region properties
 
-		ReleaseArguments Arguments { get; set; }
+		ReleaseDatesArguments Arguments { get; set; }
 
 		#endregion
 
