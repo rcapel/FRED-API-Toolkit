@@ -8,12 +8,64 @@ namespace FRED.Api.Releases.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/releases/dates API endpoint. Results are returned in a ReleasesDateContainer instance.
 	/// </summary>
-	public class ReleasesDates : ApiBase0<ReleasesDatesArguments, ReleasesDateContainer>
+	public class ReleasesDates : ApiBase, IReleasesDates
 	{
+		#region properties
+
+		/// <summary>
+		/// Argument values used in a fetch. Argument names match those in the FRED API.
+		/// </summary>
+		public ReleasesDatesArguments Arguments { get; set; } = new ReleasesDatesArguments();
+
+		#endregion
+
 		#region constructors
 
-		public ReleasesDates(IRequest request) : base(request)
+		public ReleasesDates(IRequest request = null) : base(request)
 		{
+		}
+
+		#endregion
+
+		#region public methods
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="ReleasesDateContainer"/> containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new ReleasesDateContainer Fetch()
+		{
+			string json = base.Fetch();
+			var result = JsonConvert.DeserializeObject<ReleasesDateContainer>(json);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="ReleasesDateContainer"/> containing FRED data.
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new async Task<ReleasesDateContainer> FetchAsync()
+		{
+			string json = await base.FetchAsync();
+			var result = JsonConvert.DeserializeObject<ReleasesDateContainer>(json);
+
+			return result;
+		}
+
+		#endregion
+
+		#region protected methods
+
+		protected override ArgumentsBase GetArguments()
+		{
+			return Arguments;
 		}
 
 		#endregion
@@ -21,30 +73,21 @@ namespace FRED.Api.Releases.ApiFacades
 	}
 
 	/// <summary>
-	/// Provides a facade for consuming the fred/releases/dates API endpoint. Results are returned as a JSON string.
+	/// Defines the interface for ReleasesDates types.
 	/// </summary>
-	public class ReleasesDatesJson : ApiBase0<ReleasesDatesArguments, string>
+	public interface IReleasesDates : IApiBase
 	{
-		#region constructors
+		#region properties
 
-		public ReleasesDatesJson(IRequest request) : base(request)
-		{
-		}
+		ReleasesArguments Arguments { get; set; }
 
 		#endregion
 
-	}
+		#region public methods
 
-	/// <summary>
-	/// Provides a facade for consuming the fred/releases/dates API endpoint. Results are returned as an XML string.
-	/// </summary>
-	public class ReleasesDatesXml : XmlApiFacade<ReleasesDatesArguments>
-	{
-		#region constructors
+		ReleasesDateContainer Fetch();
 
-		public ReleasesDatesXml(IRequest request) : base(request)
-		{
-		}
+		Task<ReleasesDateContainer> FetchAsync();
 
 		#endregion
 

@@ -8,12 +8,64 @@ namespace FRED.Api.Releases.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/release API endpoint. Results are returned in a ReleaseContainer instance.
 	/// </summary>
-	public class Release : ApiBase0<ReleaseArguments, ReleaseContainer>
+	public class Release : ApiBase, IRelease
 	{
+		#region properties
+
+		/// <summary>
+		/// Argument values used in a fetch. Argument names match those in the FRED API.
+		/// </summary>
+		public ReleaseArguments Arguments { get; set; } = new ReleaseArguments();
+
+		#endregion
+
 		#region constructors
 
-		public Release(IRequest request) : base(request)
+		public Release(IRequest request = null) : base(request)
 		{
+		}
+
+		#endregion
+
+		#region public methods
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="ReleaseContainer"/> containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new ReleaseContainer Fetch()
+		{
+			string json = base.Fetch();
+			var result = JsonConvert.DeserializeObject<ReleaseContainer>(json);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="ReleaseContainer"/> containing FRED data.
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new async Task<ReleaseContainer> FetchAsync()
+		{
+			string json = await base.FetchAsync();
+			var result = JsonConvert.DeserializeObject<ReleaseContainer>(json);
+
+			return result;
+		}
+
+		#endregion
+
+		#region protected methods
+
+		protected override ArgumentsBase GetArguments()
+		{
+			return Arguments;
 		}
 
 		#endregion
@@ -21,30 +73,21 @@ namespace FRED.Api.Releases.ApiFacades
 	}
 
 	/// <summary>
-	/// Provides a facade for consuming the fred/release API endpoint. Results are returned as a JSON string.
+	/// Defines the interface for Release types.
 	/// </summary>
-	public class ReleaseJson : ApiBase0<ReleaseArguments, string>
+	public interface IRelease : IApiBase
 	{
-		#region constructors
+		#region properties
 
-		public ReleaseJson(IRequest request) : base(request)
-		{
-		}
+		ReleaseArguments Arguments { get; set; }
 
 		#endregion
 
-	}
+		#region public methods
 
-	/// <summary>
-	/// Provides a facade for consuming the fred/release API endpoint. Results are returned as an XML string.
-	/// </summary>
-	public class ReleaseXml : XmlApiFacade<ReleaseArguments>
-	{
-		#region constructors
+		ReleaseContainer Fetch();
 
-		public ReleaseXml(IRequest request) : base(request)
-		{
-		}
+		Task<ReleaseContainer> FetchAsync();
 
 		#endregion
 

@@ -8,43 +8,86 @@ namespace FRED.Api.Releases.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/release/sources API endpoint. Results are returned in a SourceContainer instance.
 	/// </summary>
-	public class ReleaseSources : ApiBase0<ReleaseSourcesArguments, SourceContainer>
+	public class ReleaseSources : ApiBase, IReleaseSources
 	{
+		#region properties
+
+		/// <summary>
+		/// Argument values used in a fetch. Argument names match those in the FRED API.
+		/// </summary>
+		public ReleaseSourcesArguments Arguments { get; set; } = new ReleaseSourcesArguments();
+
+		#endregion
+
 		#region constructors
 
-		public ReleaseSources(IRequest request) : base(request)
+		public ReleaseSources(IRequest request = null) : base(request)
 		{
 		}
 
 		#endregion
 
-	}
+		#region public methods
 
-	/// <summary>
-	/// Provides a facade for consuming the fred/release/sources API endpoint. Results are returned as a JSON string.
-	/// </summary>
-	public class ReleaseSourcesJson : ApiBase0<ReleaseSourcesArguments, string>
-	{
-		#region constructors
-
-		public ReleaseSourcesJson(IRequest request) : base(request)
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="SourcesContainer"/> containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new SourcesContainer Fetch()
 		{
+			string json = base.Fetch();
+			var result = JsonConvert.DeserializeObject<SourcesContainer>(json);
+
+			return result;
 		}
 
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="SourcesContainer"/> containing FRED data.
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new async Task<SourcesContainer> FetchAsync()
+		{
+			string json = await base.FetchAsync();
+			var result = JsonConvert.DeserializeObject<SourcesContainer>(json);
+
+			return result;
+		}
+
+		#endregion
+
+		#region protected methods
+
+		protected override ArgumentsBase GetArguments()
+		{
+			return Arguments;
+		}
+	
 		#endregion
 
 	}
 
 	/// <summary>
-	/// Provides a facade for consuming the fred/release/sources API endpoint. Results are returned as an XML string.
+	/// Defines the interface for ReleaseSources types.
 	/// </summary>
-	public class ReleaseSourcesXml : XmlApiFacade<ReleaseSourcesArguments>
+	public interface IReleaseSources : IApiBase
 	{
-		#region constructors
+		#region properties
 
-		public ReleaseSourcesXml(IRequest request) : base(request)
-		{
-		}
+		ReleaseSourcesArguments Arguments { get; set; }
+
+		#endregion
+
+		#region public methods
+
+		SourcesContainer Fetch();
+
+		Task<SourcesContainer> FetchAsync();
 
 		#endregion
 
