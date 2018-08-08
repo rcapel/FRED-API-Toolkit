@@ -2,18 +2,73 @@
 using FRED.Api.Series.Data;
 using FRED.Api.Core.ApiFacades;
 using FRED.Api.Core.Requests;
+using FRED.Api.Core.Arguments;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace FRED.Api.Series.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/vintagedates API endpoint. Results are returned in a VintageDateContainer instance.
-	/// </summary>
-	public class SeriesVintageDates : ApiBase0<SeriesVintageDatesArguments, VintageDateContainer>
+	/// </summary>ApiBase0<SeriesVintageDatesArguments, VintageDateContainer>
+	public class SeriesVintageDates : ApiBase, ISeriesVintageDates
 	{
+		#region properties
+
+		/// <summary>
+		/// Argument values used in a fetch. Argument names match those in the FRED API.
+		/// </summary>
+		public SeriesVintageDatesArguments Arguments { get; set; } = new SeriesVintageDatesArguments();
+
+		#endregion
+
 		#region constructors
 
-		public SeriesVintageDates(IRequest request) : base(request)
+		public SeriesVintageDates(IRequest request = null) : base(request)
 		{
+		}
+
+		#endregion
+
+		#region public methods
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="VintageDateContainer"/> containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new VintageDateContainer Fetch()
+		{
+			string json = base.Fetch();
+			var result = JsonConvert.DeserializeObject<VintageDateContainer>(json);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="VintageDateContainer"/> containing FRED data.
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new async Task<VintageDateContainer> FetchAsync()
+		{
+			string json = await base.FetchAsync();
+			var result = JsonConvert.DeserializeObject<VintageDateContainer>(json);
+
+			return result;
+		}
+
+		#endregion
+
+		#region protected methods
+
+		protected override ArgumentsBase GetArguments()
+		{
+			return Arguments;
 		}
 
 		#endregion
@@ -21,30 +76,21 @@ namespace FRED.Api.Series.ApiFacades
 	}
 
 	/// <summary>
-	/// Provides a facade for consuming the fred/series/vintagedates API endpoint. Results are returned as a JSON string.
+	/// Defines the interface for SeriesVintageDates types.
 	/// </summary>
-	public class SeriesVintageDatesJson : ApiBase0<SeriesVintageDatesArguments, string>
+	public interface ISeriesVintageDates : IApiBase
 	{
-		#region constructors
+		#region properties
 
-		public SeriesVintageDatesJson(IRequest request) : base(request)
-		{
-		}
+		SeriesVintageDatesArguments Arguments { get; set; }
 
 		#endregion
 
-	}
+		#region public methods
 
-	/// <summary>
-	/// Provides a facade for consuming the fred/series/vintagedates API endpoint. Results are returned as an XML string.
-	/// </summary>
-	public class SeriesVintageDatesXml : XmlApiFacade<SeriesVintageDatesArguments>
-	{
-		#region constructors
+		VintageDateContainer Fetch();
 
-		public SeriesVintageDatesXml(IRequest request) : base(request)
-		{
-		}
+		Task<VintageDateContainer> FetchAsync();
 
 		#endregion
 

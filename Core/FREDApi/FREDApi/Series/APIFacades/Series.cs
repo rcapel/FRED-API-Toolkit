@@ -2,18 +2,73 @@
 using FRED.Api.Series.Data;
 using FRED.Api.Core.ApiFacades;
 using FRED.Api.Core.Requests;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using FRED.Api.Core.Arguments;
 
 namespace FRED.Api.Series.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/series API endpoint. Results are returned in a SingleSeriesContainer instance.
 	/// </summary>
-	public class Series : ApiBase0<SeriesArguments, SingleSeriesContainer>
+	public class Series : ApiBase, ISeries
 	{
+		#region properties
+
+		/// <summary>
+		/// Argument values used in a fetch. Argument names match those in the FRED API.
+		/// </summary>
+		public SeriesArguments Arguments { get; set; } = new SeriesArguments();
+
+		#endregion
+
 		#region constructors
 
-		public Series(IRequest request) : base(request)
+		public Series(IRequest request = null) : base(request)
 		{
+		}
+
+		#endregion
+
+		#region public methods
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="SingleSeriesContainer"/> containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new SingleSeriesContainer Fetch()
+		{
+			string json = base.Fetch();
+			var result = JsonConvert.DeserializeObject<SingleSeriesContainer>(json);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="SingleSeriesContainer"/> containing FRED data.
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new async Task<SingleSeriesContainer> FetchAsync()
+		{
+			string json = await base.FetchAsync();
+			var result = JsonConvert.DeserializeObject<SingleSeriesContainer>(json);
+
+			return result;
+		}
+
+		#endregion
+
+		#region protected methods
+
+		protected override ArgumentsBase GetArguments()
+		{
+			return Arguments;
 		}
 
 		#endregion
@@ -21,30 +76,21 @@ namespace FRED.Api.Series.ApiFacades
 	}
 
 	/// <summary>
-	/// Provides a facade for consuming the fred/series API endpoint. Results are returned as a JSON string.
+	/// Defines the interface for Series types.
 	/// </summary>
-	public class SeriesJson : ApiBase0<SeriesArguments, string>
+	public interface ISeries : IApiBase
 	{
-		#region constructors
+		#region properties
 
-		public SeriesJson(IRequest request) : base(request)
-		{
-		}
+		SeriesArguments Arguments { get; set; }
 
 		#endregion
 
-	}
+		#region public methods
 
-	/// <summary>
-	/// Provides a facade for consuming the fred/series API endpoint. Results are returned as an XML string.
-	/// </summary>
-	public class SeriesXml : XmlApiFacade<SeriesArguments>
-	{
-		#region constructors
+		SingleSeriesContainer Fetch();
 
-		public SeriesXml(IRequest request) : base(request)
-		{
-		}
+		Task<SingleSeriesContainer> FetchAsync();
 
 		#endregion
 

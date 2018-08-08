@@ -1,92 +1,96 @@
 ﻿using FRED.Api.Core.ApiFacades;
+using FRED.Api.Core.Arguments;
 using FRED.Api.Core.Requests;
 using FRED.Api.Series.Arguments;
 using FRED.Api.Series.Data;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace FRED.Api.Series.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/observations API endpoint. Results are returned in a ObservationContainer instance.
 	/// </summary>
-	public class SeriesObservations : ApiBase0<SeriesObservationsArguments, ObservationContainer>
-	{
-		#region constructors
-
-		public SeriesObservations(IRequest request) : base(request)
-		{
-		}
-
-		#endregion
-
-	}
-
-	/// <summary>
-	/// Provides a facade for consuming the fred/series/observations API endpoint. Results are returned as a JSON string.
-	/// </summary>
-	public class SeriesObservationsJson : ApiBase0<SeriesObservationsArguments, string>
-	{
-		#region constructors
-
-		public SeriesObservationsJson(IRequest request) : base(request)
-		{
-		}
-
-		#endregion
-
-	}
-
-	/// <summary>
-	/// Provides a facade for consuming the fred/series/observations API endpoint. Results are returned as an XML string.
-	/// </summary>
-	public class SeriesObservationsXml : XmlApiFacade<SeriesObservationsArguments>
-	{
-		#region constructors
-
-		public SeriesObservationsXml(IRequest request) : base(request)
-		{
-		}
-
-		#endregion
-
-	}
-
-	/// <summary>
-	/// Provides a facade for consuming the fred/series/observations API endpoint. Results are returned as multiple Excel spreadsheet files in ZIP format.
-	/// </summary>
-	public class SeriesObservationsExcel : SeriesObservationsFile
-	{
-		#region constructors
-
-		public SeriesObservationsExcel(IRequest request) : base(request)
-		{
-		}
-
-		#endregion
-
-	}
-
-	/// <summary>
-	/// Provides a facade for consuming the fred/series/observations API endpoint. Results are returned as multiple Excel spreadsheet files in ZIP format.
-	/// </summary>
-	public class SeriesObservationsText : SeriesObservationsFile
+	public class SeriesObservations : ApiBase, ISeriesObservations
 	{
 		#region properties
 
 		/// <summary>
-		/// Returns false, indicating that the response is not in Excel format, not rather in tab-delimited text format.
+		/// Argument values used in a fetch. Argument names match those in the FRED API.
 		/// </summary>
-		protected override bool Excel
-		{
-			get { return false; }
-		}
+		public SeriesObservationsArguments Arguments { get; set; } = new SeriesObservationsArguments();
 
 		#endregion
 
 		#region constructors
 
-		public SeriesObservationsText(IRequest request) : base(request)
+		public SeriesObservations(IRequest request = null) : base(request)
 		{
 		}
+
+		#endregion
+
+		#region public methods
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="ObservationContainer"/> containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new ObservationContainer Fetch()
+		{
+			string json = base.Fetch();
+			var result = JsonConvert.DeserializeObject<ObservationContainer>(json);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="ObservationContainer"/> containing FRED data.
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new async Task<ObservationContainer> FetchAsync()
+		{
+			string json = await base.FetchAsync();
+			var result = JsonConvert.DeserializeObject<ObservationContainer>(json);
+
+			return result;
+		}
+
+		#endregion
+
+		#region protected methods
+
+		protected override ArgumentsBase GetArguments()
+		{
+			return Arguments;
+		}
+
+		#endregion
+
+	}
+
+	/// <summary>
+	/// Defines the interface for SeriesObservations types.
+	/// </summary>
+	public interface ISeriesObservations : IApiBase
+	{
+		#region properties
+
+		SeriesObservationsArguments Arguments { get; set; }
+
+		#endregion
+
+		#region public methods
+
+		ObservationContainer Fetch();
+
+		Task<ObservationContainer> FetchAsync();
 
 		#endregion
 

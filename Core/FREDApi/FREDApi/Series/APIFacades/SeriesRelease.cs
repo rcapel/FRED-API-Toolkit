@@ -2,18 +2,73 @@
 using FRED.Api.Series.Arguments;
 using FRED.Api.Core.ApiFacades;
 using FRED.Api.Core.Requests;
+using System.Threading.Tasks;
+using FRED.Api.Core.Arguments;
+using Newtonsoft.Json;
 
 namespace FRED.Api.Series.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/release API endpoint. Results are returned in a ReleaseContainer instance.
 	/// </summary>
-	public class SeriesRelease : ApiBase0<SeriesReleaseArguments, ReleaseContainer>
+	public class SeriesRelease : ApiBase, ISeriesRelease
 	{
+		#region properties
+
+		/// <summary>
+		/// Argument values used in a fetch. Argument names match those in the FRED API.
+		/// </summary>
+		public SeriesReleaseArguments Arguments { get; set; } = new SeriesReleaseArguments();
+
+		#endregion
+
 		#region constructors
 
-		public SeriesRelease(IRequest request) : base(request)
+		public SeriesRelease(IRequest request = null) : base(request)
 		{
+		}
+
+		#endregion
+
+		#region public methods
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="CategoryContainer"/> containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new ReleaseContainer Fetch()
+		{
+			string json = base.Fetch();
+			var result = JsonConvert.DeserializeObject<ReleaseContainer>(json);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="CategoryContainer"/> containing FRED data.
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new async Task<ReleaseContainer> FetchAsync()
+		{
+			string json = await base.FetchAsync();
+			var result = JsonConvert.DeserializeObject<ReleaseContainer>(json);
+
+			return result;
+		}
+
+		#endregion
+
+		#region protected methods
+
+		protected override ArgumentsBase GetArguments()
+		{
+			return Arguments;
 		}
 
 		#endregion
@@ -21,34 +76,24 @@ namespace FRED.Api.Series.ApiFacades
 	}
 
 	/// <summary>
-	/// Provides a facade for consuming the fred/series/release API endpoint. Results are returned as a JSON string.
+	/// Defines the interface for SeriesRelease types.
 	/// </summary>
-	public class SeriesReleaseJson : ApiBase0<SeriesReleaseArguments, string>
+	public interface ISeriesRelease : IApiBase
 	{
-		#region constructors
+		#region properties
 
-		public SeriesReleaseJson(IRequest request) : base(request)
-		{
-		}
+		SeriesReleaseArguments Arguments { get; set; }
 
 		#endregion
 
-	}
+		#region public methods
 
-	/// <summary>
-	/// Provides a facade for consuming the fred/series/release API endpoint. Results are returned as an XML string.
-	/// </summary>
-	public class SeriesReleaseXml : XmlApiFacade<SeriesReleaseArguments>
-	{
-		#region constructors
+		ReleaseContainer Fetch();
 
-		public SeriesReleaseXml(IRequest request) : base(request)
-		{
-		}
+		Task<ReleaseContainer> FetchAsync();
 
 		#endregion
 
 	}
 
 }
-

@@ -2,18 +2,73 @@
 using FRED.Api.Core.ApiFacades;
 using FRED.Api.Tags.Data;
 using FRED.Api.Core.Requests;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using FRED.Api.Core.Arguments;
 
 namespace FRED.Api.Series.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/search/related_tags API endpoint. Results are returned in a TagContainer instance.
 	/// </summary>
-	public class SeriesSearchRelatedTags : ApiBase0<SeriesSearchRelatedTagsArguments, TagContainer>
+	public class SeriesSearchRelatedTags : ApiBase, ISeriesSearchRelatedTags
 	{
+		#region properties
+
+		/// <summary>
+		/// Argument values used in a fetch. Argument names match those in the FRED API.
+		/// </summary>
+		public SeriesSearchRelatedTagsArguments Arguments { get; set; } = new SeriesSearchRelatedTagsArguments();
+
+		#endregion
+
 		#region constructors
 
-		public SeriesSearchRelatedTags(IRequest request) : base(request)
+		public SeriesSearchRelatedTags(IRequest request = null) : base(request)
 		{
+		}
+
+		#endregion
+
+		#region public methods
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="TagContainer"/> containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new TagContainer Fetch()
+		{
+			string json = base.Fetch();
+			var result = JsonConvert.DeserializeObject<TagContainer>(json);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="TagContainer"/> containing FRED data.
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new async Task<TagContainer> FetchAsync()
+		{
+			string json = await base.FetchAsync();
+			var result = JsonConvert.DeserializeObject<TagContainer>(json);
+
+			return result;
+		}
+
+		#endregion
+
+		#region protected methods
+
+		protected override ArgumentsBase GetArguments()
+		{
+			return Arguments;
 		}
 
 		#endregion
@@ -21,30 +76,21 @@ namespace FRED.Api.Series.ApiFacades
 	}
 
 	/// <summary>
-	/// Provides a facade for consuming the fred/series/search/related_tags API endpoint. Results are returned as a JSON string.
+	/// Defines the interface for SeriesSearchRelatedTags types.
 	/// </summary>
-	public class SeriesSearchRelatedTagsJson : ApiBase0<SeriesSearchRelatedTagsArguments, string>
+	public interface ISeriesSearchRelatedTags : IApiBase
 	{
-		#region constructors
+		#region properties
 
-		public SeriesSearchRelatedTagsJson(IRequest request) : base(request)
-		{
-		}
+		SeriesSearchRelatedTagsArguments Arguments { get; set; }
 
 		#endregion
 
-	}
+		#region public methods
 
-	/// <summary>
-	/// Provides a facade for consuming the fred/series/search/related_tags API endpoint. Results are returned as an XML string.
-	/// </summary>
-	public class SeriesSearchRelatedTagsXml : XmlApiFacade<SeriesSearchRelatedTagsArguments>
-	{
-		#region constructors
+		TagContainer Fetch();
 
-		public SeriesSearchRelatedTagsXml(IRequest request) : base(request)
-		{
-		}
+		Task<TagContainer> FetchAsync();
 
 		#endregion
 

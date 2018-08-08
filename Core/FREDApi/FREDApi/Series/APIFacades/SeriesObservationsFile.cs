@@ -10,9 +10,14 @@ namespace FRED.Api.Series.ApiFacades
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/observations API endpoint. Results are returned as multiple Excel spreadsheet files in ZIP format.
 	/// </summary>
-	public abstract class SeriesObservationsFile : ApiBase0<SeriesObservationsArguments, object>
+	public abstract class SeriesObservationsFile : ApiBase//, ISeriesObservationsFile
 	{
 		#region properties
+
+		/// <summary>
+		/// Argument values used in a fetch. Argument names match those in the FRED API.
+		/// </summary>
+		public SeriesObservationsArguments Arguments { get; set; } = new SeriesObservationsArguments();
 
 		/// <summary>
 		/// Returns true for all subclasses unless overridden, indicating that the response is in Excel format, not in tab-delimited text format.
@@ -51,7 +56,6 @@ namespace FRED.Api.Series.ApiFacades
 				}
 
 				var request = new FileRequest { FilePath = filePath, Excel = Excel };
-				Arguments.ApiKey = ApiKey;
 				request.Fetch(Arguments);
 				SetResultProperties();
 				return Exception == null;
@@ -80,7 +84,6 @@ namespace FRED.Api.Series.ApiFacades
 				}
 
 				var request = new FileRequest { FilePath = filePath, Excel = Excel };
-				Arguments.ApiKey = ApiKey;
 				await request.FetchAsync(Arguments);
 				SetResultProperties();
 				return Exception == null;
@@ -95,4 +98,16 @@ namespace FRED.Api.Series.ApiFacades
 		#endregion
 
 	}
+
+	///// <summary>
+	///// Defines the interface for SeriesObservationsFile types.
+	///// </summary>
+	//public interface ISeriesObservationsFile : IApiBase
+	//{
+	//	#region properties
+
+	//	SeriesObservationsArguments Arguments { get; set; }
+
+	//	#endregion
+
 }
