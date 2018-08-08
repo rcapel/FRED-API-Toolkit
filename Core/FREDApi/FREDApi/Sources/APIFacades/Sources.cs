@@ -2,18 +2,73 @@
 using FRED.Api.Sources.Data;
 using FRED.Api.Core.ApiFacades;
 using FRED.Api.Core.Requests;
+using System.Threading.Tasks;
+using FRED.Api.Core.Arguments;
+using Newtonsoft.Json;
 
 namespace FRED.Api.Sources.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/sources API endpoint. Results are returned in a SourcesContainer instance.
 	/// </summary>
-	public class Sources : ApiBase0<SourcesArguments, SourcesContainer>
+	public class Sources : ApiBase, ISources
 	{
+		#region properties
+
+		/// <summary>
+		/// Argument values used in a fetch. Argument names match those in the FRED API.
+		/// </summary>
+		public SourcesArguments Arguments { get; set; } = new SourcesArguments();
+
+		#endregion
+
 		#region constructors
 
-		public Sources(IRequest request) : base(request)
+		public Sources(IRequest request = null) : base(request)
 		{
+		}
+
+		#endregion
+
+		#region public methods
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="SourcesContainer"/> containing FRED data. 
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new SourcesContainer Fetch()
+		{
+			string json = base.Fetch();
+			var result = JsonConvert.DeserializeObject<SourcesContainer>(json);
+
+			return result;
+		}
+
+		/// <summary>
+		/// Fetches data from a FRED service endpoint asynchronously.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="SourcesContainer"/> containing FRED data.
+		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
+		/// </returns>
+		public new async Task<SourcesContainer> FetchAsync()
+		{
+			string json = await base.FetchAsync();
+			var result = JsonConvert.DeserializeObject<SourcesContainer>(json);
+
+			return result;
+		}
+
+		#endregion
+
+		#region protected methods
+
+		protected override ArgumentsBase GetArguments()
+		{
+			return Arguments;
 		}
 
 		#endregion
@@ -21,30 +76,21 @@ namespace FRED.Api.Sources.ApiFacades
 	}
 
 	/// <summary>
-	/// Provides a facade for consuming the fred/sources API endpoint. Results are returned as a JSON string.
+	/// Defines the interface for Sources types.
 	/// </summary>
-	public class SourcesJson : ApiBase0<SourcesArguments, string>
+	public interface ISources : IApiBase
 	{
-		#region constructors
+		#region properties
 
-		public SourcesJson(IRequest request) : base(request)
-		{
-		}
+		SourcesArguments Arguments { get; set; }
 
 		#endregion
 
-	}
+		#region public methods
 
-	/// <summary>
-	/// Provides a facade for consuming the fred/sources API endpoint. Results are returned as an XML string.
-	/// </summary>
-	public class SourcesXml : XmlApiFacade<SourcesArguments>
-	{
-		#region constructors
+		SourcesContainer Fetch();
 
-		public SourcesXml(IRequest request) : base(request)
-		{
-		}
+		Task<SourcesContainer> FetchAsync();
 
 		#endregion
 
