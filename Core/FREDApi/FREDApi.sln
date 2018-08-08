@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FREDApi", "FREDApi\FREDApi.csproj", "{C59E3133-2F40-4F78-98A2-D63CC9D6D5CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FREDApi", "FREDApi\FREDApi.csproj", "{C59E3133-2F40-4F78-98A2-D63CC9D6D5CB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest1", "UnitTest1\UnitTest1.csproj", "{3DE7B6E7-3A3F-4AF0-B076-49D369381822}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FREDApi.UnitTests", "UnitTest1\FREDApi.UnitTests.csproj", "{3DE7B6E7-3A3F-4AF0-B076-49D369381822}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
