@@ -4,7 +4,7 @@ FRED® API Toolkit
 This C# toolkit provides a facade for consuming the Federal Reserve Economic Data (FRED®) API. Detailed information is available 
 from the pdfs in this repository. See also https://research.stlouisfed.org/docs/api/fred/.
 
-The following items are included in this repository:<br/>
+This repository includes the following items:<br/>
 		<dl>
 			<dt>Targeting .net Core</dt>
 			<dd>
