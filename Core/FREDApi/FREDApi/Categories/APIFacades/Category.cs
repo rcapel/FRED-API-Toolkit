@@ -4,6 +4,7 @@ using FRED.Api.Core.ApiFacades;
 using FRED.Api.Core.Arguments;
 using FRED.Api.Core.Requests;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FRED.Api.Categories.ApiFacades
@@ -19,6 +20,12 @@ namespace FRED.Api.Categories.ApiFacades
 		/// Argument values used in a fetch. Argument names match those in the FRED API.
 		/// </summary>
 		public CategoryArguments Arguments { get; set; } = new CategoryArguments();
+
+		/// <summary>
+		/// A dictionary of errors that are a result of validating argument values.
+		/// Each key is the argument property name and each value is the associated error message.
+		/// </summary>
+		public Dictionary<string, string> ValidationErrors { get; private set; }
 
 		#endregion
 
@@ -78,7 +85,7 @@ namespace FRED.Api.Categories.ApiFacades
 	/// <summary>
 	/// Defines the interface for Category types.
 	/// </summary>
-	public interface ICategory : IApiBase
+	public interface ICategory : IApiBase, IArgumentsBase
 	{
 		#region properties
 
