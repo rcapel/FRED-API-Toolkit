@@ -1,0 +1,65 @@
+<!--<div class='container-fluid'>
+  <div class='row'>
+    <div class='col-sm-3'>
+      <nav-menu></nav-menu>
+    </div>
+    <div class='col-sm-9 body-content'>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>-->
+<!--<div>
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand">{{title}}</a>
+      <ul class="navbar navbar-nav">
+        <li>
+          <a [routerLink]="['/']">Home</a>
+        </li>
+        <li>
+          <a [routerLink]="['/category']">Category</a>
+        </li>
+        <li>
+          <a [routerLink]="['/categoryChildren']">Category Children</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<div class='container-fluid'>
+  <router-outlet></router-outlet>
+</div>-->
+
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Logo</a>
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/']">Home</a>
+    </li>
+
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Category
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" [routerLink]="['/category/1']">Category</a>
+        <a class="dropdown-item" [routerLink]="['/categoryChildren/1']">Children</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Source
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" [routerLink]="['/sources']">Sources</a>
+      </div>
+    </li>
+  </ul>
+</nav><div class='container-fluid'>
+  <router-outlet></router-outlet>
+</div>

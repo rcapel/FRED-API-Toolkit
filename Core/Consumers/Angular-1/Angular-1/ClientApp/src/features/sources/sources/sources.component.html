@@ -1,0 +1,50 @@
+<h3>{{ heading }}</h3>
+<div>
+  <div>
+    Start: {{ realtime_start | date: 'dd/MM/yyyy' }}
+  </div>
+  <div>
+    End: {{ realtime_end | date: 'dd/MM/yyyy' }}
+  </div>
+  <div>
+    Order By: {{ order_by | sourcesOrderBy }}
+  </div>
+  <div>
+    Sort Order: {{ sort_order | sortOrder }}
+  </div>
+  <div>
+    Count: {{ count }}
+  </div>
+  <div>
+    Offset: {{ offset }}
+  </div>
+  <div>
+    Limit: {{ limit }}
+  </div>
+</div>
+<hr />
+<div class="card">
+  <div class="row">
+    <div class="col-md-1 font-weight-bold">Id</div>
+    <div class="col-md-1 font-weight-bold">Start</div>
+    <div class="col-md-1 font-weight-bold">End</div>
+    <div class="col-md-4 font-weight-bold">Name</div>
+    <div class="col-md-5 font-weight-bold">Link</div>
+  </div>
+  <div class="row" *ngFor="let source of sources">
+    <div class="col-md-1">{{ source.id }}</div>
+    <div class="col-md-1">{{ source.realtime_start | date: 'dd/MM/yyyy' }}</div>
+    <div class="col-md-1">{{ source.realtime_end | date: 'dd/MM/yyyy' }}</div>
+    <div class="col-md-4">{{ source.name }}</div>
+    <div class="col-md-5">{{ source.link}}</div>
+  </div>
+</div>
+<hr />
+<div>
+  <div *ngIf="fetchMessage == ''" class="text text-danger">
+    Message: {{ fetchMessage }}
+  </div>
+  <div>
+    <a href="{{ url }}">FRED Url</a>
+  </div>
+</div>
