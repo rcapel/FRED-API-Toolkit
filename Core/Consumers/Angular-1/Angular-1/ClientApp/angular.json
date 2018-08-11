@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FRED-API-Toolkit-AngularTS": {
+    "FRED-API-Toolkit-Angular-1": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -49,18 +49,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "FRED-API-Toolkit-AngularTS:build"
+            "browserTarget": "FRED-API-Toolkit-Angular-1:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "FRED-API-Toolkit-AngularTS:build:production"
+              "browserTarget": "FRED-API-Toolkit-Angular-1:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FRED-API-Toolkit-AngularTS:build"
+            "browserTarget": "FRED-API-Toolkit-Angular-1:build"
           }
         },
         "test": {
@@ -94,7 +94,7 @@
         }
       }
     },
-    "FRED-API-Toolkit-AngularTS-e2e": {
+    "FRED-API-Toolkit-Angular-1-e2e": {
       "root": "",
       "sourceRoot": "e2e",
       "projectType": "application",
@@ -103,7 +103,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "FRED-API-Toolkit-AngularTS:serve"
+            "devServerTarget": "FRED-API-Toolkit-Angular-1:serve"
           }
         },
         "lint": {
@@ -120,7 +120,7 @@
       }
     }
   },
-  "defaultProject": "FRED-API-Toolkit-AngularTS",
+  "defaultProject": "FRED-API-Toolkit-Angular-1",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
