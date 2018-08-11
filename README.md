@@ -8,16 +8,16 @@ The following items are included in this repository:<br/>
 		<dl>
 			<dt>Targeting .net Core</dt>
 			<dd>
-				1. Toolkit
-				2. Unit tests - requires FRED® API key
-				3. Angular consumer - requires FRED® API key
+				1. Toolkit<br/>
+				2. Unit tests - requires FRED® API key<br/>
+				3. Angular consumer - requires FRED® API key<br/>
 			</dd>
 			<dt>Targeting .net Framework 4.6</dt>
 			<dd>
-				1. Toolkit
-				2. Unit tests - requires FRED® API key
-				3. AngularJS consumer (zipped) and documentation - requires FRED® API key
-				4. WinForms consumer (zipped) - requires FRED® API key
+				1. Toolkit<br/>
+				2. Unit tests - requires FRED® API key<br/>
+				3. AngularJS consumer (zipped) and documentation - requires FRED® API key<br/>
+				4. WinForms consumer (zipped) - requires FRED® API key<br/>
 			</dd>
 		</dl>
 
