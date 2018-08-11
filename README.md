@@ -5,12 +5,22 @@ This C# toolkit provides a facade for consuming the Federal Reserve Economic Dat
 from "FRED Toolkit.pdf" in this repository. See also https://research.stlouisfed.org/docs/api/fred/.
 
 The following items are included in this repository:<br/>
-1. Toolkit (zipped)<br/>
-2. Toolkit documentation (pdf)<br/>
-3. Unit test harness (zipped) - requires FRED® API key<br/>
-4. WinForms test harness (zipped) - requires FRED® API key<br/>
-5. Angular SPA (zipped) showing basic consumption of the toolkit - requires FRED® API key<br/>
-6. Angular SPA documentation (pdf)<br/>
+<ul>
+  <li>Targeting .net Core:</li>
+    <ol>
+     <li>Toolkit</li>
+       <li>Unit tests - requires FRED® API key</li>
+      <li>Angular consumer - requires FRED® API key</li>
+    </ol>
+   <li>Targeting .net Framework 4.6</li>
+    <ol>
+     <li>Toolkit</li>
+       <li>Unit tests - requires FRED® API key</li>
+      <li>AngularJS consumer (zipped) and documentation - requires FRED® API key</li>
+      <li>WinForms consumer (zipped) - requires FRED® API key</li>
+    </ol>
+  </li> 
+</ul>
 
 DISCLAIMER STATEMENT:<br/>
 This software is available on an "AS IS" basis, without warranties or conditions of any kind, 
