@@ -1,13 +1,13 @@
-﻿using FRED.Api.Core.Arguments.Validation.Common;
-using FRED.Api.Categories.Arguments;
-using FRED.Api.Releases.Arguments;
-using FRED.Api.Series.Arguments;
-using FRED.Api.Tags.ApiFacades;
-using FRED.Api.Tags.Arguments;
+﻿using AngularConsumer1.Core.Arguments.Validation.Common;
+using AngularConsumer1.Categories.Arguments;
+using AngularConsumer1.Releases.Arguments;
+using AngularConsumer1.Series.Arguments;
+using AngularConsumer1.Tags.ApiFacades;
+using AngularConsumer1.Tags.Arguments;
 using System;
 using System.Collections.Generic;
 
-namespace FRED.Api.Core.Arguments.Validation.TypeSpecific
+namespace AngularConsumer1.Core.Arguments.Validation.TypeSpecific
 {
 	/// <summary>
 	/// Provides behavior for specific argument types that support the required "tag_names" property.

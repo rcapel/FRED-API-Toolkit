@@ -1,4 +1,4 @@
-﻿namespace FRED.Api.Categories.Data
+﻿namespace AngularConsumer1.Categories.Data
 {
 	/// <summary>
 	/// Provides data properties for a category. 

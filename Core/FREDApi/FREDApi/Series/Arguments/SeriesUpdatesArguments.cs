@@ -1,8 +1,8 @@
-﻿using FRED.Api.Core;
-using FRED.Api.Core.Arguments;
+﻿using AngularConsumer1.Core;
+using AngularConsumer1.Core.Arguments;
 using System;
 
-namespace FRED.Api.Series.Arguments
+namespace AngularConsumer1.Series.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the SeriesUpdates API facade.

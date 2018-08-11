@@ -1,9 +1,9 @@
-﻿using FRED.Api.Core.Arguments.Validation.Common;
-using FRED.Api.Releases.Arguments;
+﻿using AngularConsumer1.Core.Arguments.Validation.Common;
+using AngularConsumer1.Releases.Arguments;
 using System;
 using System.Collections.Generic;
 
-namespace FRED.Api.Core.Arguments.Validation.TypeSpecific
+namespace AngularConsumer1.Core.Arguments.Validation.TypeSpecific
 {
 	/// <summary>
 	/// Provides behavior for specific argument types that support the required, positive "release_id" property.

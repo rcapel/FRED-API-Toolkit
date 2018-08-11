@@ -1,6 +1,6 @@
-﻿using FRED.Api.Core;
+﻿using AngularConsumer1.Core;
 
-namespace FRED.Api.Sources.Arguments
+namespace AngularConsumer1.Sources.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the SourceReleases API facade.

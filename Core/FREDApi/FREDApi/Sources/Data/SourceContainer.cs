@@ -1,7 +1,7 @@
-﻿using FRED.Api.Core.Data;
+﻿using AngularConsumer1.Core.Data;
 using System.Collections.Generic;
 
-namespace FRED.Api.Sources.Data
+namespace AngularConsumer1.Sources.Data
 {
 	/// <summary>
 	/// Provides data properties for a source container, including a collection of sources. 

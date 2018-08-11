@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>AngularConsumer1</AssemblyName>
+    <RootNamespace>AngularConsumer1</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +12,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\FREDApi\FREDApi\FREDApi.csproj" />
   </ItemGroup>
 
 </Project>

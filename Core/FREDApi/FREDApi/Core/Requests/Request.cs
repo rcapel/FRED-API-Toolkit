@@ -1,4 +1,4 @@
-﻿using FRED.Api.Core.Arguments;
+﻿using AngularConsumer1.Core.Arguments;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace FRED.Api.Core.Requests
+namespace AngularConsumer1.Core.Requests
 {
 	/// <summary>
 	/// Provides behavior for communicating with FRED service endpoints.

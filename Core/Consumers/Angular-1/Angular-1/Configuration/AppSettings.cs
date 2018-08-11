@@ -1,7 +1,7 @@
-﻿using FRED.Api.Configuration.Interfaces;
+﻿using AngularConsumer1.Configuration.Interfaces;
 using Microsoft.Extensions.Configuration;
 
-namespace FRED.Api.Configuration
+namespace AngularConsumer1.Configuration
 {
 	public class AppSettings : IAppSettings
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FRED.Api.Sources.Data
+namespace AngularConsumer1.Sources.Data
 {
 	/// <summary>
 	/// Provides data properties for a source. 

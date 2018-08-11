@@ -1,6 +1,6 @@
-﻿using FRED.Api.Tags.Arguments;
+﻿using AngularConsumer1.Tags.Arguments;
 
-namespace FRED.Api.Releases.Arguments
+namespace AngularConsumer1.Releases.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the ReleaseRelatedTags API facade.

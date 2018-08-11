@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FRED.Api.Releases.Data
+namespace AngularConsumer1.Releases.Data
 {
 	/// <summary>
 	/// Provides data properties for a date. 

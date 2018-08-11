@@ -1,8 +1,8 @@
-﻿using FRED.Api.Core.Arguments;
+﻿using AngularConsumer1.Core.Arguments;
 using System;
 using System.Threading.Tasks;
 
-namespace FRED.Api.Core.Requests
+namespace AngularConsumer1.Core.Requests
 {
 	/// <summary>
 	/// Provides behavior for communicating with FRED service endpoints.

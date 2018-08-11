@@ -1,12 +1,12 @@
-﻿using FRED.Api.Categories.Arguments;
-using FRED.Api.Core.ApiFacades;
-using FRED.Api.Core.Arguments;
-using FRED.Api.Core.Requests;
-using FRED.Api.Tags.Data;
+﻿using AngularConsumer1.Categories.Arguments;
+using AngularConsumer1.Core.ApiFacades;
+using AngularConsumer1.Core.Arguments;
+using AngularConsumer1.Core.Requests;
+using AngularConsumer1.Tags.Data;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace FRED.Api.Categories.ApiFacades
+namespace AngularConsumer1.Categories.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/category/tags API endpoint. Results are returned in a TagContainer instance.

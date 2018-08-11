@@ -1,7 +1,7 @@
-﻿using FRED.Api.Core.Arguments;
+﻿using AngularConsumer1.Core.Arguments;
 using System;
 
-namespace FRED.Api.Categories.Arguments
+namespace AngularConsumer1.Categories.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the CategoryRelated API facade.

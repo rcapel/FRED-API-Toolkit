@@ -1,12 +1,12 @@
-﻿using FRED.Api.Releases.Data;
-using FRED.Api.Series.Arguments;
-using FRED.Api.Core.ApiFacades;
-using FRED.Api.Core.Requests;
+﻿using AngularConsumer1.Releases.Data;
+using AngularConsumer1.Series.Arguments;
+using AngularConsumer1.Core.ApiFacades;
+using AngularConsumer1.Core.Requests;
 using System.Threading.Tasks;
-using FRED.Api.Core.Arguments;
+using AngularConsumer1.Core.Arguments;
 using Newtonsoft.Json;
 
-namespace FRED.Api.Series.ApiFacades
+namespace AngularConsumer1.Series.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/release API endpoint. Results are returned in a ReleaseContainer instance.

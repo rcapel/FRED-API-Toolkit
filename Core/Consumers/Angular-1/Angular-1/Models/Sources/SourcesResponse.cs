@@ -1,6 +1,6 @@
-﻿using FRED.Api.Sources.Data;
+﻿using AngularConsumer1.Sources.Data;
 
-namespace FRED.Api.Models.Sources
+namespace AngularConsumer1.Models.Sources
 {
 	public class SourcesResponse : ApiData
 	{

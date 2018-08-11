@@ -1,4 +1,4 @@
-﻿namespace FRED.Api.Categories.Arguments
+﻿namespace AngularConsumer1.Categories.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the CategoryRelatedTags API facade.

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace FRED.Api.Core.Arguments.Validation
+namespace AngularConsumer1.Core.Arguments.Validation
 {
 	/// <summary>
 	/// Provides default behavior for validator subclasses that cross-validate properties.

@@ -1,6 +1,6 @@
-﻿using FRED.Api.Categories.Data;
+﻿using AngularConsumer1.Categories.Data;
 
-namespace FRED.Api.Models.Categories
+namespace AngularConsumer1.Models.Categories
 {
 	public class CategoryResponse : ApiData
 	{

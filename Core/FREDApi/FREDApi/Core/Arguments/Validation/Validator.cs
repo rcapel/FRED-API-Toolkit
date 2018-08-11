@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FRED.Api.Core.Arguments.Validation
+namespace AngularConsumer1.Core.Arguments.Validation
 {
 	/// <summary>
 	/// Provides behavior to validate argument property values.

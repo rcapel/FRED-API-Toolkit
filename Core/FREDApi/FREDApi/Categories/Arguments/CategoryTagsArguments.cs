@@ -1,6 +1,6 @@
-﻿using FRED.Api.Tags.Arguments;
+﻿using AngularConsumer1.Tags.Arguments;
 
-namespace FRED.Api.Categories.Arguments
+namespace AngularConsumer1.Categories.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the CategoryTags API facade.

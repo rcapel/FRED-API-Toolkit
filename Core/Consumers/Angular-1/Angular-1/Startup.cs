@@ -1,7 +1,7 @@
-using FRED.Api.Categories.ApiFacades;
-using FRED.Api.Configuration;
-using FRED.Api.Configuration.Interfaces;
-using FRED.Api.Sources.ApiFacades;
+using AngularConsumer1.Categories.ApiFacades;
+using AngularConsumer1.Configuration;
+using AngularConsumer1.Configuration.Interfaces;
+using AngularConsumer1.Sources.ApiFacades;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace FRED.Api
+namespace AngularConsumer1
 {
 	public class Startup
     {

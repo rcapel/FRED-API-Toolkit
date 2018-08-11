@@ -1,4 +1,4 @@
-﻿namespace FRED.Api.Core
+﻿namespace AngularConsumer1.Core
 {
 	/// <summary>
 	/// Provides a common source for well-known FRED data points.

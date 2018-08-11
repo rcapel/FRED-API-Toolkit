@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FRED.Api.Core.Arguments.Validation.Common
+namespace AngularConsumer1.Core.Arguments.Validation.Common
 {
 	/// <summary>
 	/// Provides behavior for specific argument types that support the "limit" property.

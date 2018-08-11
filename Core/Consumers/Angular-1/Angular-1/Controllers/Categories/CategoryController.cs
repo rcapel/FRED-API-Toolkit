@@ -1,12 +1,12 @@
-﻿using FRED.Api.Categories.ApiFacades;
-using FRED.Api.Configuration.Interfaces;
-using FRED.Api.Models.Categories;
+﻿using AngularConsumer1.Categories.ApiFacades;
+using AngularConsumer1.Configuration.Interfaces;
+using AngularConsumer1.Models.Categories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace FRED.Api.Controllers.Categories
+namespace AngularConsumer1.Controllers.Categories
 {
 	[Route("api/[controller]")]
 	public class CategoryController : ControllerBase

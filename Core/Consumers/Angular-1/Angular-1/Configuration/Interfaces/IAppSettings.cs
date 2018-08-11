@@ -1,4 +1,4 @@
-﻿namespace FRED.Api.Configuration.Interfaces
+﻿namespace AngularConsumer1.Configuration.Interfaces
 {
 	public interface IAppSettings
 	{

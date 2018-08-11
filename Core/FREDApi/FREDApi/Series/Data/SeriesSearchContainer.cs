@@ -1,8 +1,8 @@
-﻿using FRED.Api.Core;
-using FRED.Api.Core.Data;
+﻿using AngularConsumer1.Core;
+using AngularConsumer1.Core.Data;
 using System.Collections.Generic;
 
-namespace FRED.Api.Series.Data
+namespace AngularConsumer1.Series.Data
 {
 	/// <summary>
 	/// Provides data properties for a series search container, including a collection of series (seriess). 

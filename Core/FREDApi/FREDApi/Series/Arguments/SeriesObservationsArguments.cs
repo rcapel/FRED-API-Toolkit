@@ -1,7 +1,7 @@
-﻿using FRED.Api.Core;
+﻿using AngularConsumer1.Core;
 using System;
 
-namespace FRED.Api.Series.Arguments
+namespace AngularConsumer1.Series.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the SeriesObservations API facade.

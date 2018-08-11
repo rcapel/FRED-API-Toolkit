@@ -1,7 +1,7 @@
-﻿using FRED.Api.Core;
+﻿using AngularConsumer1.Core;
 using System;
 
-namespace FRED.Api.Tags.Data
+namespace AngularConsumer1.Tags.Data
 {
 	/// <summary>
 	/// Provides data properties for a tag. 

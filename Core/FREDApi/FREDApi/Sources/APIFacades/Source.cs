@@ -1,12 +1,12 @@
-﻿using FRED.Api.Sources.Arguments;
-using FRED.Api.Sources.Data;
-using FRED.Api.Core.ApiFacades;
-using FRED.Api.Core.Requests;
+﻿using AngularConsumer1.Sources.Arguments;
+using AngularConsumer1.Sources.Data;
+using AngularConsumer1.Core.ApiFacades;
+using AngularConsumer1.Core.Requests;
 using System.Threading.Tasks;
-using FRED.Api.Core.Arguments;
+using AngularConsumer1.Core.Arguments;
 using Newtonsoft.Json;
 
-namespace FRED.Api.Sources.ApiFacades
+namespace AngularConsumer1.Sources.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/source API endpoint. Results are returned in a SourceContainer instance.

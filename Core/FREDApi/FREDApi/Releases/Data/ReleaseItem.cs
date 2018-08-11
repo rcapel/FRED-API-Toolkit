@@ -1,6 +1,6 @@
-﻿using FRED.Api.Sources.Data;
+﻿using AngularConsumer1.Sources.Data;
 
-namespace FRED.Api.Releases.Data
+namespace AngularConsumer1.Releases.Data
 {
 	/// <summary>
 	/// Provides data properties for a release. 

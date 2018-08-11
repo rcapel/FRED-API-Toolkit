@@ -1,12 +1,12 @@
-﻿using FRED.Api.Sources.ApiFacades;
-using FRED.Api.Configuration.Interfaces;
-using FRED.Api.Models.Sources;
+﻿using AngularConsumer1.Sources.ApiFacades;
+using AngularConsumer1.Configuration.Interfaces;
+using AngularConsumer1.Models.Sources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace FRED.Api.Controllers.Sources
+namespace AngularConsumer1.Controllers.Sources
 {
 	[Route("api/[controller]")]
 	public class SourcesController : ControllerBase

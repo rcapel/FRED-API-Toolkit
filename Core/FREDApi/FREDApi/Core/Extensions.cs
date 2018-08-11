@@ -1,4 +1,4 @@
-﻿namespace FRED.Api.Core
+﻿namespace AngularConsumer1.Core
 {
 	/// <summary>
 	/// Provides extension methods for types.

@@ -2,7 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 
-namespace FRED.Api.Core.Requests
+namespace AngularConsumer1.Core.Requests
 {
 	/// <summary>
 	/// Provides behavior for communicating with FRED service endpoints that return a file.

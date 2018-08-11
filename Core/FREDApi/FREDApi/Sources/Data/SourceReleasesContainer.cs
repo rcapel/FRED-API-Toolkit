@@ -1,9 +1,9 @@
-﻿using FRED.Api.Core.Data;
-using FRED.Api.Releases.Data;
+﻿using AngularConsumer1.Core.Data;
+using AngularConsumer1.Releases.Data;
 using System.Collections.Generic;
-using FRED.Api.Core;
+using AngularConsumer1.Core;
 
-namespace FRED.Api.Sources.Data
+namespace AngularConsumer1.Sources.Data
 {
 	/// <summary>
 	/// Provides data properties for a source releases container, including a collection of source releases. 

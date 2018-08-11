@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FRED.Api.Core.Data
+namespace AngularConsumer1.Core.Data
 {
 	/// <summary>
 	/// Provides data properties for an item container.

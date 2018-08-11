@@ -1,4 +1,4 @@
-﻿namespace FRED.Api.Releases.Arguments
+﻿namespace AngularConsumer1.Releases.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the ReleaseSources API facade.

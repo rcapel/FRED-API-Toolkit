@@ -1,6 +1,6 @@
-﻿using FRED.Api.Core;
+﻿using AngularConsumer1.Core;
 
-namespace FRED.Api.Releases.Arguments
+namespace AngularConsumer1.Releases.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the ReleaseSeries API facade.
