@@ -130,4 +130,15 @@ namespace FRED.Api.Core.Arguments
 		#endregion
 
 	}
+
+	public interface IArgumentsBase
+	{
+		#region properties
+
+		Dictionary<string, string> ValidationErrors { get; }
+
+		#endregion
+
+	}
+
 }
