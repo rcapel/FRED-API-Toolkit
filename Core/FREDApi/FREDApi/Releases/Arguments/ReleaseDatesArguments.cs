@@ -1,6 +1,6 @@
-﻿using AngularConsumer1.Core;
+﻿using FRED.Api.Core;
 
-namespace AngularConsumer1.Releases.Arguments
+namespace FRED.Api.Releases.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the ReleaseDates API facade.

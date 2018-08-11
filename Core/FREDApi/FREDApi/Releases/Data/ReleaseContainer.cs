@@ -1,7 +1,7 @@
-﻿using AngularConsumer1.Core.Data;
+﻿using FRED.Api.Core.Data;
 using System.Collections.Generic;
 
-namespace AngularConsumer1.Releases.Data
+namespace FRED.Api.Releases.Data
 {
 	/// <summary>
 	/// Provides data properties for a release container, including a collection of releases. 

@@ -1,6 +1,6 @@
-﻿using AngularConsumer1.Core;
+﻿using FRED.Api.Core;
 
-namespace AngularConsumer1.Series.Arguments
+namespace FRED.Api.Series.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the SeriesTags API facade.

@@ -1,9 +1,9 @@
-﻿using AngularConsumer1.Core.Data;
-using AngularConsumer1.Series.Data;
+﻿using FRED.Api.Core.Data;
+using FRED.Api.Series.Data;
 using System.Collections.Generic;
-using AngularConsumer1.Core;
+using FRED.Api.Core;
 
-namespace AngularConsumer1.Tags.Data
+namespace FRED.Api.Tags.Data
 {
 	/// <summary>
 	/// Provides data properties for a tag series container, including a collection of tag series (seriess). 

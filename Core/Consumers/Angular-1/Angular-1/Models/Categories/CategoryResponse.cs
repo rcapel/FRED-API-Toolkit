@@ -1,4 +1,4 @@
-﻿using AngularConsumer1.Categories.Data;
+﻿using FRED.Api.Categories.Data;
 
 namespace AngularConsumer1.Models.Categories
 {

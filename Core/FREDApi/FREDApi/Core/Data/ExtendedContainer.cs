@@ -1,4 +1,4 @@
-﻿namespace AngularConsumer1.Core.Data
+﻿namespace FRED.Api.Core.Data
 {
 	/// <summary>
 	/// Provides extended data properties for an item container.

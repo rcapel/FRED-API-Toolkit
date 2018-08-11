@@ -1,7 +1,7 @@
-using AngularConsumer1.Categories.ApiFacades;
 using AngularConsumer1.Configuration;
 using AngularConsumer1.Configuration.Interfaces;
-using AngularConsumer1.Sources.ApiFacades;
+using FRED.Api.Categories.ApiFacades;
+using FRED.Api.Sources.ApiFacades;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +35,7 @@ namespace AngularConsumer1
 
 			services.AddTransient<ICategory, Category>();
 			services.AddTransient<ICategoryChildren, CategoryChildren>();
-			services.AddTransient<ISources, Sources.ApiFacades.Sources>();
+			services.AddTransient<ISources, Sources>();
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

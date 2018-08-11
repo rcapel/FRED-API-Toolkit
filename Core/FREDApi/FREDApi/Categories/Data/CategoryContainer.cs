@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AngularConsumer1.Categories.Data
+namespace FRED.Api.Categories.Data
 {
 	/// <summary>
 	/// Provides data properties for a category container, including a collection of categories. 

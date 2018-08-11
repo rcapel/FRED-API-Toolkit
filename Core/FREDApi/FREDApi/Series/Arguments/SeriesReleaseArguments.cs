@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AngularConsumer1.Series.Arguments
+namespace FRED.Api.Series.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the SeriesRelease API facade.

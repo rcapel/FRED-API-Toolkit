@@ -1,6 +1,6 @@
-﻿using AngularConsumer1.Sources.ApiFacades;
-using AngularConsumer1.Configuration.Interfaces;
+﻿using AngularConsumer1.Configuration.Interfaces;
 using AngularConsumer1.Models.Sources;
+using FRED.Api.Sources.ApiFacades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;

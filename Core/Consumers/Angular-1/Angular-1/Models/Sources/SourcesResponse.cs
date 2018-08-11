@@ -1,4 +1,4 @@
-﻿using AngularConsumer1.Sources.Data;
+﻿using FRED.Api.Sources.Data;
 
 namespace AngularConsumer1.Models.Sources
 {

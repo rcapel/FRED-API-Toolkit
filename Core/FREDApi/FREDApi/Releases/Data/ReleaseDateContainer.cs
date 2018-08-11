@@ -1,8 +1,8 @@
-﻿using AngularConsumer1.Core;
-using AngularConsumer1.Core.Data;
+﻿using FRED.Api.Core;
+using FRED.Api.Core.Data;
 using System.Collections.Generic;
 
-namespace AngularConsumer1.Releases.Data
+namespace FRED.Api.Releases.Data
 {
 	/// <summary>
 	/// Provides data properties for a release date container, including a collection of release dates. 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AngularConsumer1.Core.Arguments.Validation.Common
+namespace FRED.Api.Core.Arguments.Validation.Common
 {
 	/// <summary>
 	/// Provides behavior for specific argument types that support the "offset" property.

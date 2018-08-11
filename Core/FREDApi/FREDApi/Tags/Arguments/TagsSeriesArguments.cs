@@ -1,8 +1,8 @@
-﻿using AngularConsumer1.Core;
-using AngularConsumer1.Core.Arguments;
+﻿using FRED.Api.Core;
+using FRED.Api.Core.Arguments;
 using System;
 
-namespace AngularConsumer1.Tags.Arguments
+namespace FRED.Api.Tags.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the TagsSeries API facade.

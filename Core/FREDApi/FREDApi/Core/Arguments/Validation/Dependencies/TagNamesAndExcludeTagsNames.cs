@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AngularConsumer1.Core.Arguments.Validation.Dependencies
+namespace FRED.Api.Core.Arguments.Validation.Dependencies
 {
 	/// <summary>
 	/// Provides behavior for specific argument types that support cross property validation between "tag_names" and "exclude_tag_names".

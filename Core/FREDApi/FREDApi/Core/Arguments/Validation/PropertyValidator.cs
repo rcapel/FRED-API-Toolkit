@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AngularConsumer1.Core.Arguments.Validation
+namespace FRED.Api.Core.Arguments.Validation
 {
 	/// <summary>
 	/// Provides default behavior for validator subclasses that validate properties.

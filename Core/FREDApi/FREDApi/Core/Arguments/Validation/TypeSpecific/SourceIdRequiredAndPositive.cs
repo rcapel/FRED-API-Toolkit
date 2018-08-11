@@ -1,9 +1,9 @@
-﻿using AngularConsumer1.Core.Arguments.Validation.Common;
-using AngularConsumer1.Sources.Arguments;
+﻿using FRED.Api.Core.Arguments.Validation.Common;
+using FRED.Api.Sources.Arguments;
 using System;
 using System.Collections.Generic;
 
-namespace AngularConsumer1.Core.Arguments.Validation.TypeSpecific
+namespace FRED.Api.Core.Arguments.Validation.TypeSpecific
 {
 	/// <summary>
 	/// Provides behavior for specific argument types that support the required, positive "source_id" property.

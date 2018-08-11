@@ -1,8 +1,8 @@
-﻿using AngularConsumer1.Core;
-using AngularConsumer1.Core.Arguments;
+﻿using FRED.Api.Core;
+using FRED.Api.Core.Arguments;
 using System;
 
-namespace AngularConsumer1.Sources.Arguments
+namespace FRED.Api.Sources.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the Sources API facade.

@@ -1,4 +1,4 @@
-﻿namespace AngularConsumer1.Tags.Arguments
+﻿namespace FRED.Api.Tags.Arguments
 {
 	/// <summary>
 	/// Provides argument properties for the RelatedTags API facade.

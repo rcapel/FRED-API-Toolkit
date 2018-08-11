@@ -1,11 +1,11 @@
-﻿using AngularConsumer1.Core.ApiFacades;
-using AngularConsumer1.Core.Requests;
-using AngularConsumer1.Series.Arguments;
+﻿using FRED.Api.Core.ApiFacades;
+using FRED.Api.Core.Requests;
+using FRED.Api.Series.Arguments;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace AngularConsumer1.Series.ApiFacades
+namespace FRED.Api.Series.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/observations API endpoint. Results are returned as multiple Excel spreadsheet files in ZIP format.

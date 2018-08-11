@@ -1,12 +1,12 @@
-﻿using AngularConsumer1.Releases.Arguments;
-using AngularConsumer1.Core.ApiFacades;
-using AngularConsumer1.Tags.Data;
-using AngularConsumer1.Core.Requests;
+﻿using FRED.Api.Releases.Arguments;
+using FRED.Api.Core.ApiFacades;
+using FRED.Api.Tags.Data;
+using FRED.Api.Core.Requests;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
-using AngularConsumer1.Core.Arguments;
+using FRED.Api.Core.Arguments;
 
-namespace AngularConsumer1.Releases.ApiFacades
+namespace FRED.Api.Releases.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/release/related_tags API endpoint. Results are returned in a TagContainer instance.

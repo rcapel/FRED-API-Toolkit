@@ -1,12 +1,12 @@
-﻿using AngularConsumer1.Series.Arguments;
-using AngularConsumer1.Core.ApiFacades;
-using AngularConsumer1.Tags.Data;
-using AngularConsumer1.Core.Requests;
+﻿using FRED.Api.Series.Arguments;
+using FRED.Api.Core.ApiFacades;
+using FRED.Api.Tags.Data;
+using FRED.Api.Core.Requests;
 using Newtonsoft.Json;
-using AngularConsumer1.Core.Arguments;
+using FRED.Api.Core.Arguments;
 using System.Threading.Tasks;
 
-namespace AngularConsumer1.Series.ApiFacades
+namespace FRED.Api.Series.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/series/search/tags API endpoint. Results are returned in a TagContainer instance.

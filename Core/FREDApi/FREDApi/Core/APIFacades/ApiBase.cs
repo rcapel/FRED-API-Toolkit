@@ -1,9 +1,9 @@
-﻿using AngularConsumer1.Core.Arguments;
-using AngularConsumer1.Core.Requests;
+﻿using FRED.Api.Core.Arguments;
+using FRED.Api.Core.Requests;
 using System;
 using System.Threading.Tasks;
 
-namespace AngularConsumer1.Core.ApiFacades
+namespace FRED.Api.Core.ApiFacades
 {
 	/// <summary>
 	/// Provides default behavior for FRED API facade classes.

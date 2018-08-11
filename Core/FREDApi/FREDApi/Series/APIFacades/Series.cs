@@ -1,12 +1,12 @@
-﻿using AngularConsumer1.Series.Arguments;
-using AngularConsumer1.Series.Data;
-using AngularConsumer1.Core.ApiFacades;
-using AngularConsumer1.Core.Requests;
+﻿using FRED.Api.Series.Arguments;
+using FRED.Api.Series.Data;
+using FRED.Api.Core.ApiFacades;
+using FRED.Api.Core.Requests;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using AngularConsumer1.Core.Arguments;
+using FRED.Api.Core.Arguments;
 
-namespace AngularConsumer1.Series.ApiFacades
+namespace FRED.Api.Series.ApiFacades
 {
 	/// <summary>
 	/// Provides a facade for consuming the fred/series API endpoint. Results are returned in a SingleSeriesContainer instance.

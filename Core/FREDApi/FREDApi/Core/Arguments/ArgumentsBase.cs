@@ -1,13 +1,13 @@
-﻿using AngularConsumer1.Core.Arguments.Validation;
-using AngularConsumer1.Core.Arguments.Validation.Common;
-using AngularConsumer1.Core.Arguments.Validation.Dependencies;
-using AngularConsumer1.Core.Arguments.Validation.TypeSpecific;
+﻿using FRED.Api.Core.Arguments.Validation;
+using FRED.Api.Core.Arguments.Validation.Common;
+using FRED.Api.Core.Arguments.Validation.Dependencies;
+using FRED.Api.Core.Arguments.Validation.TypeSpecific;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace AngularConsumer1.Core.Arguments
+namespace FRED.Api.Core.Arguments
 {
 	/// <summary>
 	/// Provides default behavior for arguments.

@@ -1,7 +1,7 @@
-﻿using AngularConsumer1.Core.Data;
+﻿using FRED.Api.Core.Data;
 using System.Collections.Generic;
 
-namespace AngularConsumer1.Series.Data
+namespace FRED.Api.Series.Data
 {
 	/// <summary>
 	/// Provides data properties for a single series container, including a collection (seriess) containing a single series. 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AngularConsumer1.Series.Data
+namespace FRED.Api.Series.Data
 {
 	/// <summary>
 	/// Provides data properties for an observation. 

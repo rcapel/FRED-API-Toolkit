@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AngularConsumer1.Core.Arguments.Validation
+namespace FRED.Api.Core.Arguments.Validation
 {
 	/// <summary>
 	/// Provides behavior for a list of validators.
