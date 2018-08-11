@@ -225,6 +225,13 @@ namespace FRED.Api.Core.ApiFacades
 
 	public interface IApiBase
 	{
+		#region properties
+
+		string FetchMessage { get; }
+		string Url { get; }
+
+		#endregion
+
 		#region metnods
 
 		string FetchJson();
