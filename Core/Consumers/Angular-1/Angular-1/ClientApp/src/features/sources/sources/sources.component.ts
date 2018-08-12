@@ -13,13 +13,7 @@ export class SourcesComponent implements OnInit {
   heading: string = "Sources";
 
   // response
-  realtime_start: Date;
-  realtime_end: Date;
-  order_by: number;
-  sort_order: number;
-  count: number;
-  offset: number;
-  limit: number;
+  container: ISourceContainer
 
   sources: ISource[];
 
@@ -53,13 +47,7 @@ export class SourcesComponent implements OnInit {
   //}
 
   parseData(data) {
-    this.realtime_start = data.container.realtime_start;
-    this.realtime_end = data.container.realtime_end;
-    this.order_by = data.container.order_by;
-    this.sort_order = data.container.sort_order;
-    this.count = data.container.count;
-    this.offset = data.container.offset;
-    this.limit = data.container.limit;
+    this.container = data.container;
 
     this.sources = data.container.sources;
 
