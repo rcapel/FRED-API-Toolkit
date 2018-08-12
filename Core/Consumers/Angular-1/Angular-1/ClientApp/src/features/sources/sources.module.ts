@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { FredapiModule } from '../../fredapi/fredapi.module';
 
-import { SourcesOrderByPipe } from './sources/sourcesOrderBy.pipe';
+import { SourcesOrderByPipe } from './services/sourcesOrderBy.pipe';
 import { SortOrderPipe } from '../shared/sortOrder.pipe';
 
 import { SourcesComponent } from './sources/sources.component';
