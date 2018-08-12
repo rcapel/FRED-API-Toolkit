@@ -29,8 +29,12 @@ export class SourcesComponent implements OnInit {
     //this.fetch();
 
     // use the resolver's data instead of fetchng it here:
-    let data = this.route.snapshot.data['sources'];
-    this.parseData(data);
+    this.route.data.subscribe(
+      data => {
+        console.log(data['sources']);
+        this.parseData(data['sources']);
+      }
+    );
   }
 
   //fetch() {
