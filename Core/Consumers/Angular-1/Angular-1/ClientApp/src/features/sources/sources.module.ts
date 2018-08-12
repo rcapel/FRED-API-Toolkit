@@ -9,6 +9,7 @@ import { SourcesOrderByPipe } from './services/sourcesOrderBy.pipe';
 import { SortOrderPipe } from '../shared/sortOrder.pipe';
 
 import { SourcesComponent } from './sources/sources.component';
+import { SourcesResolver } from '../sources/services/sources.resolver';
 
 @NgModule({
   declarations: [
@@ -20,11 +21,12 @@ import { SourcesComponent } from './sources/sources.component';
     CommonModule,
     FormsModule,
     RouterModule.forChild([
-      { path: 'sources', component: SourcesComponent }
+      { path: 'sources', component: SourcesComponent, resolve: { sources: SourcesResolver } }
     ]),
     FredapiModule
   ],
   providers: [
+    SourcesResolver
   ]
 })
 export class SourcesModule { }

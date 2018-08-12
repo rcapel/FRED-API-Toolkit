@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { SourcesService } from '../../../fredapi/sources/sources.service';
 import { ISourceResponse, ISourceContainer, ISource } from '../../../fredapi/sources/sources.interfaces';
@@ -28,25 +28,29 @@ export class SourcesComponent implements OnInit {
 
   constructor(
     private service: SourcesService,
-    private router: Router) {
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.fetch();
+    //this.fetch();
+
+    // use the resolver's data instead of fetchng it here:
+    let data = this.route.snapshot.data['sources'];
+    this.parseData(data);
   }
 
-  fetch() {
-    this.service.get().subscribe(
-      data => {
-        console.log(data);
-        this.parseData(data);
-      },
-      error => {
-        console.log(error);
-      },
-      () => { /*complete*/ }
-    );
-  }
+  //fetch() {
+  //  this.service.get().subscribe(
+  //    data => {
+  //      console.log(data);
+  //      this.parseData(data);
+  //    },
+  //    error => {
+  //      console.log(error);
+  //    },
+  //    () => { /*complete*/ }
+  //  );
+  //}
 
   parseData(data) {
     this.realtime_start = data.container.realtime_start;
@@ -61,10 +65,6 @@ export class SourcesComponent implements OnInit {
 
     this.fetchMessage = data.fetchMessage;
     this.url = data.url;
-  }
-
-  onSubmit() {
-    this.router.navigate(["/sources"]);
   }
 
 }
