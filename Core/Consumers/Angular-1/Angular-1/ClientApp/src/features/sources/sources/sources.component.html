@@ -1,25 +1,29 @@
 <h3>{{ heading }}</h3>
-<div>
-  <div>
-    Start: {{ container.realtime_start | date: 'MM/dd/yyyy' }}
+<div class="row">
+  <div class="col-md-3">
+    <div>
+      Start: {{ container.realtime_start | date: 'MM/dd/yyyy' }}
+    </div>
+    <div>
+      End: {{ container.realtime_end | date: 'MM/dd/yyyy' }}
+    </div>
+    <div>
+      Order By: {{ container.order_by | sourcesOrderBy }}
+    </div>
+    <div>
+      Sort Order: {{ container.sort_order | sortOrder }}
+    </div>
   </div>
-  <div>
-    End: {{ container.realtime_end | date: 'MM/dd/yyyy' }}
-  </div>
-  <div>
-    Order By: {{ container.order_by | sourcesOrderBy }}
-  </div>
-  <div>
-    Sort Order: {{ container.sort_order | sortOrder }}
-  </div>
-  <div>
-    Count: {{ container.count }}
-  </div>
-  <div>
-    Offset: {{ container.offset }}
-  </div>
-  <div>
-    Limit: {{ container.limit }}
+  <div class="col-md-3">
+    <div>
+      Count: {{ container.count }}
+    </div>
+    <div>
+      Offset: {{ container.offset }}
+    </div>
+    <div>
+      Limit: {{ container.limit }}
+    </div>
   </div>
 </div>
 <hr />
