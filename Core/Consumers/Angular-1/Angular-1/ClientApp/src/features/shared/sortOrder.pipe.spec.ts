@@ -7,13 +7,13 @@ describe("SortOrderPipe", () => {
     pipe = new SortOrderPipe;
   });
 
-  it("should return asc when value is 0", () => {
+  it("should return 'asc' when value is 0", () => {
     let transformed = pipe.transform(0);
 
     expect(transformed).toBe("asc");
   });
 
-  it("should return desc when value is 1", () => {
+  it("should return 'desc' when value is 1", () => {
     let transformed = pipe.transform(1);
 
     expect(transformed).toBe("desc");
