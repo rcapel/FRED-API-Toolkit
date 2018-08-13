@@ -7,7 +7,8 @@ import { FredapiModule } from '../../fredapi/fredapi.module';
 
 import { CategoryComponent } from './category/category.component';
 import { CategoryChildrenComponent } from './categoryChildren/categoryChildren.component';
-//import { CategoryResolver } from './category/resolver.service';//uncomment to use a resolver
+import { CategoryResolver } from './services/category.resolver';
+import { CategoryChildrenResolver } from './services/categoryChildren.resolver';
 
 @NgModule({
   declarations: [
@@ -19,13 +20,14 @@ import { CategoryChildrenComponent } from './categoryChildren/categoryChildren.c
     FormsModule,
     RouterModule.forChild([
       //{ path: 'category', component: CategoryComponent },
-      { path: 'category/:id', component: CategoryComponent/*, resolve: { category: CategoryResolver }*/ },//uncomment to use a resolver
-      { path: 'categoryChildren/:id', component: CategoryChildrenComponent }
+      { path: 'category/:id', component: CategoryComponent, resolve: { category: CategoryResolver } },
+      { path: 'categoryChildren/:id', component: CategoryChildrenComponent, resolve: { categoryChildren: CategoryChildrenResolver } }
     ]),
     FredapiModule
   ],
   providers: [
-    //CategoryResolver//uncomment to use a resolver
+    CategoryResolver,
+    CategoryChildrenResolver
   ]
 })
 export class CategoryModule { }

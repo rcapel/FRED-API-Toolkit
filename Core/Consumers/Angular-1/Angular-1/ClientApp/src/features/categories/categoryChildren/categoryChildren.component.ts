@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { CategoryService } from '../../../fredapi/categories/category.service';
 import { ICategoryResponse, ICategoryContainer, ICategory } from '../../../fredapi/categories/category.interfaces';
 
 @Component({
@@ -21,35 +20,26 @@ export class CategoryChildrenComponent implements OnInit {
   url: string;
 
   constructor(
-    private service: CategoryService,
+    //private service: CategoryService,
     private router: Router,
     private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(
-      params => {
-        this.categoryId = +params.get('id');
-        if (this.categoryId) {
-          this.fetch();
-        }
-      }
+    this.route.paramMap.subscribe(data => {
+      this.categoryId = +data.get("id");
+    });
+    this.route.data.subscribe(data => {
+      console.log(data['categoryChildren']);
+      this.parseData(data['categoryChildren']);
+    }
     );
   }
 
-  fetch() {
-    this.service.get(this.categoryId, true).subscribe(
-      data => {
-        this.categories = data.container.categories;
-        this.fetchMessage = data.fetchMessage;
-        this.url = data.url;
-        console.log(this.categories);
-      },
-      error => {
-        console.log(error);
-      },
-      () => { /*complete*/ }
-    );
+  parseData(data) {
+    this.categories = data.container.categories;
+    this.fetchMessage = data.fetchMessage;
+    this.url = data.url;
   }
 
   onSubmit() {
