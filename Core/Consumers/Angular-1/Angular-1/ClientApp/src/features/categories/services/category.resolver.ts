@@ -15,7 +15,8 @@ export class CategoryResolver implements Resolve<ICategoryResponse>{
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ICategoryResponse> {
-    let categoryId = route.params['id'];
+    let categoryId: string = route.params['id'];
+    //console.log(route.queryParams);
 
     //if (isNaN(categoryId)) {
     //  console.log("${categoryId} is not a number.");
