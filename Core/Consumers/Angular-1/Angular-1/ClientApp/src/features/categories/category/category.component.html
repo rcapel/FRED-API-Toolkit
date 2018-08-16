@@ -1,30 +1,32 @@
-<h3>{{ heading }}</h3>
-<div class="well">
-  <form (submit)="onSubmit()" #formValidator="ngForm">
-    <div class="form-group">
-      <label for="categoryId">Category Id</label>
-      <input type="text" class="form-control" name="categoryId" [(ngModel)]="categoryId" #categoryIdValidator="ngModel" required minlength="1" />
-      <div *ngIf="categoryIdValidator.errors && (categoryIdValidator.dirty || categoryIdValidator.touched)" class="text text-danger">
-        <div [hidden]="!categoryIdValidator.errors.required">
-          Category Id is required.
+<br />
+<div class="card">
+  <div class="card-header">
+    {{ heading }}
+  </div>
+  <div class="card-body">
+    <form (submit)="onSubmit()" #formValidator="ngForm">
+      <div class="form-group">
+        <label for="categoryId">Category Id</label>
+        <div class="row">
+          <div class="col-md-1">
+            <input type="text" class="form-control" name="categoryId" [(ngModel)]="categoryId" #categoryIdValidator="ngModel" required minlength="1" />
+          </div>
         </div>
-        <!--<div [hidden]="!categoryIdValidator.errors.minlength">
-          Category Id must be at least 1 characters long.
-        </div>-->
+        <div *ngIf="categoryIdValidator.errors && (categoryIdValidator.dirty || categoryIdValidator.touched)" class="text text-danger">
+          <div [hidden]="!categoryIdValidator.errors.required">
+            Category Id is required.
+          </div>
+        </div>
+        <!--https://stackoverflow.com/questions/42437822/angular-2-form-validation-error-unhandled-promise-rejection-cannot-assign-to-a-->
       </div>
       <!--https://stackoverflow.com/questions/42437822/angular-2-form-validation-error-unhandled-promise-rejection-cannot-assign-to-a-->
-    </div>
-    <!--<select (change)="setOption($event.target.value)">
-      <option value="0">Category</option>
-      <option value="1">Category Children</option>
-    </select>-->
-    <div>
-      <br />
-      <input type="submit" class="btn btn-sm btn-default" value="Fetch" [disabled]="formValidator.invalid" />
-    </div>
-  </form>
-  <br />
-  <div class="well">
+      <div>
+        <br />
+        <input type="submit" class="btn btn-sm btn-default" value="Fetch" [disabled]="formValidator.invalid" />
+      </div>
+    </form>
+    <hr />
+    <br />
     <div class="row">
       <div class="col-md-2 font-weight-bold">Id</div>
       <div class="col-md-4 font-weight-bold">Name</div>
@@ -35,14 +37,7 @@
       <div class="col-md-4">{{ category.name }}</div>
       <div class="col-md-2">{{ category.parent_id}}</div>
     </div>
-  </div>
-  <hr />
-  <div>
-    <div *ngIf="fetchMessage == ''" class="text text-danger">
-      Message: {{ fetchMessage }}
-    </div>
-    <div>
-      <a href="{{ url }}">FRED Url</a>
-    </div>
+    <hr />
+    <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
   </div>
 </div>
