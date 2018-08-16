@@ -17,7 +17,7 @@ export class CategoryChildrenResolver implements Resolve<ICategoryResponse>{
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ICategoryResponse> {
     let categoryId = route.params['id'];
 
-    return this.service.get(+categoryId, true);
+    return this.service.getChildren(+categoryId, null);
   }
 
 }
