@@ -5,7 +5,7 @@ import { ICategoryResponse, ICategoryContainer, ICategory } from '../../../freda
 
 @Component({
   selector: 'categoryChildren',
-  templateUrl: '../category/category.component.html'
+  templateUrl: './categoryChildren.component.html'
 })
 export class CategoryChildrenComponent implements OnInit {
 
@@ -13,6 +13,8 @@ export class CategoryChildrenComponent implements OnInit {
 
   // request arguments
   categoryId: number;
+  startDate: string;
+  endDate: string;
 
   // response
   categories: ICategory[];
@@ -29,6 +31,10 @@ export class CategoryChildrenComponent implements OnInit {
     this.route.paramMap.subscribe(data => {
       this.categoryId = +data.get("id");
     });
+    this.route.queryParamMap.subscribe(data => {
+      this.startDate = data.get("startDate");
+      this.endDate = data.get("endDate");
+    });
     this.route.data.subscribe(data => {
       console.log(data['categoryChildren']);
       this.parseData(data['categoryChildren']);
@@ -43,7 +49,15 @@ export class CategoryChildrenComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(["/categoryChildren/" + this.categoryId]);
+    this.router.navigate(["/categoryChildren/" + this.categoryId],
+      {
+        queryParams:
+          {
+            startDate: this.startDate,
+            endDate: this.endDate
+          }
+        //queryParamsHandling: 'preserve'
+      });
   }
 
 }
