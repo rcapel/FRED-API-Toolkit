@@ -19,7 +19,7 @@ namespace FRED.Api.Categories.Arguments
 		public FREDData.series_order_by_values order_by { get; set; }
 		public FREDData.sort_order_values sort_order { get; set; }
 		public FREDData.filter_variable_values filter_variable { get; set; }
-		public string filter_value { get; set; }
+		public FREDData.filter_value_values filter_value { get; set; }
 		public string tag_names { get; set; }
 		public string exclude_tag_names { get; set; }
 
