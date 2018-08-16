@@ -39,7 +39,7 @@ namespace AngularConsumer1.Controllers.Categories
 		[ProducesResponseType(200, Type = typeof(string))]
 		[ProducesResponseType(500, Type = typeof(string))]
 		[HttpGet("{id}")]
-		public async Task<IActionResult> GetAsync(int id)
+		public async Task<IActionResult> GetAsync(int id, DateTime? realtime_start, DateTime? realtime_end)
 		{
 			CategoryResponse result = new CategoryResponse();
 
@@ -47,6 +47,8 @@ namespace AngularConsumer1.Controllers.Categories
 			{
 				api.Arguments.ApiKey = appSettings.ApiKey;
 				api.Arguments.category_id = id;
+				api.Arguments.realtime_start = realtime_start == null ? api.Arguments.realtime_start : realtime_start;
+				api.Arguments.realtime_end = realtime_end == null ? api.Arguments.realtime_end : realtime_end;
 
 				result.container = await api.FetchAsync();
 
