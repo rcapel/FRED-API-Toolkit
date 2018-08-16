@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { FredapiModule } from '../../fredapi/fredapi.module';
+import { FeaturesModule } from '../features.module';
 
 import { CategoryComponent } from './category/category.component';
 import { CategoryChildrenComponent } from './categoryChildren/categoryChildren.component';
@@ -23,7 +24,8 @@ import { CategoryChildrenResolver } from './services/categoryChildren.resolver';
       { path: 'category/:id', component: CategoryComponent, resolve: { category: CategoryResolver } },
       { path: 'categoryChildren/:id', component: CategoryChildrenComponent, resolve: { categoryChildren: CategoryChildrenResolver } }
     ]),
-    FredapiModule
+    FredapiModule,
+    FeaturesModule
   ],
   providers: [
     CategoryResolver,

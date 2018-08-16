@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { FredapiModule } from '../../fredapi/fredapi.module';
+import { FeaturesModule } from '../features.module';
 
 import { SourcesOrderByPipe } from './services/sourcesOrderBy.pipe';
 import { SortOrderPipe } from '../shared/sortOrder.pipe';
@@ -23,7 +24,8 @@ import { SourcesResolver } from '../sources/services/sources.resolver';
     RouterModule.forChild([
       { path: 'sources', component: SourcesComponent, resolve: { sources: SourcesResolver } }
     ]),
-    FredapiModule
+    FredapiModule,
+    FeaturesModule
   ],
   providers: [
     SourcesResolver
