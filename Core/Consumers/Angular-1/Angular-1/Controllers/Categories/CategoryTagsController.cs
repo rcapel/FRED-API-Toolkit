@@ -1,5 +1,6 @@
 ﻿using AngularConsumer1.Configuration.Interfaces;
 using AngularConsumer1.Models.Series;
+using AngularConsumer1.Models.Tags;
 using FRED.Api.Categories.ApiFacades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
