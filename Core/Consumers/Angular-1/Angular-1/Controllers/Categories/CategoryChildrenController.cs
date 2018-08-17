@@ -15,7 +15,7 @@ namespace AngularConsumer1.Controllers.Categories
 
 		private readonly ICategoryChildren api;
 		private readonly IAppSettings appSettings;
-		private readonly ILogger<CategoryController> logger;
+		private readonly ILogger<CategoryChildrenController> logger;
 
 		#endregion
 
@@ -24,7 +24,7 @@ namespace AngularConsumer1.Controllers.Categories
 		public CategoryChildrenController(
 			ICategoryChildren api,
 			IAppSettings appSettings,
-			ILogger<CategoryController> logger)
+			ILogger<CategoryChildrenController> logger)
 		{
 			this.api = api;
 			this.appSettings = appSettings;
