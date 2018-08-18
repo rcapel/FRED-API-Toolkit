@@ -38,7 +38,7 @@ namespace AngularConsumer1.Controllers.Releases
 		[Produces("application/json")]
 		[ProducesResponseType(200, Type = typeof(string))]
 		[ProducesResponseType(500, Type = typeof(string))]
-		[HttpGet("{id}")]
+		[HttpGet]
 		public async Task<IActionResult> GetAsync(int id, DateTime? realtime_start, DateTime? realtime_end,
 			int? limit, int? offset, string order_by, string sort_order,
 			string tag_names, string tag_group_id, string search_text)

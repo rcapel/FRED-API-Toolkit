@@ -39,7 +39,7 @@ namespace AngularConsumer1.Controllers.Releases
 		[ProducesResponseType(200, Type = typeof(string))]
 		[ProducesResponseType(500, Type = typeof(string))]
 		[HttpGet("{id}")]
-		public async Task<IActionResult> GetAsync(int releaseId, DateTime? realtime_start, DateTime? realtime_end,
+		public async Task<IActionResult> GetAsync(int id, DateTime? realtime_start, DateTime? realtime_end,
 			int? limit, int? offset, string order_by, string sort_order,
 			string tag_names, string tag_group_id, string search_text)
 		{
@@ -48,7 +48,7 @@ namespace AngularConsumer1.Controllers.Releases
 			try
 			{
 				api.Arguments.ApiKey = appSettings.ApiKey;
-				api.Arguments.release_id = releaseId;
+				api.Arguments.release_id = id;
 				//api.Arguments.realtime_start = realtime_start == null ? api.Arguments.realtime_start : realtime_start;
 				//api.Arguments.realtime_end = realtime_end == null ? api.Arguments.realtime_end : realtime_end;
 				//api.Arguments.limit = limit == null ? api.Arguments.limit : limit;
