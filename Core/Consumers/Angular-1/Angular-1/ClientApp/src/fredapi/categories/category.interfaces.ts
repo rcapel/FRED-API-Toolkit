@@ -1,11 +1,7 @@
 export interface ICategoryResponse {
-  container: ICategoryContainer;
+  categories: ICategory[];
   fetchMessage: string;
   url: string;
-}
-
-export interface ICategoryContainer {
-  categories: ICategory[];
 }
 
 export interface ICategory {
