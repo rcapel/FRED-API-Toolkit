@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-3">
+    <div>
+      Start: {{ realtime_start | date: 'MM/dd/yyyy' }}
+    </div>
+    <div>
+      End: {{ realtime_end | date: 'MM/dd/yyyy' }}
+    </div>
+    <div>
+      Order By: {{ order_by }}
+    </div>
+    <div>
+      Sort Order: {{ sort_order | sortOrder }}
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div>
+      Count: {{ count }}
+    </div>
+    <div>
+      Offset: {{ offset }}
+    </div>
+    <div>
+      Limit: {{ limit }}
+    </div>
+  </div>
+</div>
