@@ -6,9 +6,7 @@ import { Component, Input } from '@angular/core';
 })
 export class FooterComponent {
 
-  @Input()
-  fetchMessage: string;
-  @Input()
-  url: string;
+  @Input() fetchMessage: string;
+  @Input() url: string;
 
 }
