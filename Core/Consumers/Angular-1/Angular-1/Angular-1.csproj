@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Releases\ReleaseTablesController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\features\tags\services\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
