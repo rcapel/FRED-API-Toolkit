@@ -18,7 +18,7 @@ namespace FRED.Api.Releases.ApiFacades
 		/// <summary>
 		/// Argument values used in a fetch. Argument names match those in the FRED API.
 		/// </summary>
-		public ReleaseDatesArguments Arguments { get; set; } = new ReleaseDatesArguments();
+		public ReleasesDatesArguments Arguments { get; set; } = new ReleasesDatesArguments();
 
 		#endregion
 
@@ -82,7 +82,7 @@ namespace FRED.Api.Releases.ApiFacades
 	{
 		#region properties
 
-		ReleaseDatesArguments Arguments { get; set; }
+		ReleasesDatesArguments Arguments { get; set; }
 
 		#endregion
 
