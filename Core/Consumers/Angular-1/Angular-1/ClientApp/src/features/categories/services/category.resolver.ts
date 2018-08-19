@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, ResolveEnd, Router } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { CategoryService } from '../../../fredapi/categories/category.service';
@@ -9,14 +9,13 @@ import { ICategoryResponse } from '../../../fredapi/categories/category.interfac
 export class CategoryResolver implements Resolve<ICategoryResponse>{
 
   constructor(
-    private service: CategoryService,
-    private router: Router
+    private service: CategoryService
   ) {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ICategoryResponse> {
-    let categoryId: string = route.params['id'];
-    //console.log(route.queryParams);
+    let categoryId: string = route.paramMap.get('id');
+    //alert('from resolver: category ' + categoryId);
 
     //if (isNaN(categoryId)) {
     //  console.log("${categoryId} is not a number.");
