@@ -21,7 +21,7 @@ export interface ISeriesItem {
   realtime_start: Date,
   realtime_end: Date,
   title: string;
-  parent_id: number;
+  //parent_id: number;//add to fred
   observation_start: Date;
   observation_end: Date;
   frequency: string;
@@ -34,47 +34,3 @@ export interface ISeriesItem {
   popularity: number;
   notes: string;
 }
-
-///////////////////////////////////////////////////////
-
-export interface ISingleSeriesResponse {
-  container: ISingleSeriesContainer;
-  fetchMessage: string;
-  url: string;
-}
-
-export interface ISingleSeriesContainer {
-  realtime_start: Date;
-  realtime_end: Date;
-
-  seriess: ISeriesItem[];
-}
-
-///////////////////////////////////////////////////////
-
-export interface ISeriesObservationsResponse {
-  container: ISeriesObservationsContainer;
-  fetchMessage: string;
-  url: string;
-}
-
-export interface ISeriesObservationsContainer {
-  realtime_start: Date;
-  realtime_end: Date;
-  units: number;
-  output_type: number;
-  file_type: string;
-
-  observations: IObservation[];
-}
-
-export interface IObservation {
-  realtime_start: Date;
-  realtime_end: Date;
-  date: Date;
-  value: string;
-}
-
-///////////////////////////////////////////////////////
-
-
