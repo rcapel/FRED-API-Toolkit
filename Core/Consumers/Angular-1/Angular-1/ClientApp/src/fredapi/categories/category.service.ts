@@ -50,8 +50,11 @@ export class CategoryService {
     return this.client.get<ITagResponse>(apiRoute);
   }
 
-  public getRelatedTags(categoryId: number): Observable<ICategoryResponse> {
-    return this.client.get<ICategoryResponse>(this.baseUrl + 'api/categoryRelatedTags/' + categoryId);
+  public getRelatedTags(categoryId: number, tagNames: string, queryParams: string): Observable<ITagResponse> {
+    let apiRoute = this.baseUrl + 'api/categoryRelatedTags/' + categoryId + "/" + tagNames + (queryParams || "");
+    console.log(apiRoute);
+
+    return this.client.get<ITagResponse>(apiRoute);
   }
 
 }

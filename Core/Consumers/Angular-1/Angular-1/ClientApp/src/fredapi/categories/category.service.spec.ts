@@ -28,7 +28,7 @@ describe("CategoryService", () => {
       mockHttpClient.get.and.returnValue(of(true));
       let id: number = 125;
 
-      let observable = service.get(id, true);
+      let observable = service.get(id);
 
       expect(observable).toBeTruthy();
     });
