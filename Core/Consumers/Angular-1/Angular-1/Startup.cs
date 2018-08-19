@@ -1,7 +1,10 @@
 using AngularConsumer1.Configuration;
 using AngularConsumer1.Configuration.Interfaces;
 using FRED.Api.Categories.ApiFacades;
+using FRED.Api.Releases.ApiFacades;
+using FRED.Api.Series.ApiFacades;
 using FRED.Api.Sources.ApiFacades;
+using FRED.Api.Tags.ApiFacades;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +38,38 @@ namespace AngularConsumer1
 
 			services.AddTransient<ICategory, Category>();
 			services.AddTransient<ICategoryChildren, CategoryChildren>();
+			services.AddTransient<ICategoryRelated, CategoryRelated>();
+			services.AddTransient<ICategorySeries, CategorySeries>();
+			services.AddTransient<ICategoryTags, CategoryTags>();
+			services.AddTransient<ICategoryRelatedTags, CategoryRelatedTags>();
+
+			services.AddTransient<IReleases, Releases>();
+			services.AddTransient<IReleasesDates, ReleasesDates>();
+			services.AddTransient<IRelease, Release>();
+			services.AddTransient<IReleaseDates, ReleaseDates>();
+			services.AddTransient<IReleaseSeries, ReleaseSeries>();
+			services.AddTransient<IReleaseSources, ReleaseSources>();
+			services.AddTransient<IReleaseTags, ReleaseTags>();
+			services.AddTransient<IReleaseRelatedTags, ReleaseRelatedTags>();
+
+			services.AddTransient<ISeries, Series>();
+			services.AddTransient<ISeriesCategories, SeriesCategories>();
+			services.AddTransient<ISeriesObservations, SeriesObservations>();
+			services.AddTransient<ISeriesRelease, SeriesRelease>();
+			services.AddTransient<ISeriesSearch, SeriesSearch>();
+			services.AddTransient<ISeriesSearchTags, SeriesSearchTags>();
+			services.AddTransient<ISeriesSearchRelatedTags, SeriesSearchRelatedTags>();
+			services.AddTransient<ISeriesTags, SeriesTags>();
+			services.AddTransient<ISeriesUpdates, SeriesUpdates>();
+			services.AddTransient<ISeriesVintageDates, SeriesVintageDates>();
+
+			services.AddTransient<ISource, Source>();
+			services.AddTransient<ISourceReleases, SourceReleases>();
 			services.AddTransient<ISources, Sources>();
+
+			services.AddTransient<ITags, Tags>();
+			services.AddTransient<IRelatedTags, RelatedTags>();
+			services.AddTransient<ITagsSeries, TagsSeries>();
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
