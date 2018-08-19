@@ -43,7 +43,7 @@ namespace AngularConsumer1.Controllers.Releases
 			int? limit, int? offset, string order_by, string sort_order,
 			string tag_names, string tag_group_id, string search_text)
 		{
-			ReleasesDateResponse result = new ReleasesDateResponse();
+			ReleasesDatesResponse result = new ReleasesDatesResponse();
 
 			try
 			{
