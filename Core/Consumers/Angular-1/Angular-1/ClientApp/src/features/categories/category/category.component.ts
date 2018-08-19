@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ICategoryResponse, ICategoryContainer, ICategory } from '../../../fredapi/categories/category.interfaces';
+import { ICategoryResponse, ICategory } from '../../../fredapi/categories/category.interfaces';
 
 @Component({
   selector: 'category',
@@ -28,8 +28,7 @@ export class CategoryComponent implements OnInit {
     this.route.paramMap.subscribe(data => {
       this.categoryId = +data.get("id");
     });
-    this.route.data.subscribe(
-      data => {
+    this.route.data.subscribe(data => {
         console.log(data['category']);
         this.parseData(data['category']);
       }
