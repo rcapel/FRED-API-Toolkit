@@ -10,8 +10,9 @@
                   excludeOffset="{{excludeOffset}}" excludeLimit="{{excludeLimit}}">
     </filterValues>
     <hr />
-    <!--<sourcesGrid sources="{{sources}}"></sourcesGrid>-->
-    <div class="row">
+    <sourcesGridHeader></sourcesGridHeader>
+    <sourcesGridDetail *ngFor="let source of sources" [tag]="source"></sourcesGridDetail>
+    <!--<div class="row">
       <div class="col-md-1 font-weight-bold">Id</div>
       <div class="col-md-2 font-weight-bold">Start</div>
       <div class="col-md-2 font-weight-bold">End</div>
@@ -24,7 +25,7 @@
       <div class="col-md-2">{{ source.realtime_end | date: 'MM/dd/yyyy' }}</div>
       <div class="col-md-3">{{ source.name }}</div>
       <div class="col-md-4">{{ source.link}}</div>
-    </div>
+    </div>-->
     <hr />
     <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
   </div>

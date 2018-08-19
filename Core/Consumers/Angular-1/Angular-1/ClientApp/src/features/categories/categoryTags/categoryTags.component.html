@@ -46,7 +46,9 @@
     </filterValues>
     <hr />
     <br />
-    <div class="row">
+    <tagsGridHeader></tagsGridHeader>
+    <tagsGridDetail *ngFor="let tag of tags" [tag]="tag"></tagsGridDetail>
+    <!--<div class="row">
       <div class="col-md-2 font-weight-bold">Name</div>
       <div class="col-md-2 font-weight-bold">Group Id</div>
       <div class="col-md-2 font-weight-bold">Notes</div>
@@ -61,7 +63,7 @@
       <div class="col-md-2">{{ tag.created }}</div>
       <div class="col-md-2">{{ tag.popularity }}</div>
       <div class="col-md-2">{{ tag.series_count }}</div>
-    </div>
+    </div>-->
     <hr />
     <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
   </div>
