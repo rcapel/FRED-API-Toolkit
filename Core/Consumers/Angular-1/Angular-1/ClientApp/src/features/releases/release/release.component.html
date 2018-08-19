@@ -1,0 +1,32 @@
+<br />
+<div class="card">
+  <div class="card-header">
+    {{ heading }}
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-3">
+        <startEndValues realtime_start="{{response.realtime_start}}" realtime_end="{{response.realtime_end}}"></startEndValues>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-1 font-weight-bold">Id</div>
+      <div class="col-md-2 font-weight-bold">Start</div>
+      <div class="col-md-2 font-weight-bold">End</div>
+      <div class="col-md-3 font-weight-bold">Name</div>
+      <div class="col-md-3 font-weight-bold">Link</div>
+      <div class="col-md-1 font-weight-bold">Press Release</div>
+    </div>
+    <div class="row" *ngFor="let release of response.releases">
+      <div class="col-md-1">{{ release.id }}</div>
+      <div class="col-md-2">{{ release.realtime_start | date: 'MM/dd/yyyy' }}</div>
+      <div class="col-md-2">{{ release.realtime_end | date: 'MM/dd/yyyy' }}</div>
+      <div class="col-md-3">{{ release.name }}</div>
+      <div class="col-md-3">{{ release.link}}</div>
+      <div class="col-md-1">{{ release.press_release}}</div>
+    </div>
+    <hr />
+    <footer fetchMessage="{{ response.fetchMessage }}" url="{{ response.url }}"></footer>
+  </div>
+</div>
