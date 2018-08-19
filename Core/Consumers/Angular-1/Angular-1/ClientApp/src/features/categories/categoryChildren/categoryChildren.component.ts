@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ICategoryResponse, ICategoryContainer, ICategory } from '../../../fredapi/categories/category.interfaces';
+import { ICategoryResponse, ICategory } from '../../../fredapi/categories/category.interfaces';
 
 @Component({
   selector: 'categoryChildren',
@@ -32,8 +32,8 @@ export class CategoryChildrenComponent implements OnInit {
       this.categoryId = +data.get("id");
     });
     this.route.queryParamMap.subscribe(data => {
-      this.startDate = data.get("startDate");
-      this.endDate = data.get("endDate");
+      this.startDate = data.get("realtime_start");
+      this.endDate = data.get("realtime_end");
     });
     this.route.data.subscribe(data => {
       console.log(data['categoryChildren']);
@@ -53,8 +53,8 @@ export class CategoryChildrenComponent implements OnInit {
       {
         queryParams:
           {
-            startDate: this.startDate,
-            endDate: this.endDate
+            realtime_start: this.startDate,
+            realtime_end: this.endDate
           }
         //queryParamsHandling: 'preserve'
       });
