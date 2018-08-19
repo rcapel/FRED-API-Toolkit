@@ -6,12 +6,15 @@ import { AppRoutingModule } from './appRouting.module';
 
 // feature modules
 import { CategoryModule } from '..//features/categories/category.module';
+import { ReleasesModule } from '../features/releases/releases.module';
+import { SeriesModule } from '..//features/series/series.module';
 import { SourcesModule } from '..//features/sources/sources.module';
+import { TagsModule } from '..//features/tags/tags.module';
+import { FeaturesCommonModule } from '../features/featuresCommon.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
-import { FeaturesModule } from '../features/features.module';
 
 @NgModule({
   declarations: [
@@ -23,9 +26,12 @@ import { FeaturesModule } from '../features/features.module';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     FormsModule,
     CategoryModule,
+    ReleasesModule,
+    SeriesModule,
     SourcesModule,
+    TagsModule,
     AppRoutingModule,
-    FeaturesModule
+    FeaturesCommonModule
   ],
   providers: [
   ],
