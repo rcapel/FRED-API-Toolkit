@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th ng-click="orderBy('id')" width="50px">
+					id
+					<span class="sortorder" ng-show="column === 'id' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('realtime_start')" width="120px">
+					realtime_start
+					<span class="sortorder" ng-show="column === 'realtime_start' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('realtime_end')" width="120px">
+					realtime_end
+					<span class="sortorder" ng-show="column === 'realtime_end' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('name')">
+					name
+					<span class="sortorder" ng-show="column === 'name' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('press_release')" width="120px">
+					press_release
+					<span class="sortorder" ng-show="column === 'press_release' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('link')">
+					link
+					<span class="sortorder" ng-show="column === 'link' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="release in container.releases | orderBy:column:reverse">
+				<td>{{release.id}}</td>
+				<td>{{release.realtime_start | date : "longDate"}}</td>
+				<td>{{release.realtime_end | date : "longDate"}}</td>
+				<td>{{release.name}}</td>
+				<td>{{release.press_release}}</td>
+				<td><a href="{{release.link}}">{{release.link}}</a></td>
+			<tr>
+		</tbody>
+	</table>
+</div>

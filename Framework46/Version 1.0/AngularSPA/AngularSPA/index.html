@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html ng-app="appModule">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script data-require="angular.js@1.4.3" data-semver="1.4.3" src="https://code.angularjs.org/1.4.3/angular.js"></script>
+	<script data-require="angular-route@*" data-semver="1.4.3" src="https://code.angularjs.org/1.4.3/angular-route.js"></script>
+	<link rel="stylesheet" href="styles.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="Scripts/Angular/app.js"></script>
+
+	<script src="Scripts/Angular/Controllers/mainController.js"></script>
+
+	<script src="Scripts/Angular/Controllers/controllerBase.js"></script>
+
+	<script src="Scripts/Angular/Controllers/Categories/categoriesControllerBase.js"></script>
+	<script src="Scripts/Angular/Controllers/Categories/categoryController.js"></script>
+	<script src="Scripts/Angular/Controllers/Categories/categoryChildrenController.js"></script>
+	<script src="Scripts/Angular/Controllers/Categories/categoryRelatedController.js"></script>
+	<script src="Scripts/Angular/Controllers/Categories/categorySeriesController.js"></script>
+	<script src="Scripts/Angular/Controllers/Categories/categoryTagsController.js"></script>
+	<script src="Scripts/Angular/Controllers/Categories/categoryRelatedTagsController.js"></script>
+
+	<script src="Scripts/Angular/Controllers/Releases/releasesControllerBase.js"></script>
+	<script src="Scripts/Angular/Controllers/Releases/releasesController.js"></script>
+	<script src="Scripts/Angular/Controllers/Releases/releasesDatesController.js"></script>
+	<script src="Scripts/Angular/Controllers/Releases/releaseController.js"></script>
+	<script src="Scripts/Angular/Controllers/Releases/releaseDatesController.js"></script>
+	<script src="Scripts/Angular/Controllers/Releases/releaseSeriesController.js"></script>
+	<script src="Scripts/Angular/Controllers/Releases/releaseSourcesController.js"></script>
+	<script src="Scripts/Angular/Controllers/Releases/releaseTagsController.js"></script>
+	<script src="Scripts/Angular/Controllers/Releases/releaseRelatedTagsController.js"></script>
+
+	<script src="Scripts/Angular/Controllers/Series/seriesControllerBase.js"></script>
+	<script src="Scripts/Angular/Controllers/Series/seriesController.js"></script>
+	<script src="Scripts/Angular/Controllers/Series/seriesCategoriesController.js"></script>
+	<script src="Scripts/Angular/Controllers/Series/seriesObservationsController.js"></script>
+	<script src="Scripts/Angular/Controllers/Series/seriesReleaseController.js"></script>
+	<script src="Scripts/Angular/Controllers/Series/seriesSearchController.js"></script>
+	<script src="Scripts/Angular/Controllers/Series/seriesSearchTagsController.js"></script>
+	<script src="Scripts/Angular/Controllers/Series/seriesSearchRelatedTagsController.js"></script>
+	<script src="Scripts/Angular/Controllers/Series/seriesTagsController.js"></script>
+	<script src="Scripts/Angular/Controllers/Series/seriesUpdatesController.js"></script>
+	<script src="Scripts/Angular/Controllers/Series/seriesVintageDatesController.js"></script>
+
+	<script src="Scripts/Angular/Controllers/Sources/sourcesControllerBase.js"></script>
+	<script src="Scripts/Angular/Controllers/Sources/sourcesController.js"></script>
+	<script src="Scripts/Angular/Controllers/Sources/sourceController.js"></script>
+	<script src="Scripts/Angular/Controllers/Sources/sourceReleasesController.js"></script>
+
+	<script src="Scripts/Angular/Controllers/Tags/tagsControllerBase.js"></script>
+	<script src="Scripts/Angular/Controllers/Tags/tagsController.js"></script>
+	<script src="Scripts/Angular/Controllers/Tags/relatedTagsController.js"></script>
+	<script src="Scripts/Angular/Controllers/Tags/tagsSeriesController.js"></script>
+
+	<script src="Scripts/Angular/Services/orderByService.js"></script>
+</head>
+<body>
+	<h1>FRED® API</h1>
+	<div ng-view></div>
+</body>
+</html>

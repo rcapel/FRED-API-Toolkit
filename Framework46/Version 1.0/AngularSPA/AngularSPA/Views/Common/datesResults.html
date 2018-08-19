@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>release_id</th>
+				<th>date</th>
+				<th ng-click="orderBy('release_id')">
+					release_id
+					<span class="sortorder" ng-show="column === 'release_id' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('date')">
+					date
+					<span class="sortorder" ng-show="column === 'date' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="release in container.release_dates | orderBy:column:reverse">
+				<td>{{release.release_id}}</td>
+				<td>{{release.date | date : "longDate"}}</td>
+			<tr>
+		</tbody>
+	</table>
+</div>

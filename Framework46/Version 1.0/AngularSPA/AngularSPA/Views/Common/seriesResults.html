@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th ng-click="orderBy('id')">
+					id
+					<span class="sortorder" ng-show="column === 'id' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('realtime_start')" width="120px">
+					realtime_start
+					<span class="sortorder" ng-show="column === 'realtime_start' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('realtime_end')" width="120px">
+					realtime_end
+					<span class="sortorder" ng-show="column === 'realtime_end' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('title')">
+					title
+					<span class="sortorder" ng-show="column === 'title' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="series in container.seriess | orderBy:column:reverse">
+				<td>{{series.id}}</td>
+				<td>{{series.realtime_start | date : "longDate"}}</td>
+				<td>{{series.realtime_end | date : "longDate"}}</td>
+				<td>{{series.title}}</td>
+			<tr>
+		</tbody>
+	</table>
+</div>

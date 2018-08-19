@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th ng-click="orderBy('id')">
+					id
+					<span class="sortorder" ng-show="column === 'id' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('realtime_start')">
+					realtime_start
+					<span class="sortorder" ng-show="column === 'realtime_start' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('realtime_end')">
+					realtime_end
+					<span class="sortorder" ng-show="column === 'realtime_end' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('name')">
+					name
+					<span class="sortorder" ng-show="column === 'name' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('link')">
+					link
+					<span class="sortorder" ng-show="column === 'link' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="source in container.sources | orderBy:column:reverse">
+				<td>{{source.id}}</td>
+				<td>{{source.realtime_start | date : "longDate"}}</td>
+				<td>{{source.realtime_end | date : "longDate"}}</td>
+				<td>{{source.name}}</td>
+				<td><a href="{{source.link}}">{{source.link}}</a></td>
+			<tr>
+		</tbody>
+	</table>
+</div>

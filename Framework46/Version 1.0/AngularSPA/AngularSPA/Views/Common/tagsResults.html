@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th ng-click="orderBy('created')">
+					created
+					<span class="sortorder" ng-show="column === 'created' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('name')">
+					name
+					<span class="sortorder" ng-show="column === 'name' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('group_id')">
+					group_id
+					<span class="sortorder" ng-show="column === 'group_id' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tag in container.tags | orderBy:column:reverse">
+				<td>{{tag.created | date : "longDate"}}</td>
+				<td>{{tag.name}}</td>
+				<td>{{tag.group_id}}</td>
+			<tr>
+		</tbody>
+	</table>
+</div>
+

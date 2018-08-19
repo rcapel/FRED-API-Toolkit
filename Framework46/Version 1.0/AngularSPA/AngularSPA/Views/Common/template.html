@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<h1>fred{{fredPath}}</h1>
+<div>
+	{{error}}
+</div>
+<br />
+<details ng-show="response">
+	<summary>JSON</summary>
+	<div>
+		{{response}}
+	</div>
+</details>
+<br />
+<div ng-include src="api.form"></div>
+<br/>
+<div ng-show="response" ng-include src="api.results">
+</div>
+<br />
+<br />
+<div>
+	<a href="#/main">Back to Main</a>
+</div>

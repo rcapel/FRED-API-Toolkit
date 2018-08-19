@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th ng-click="orderBy('id')">
+					id
+					<span class="sortorder" ng-show="column === 'id' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('name')">
+					name
+					<span class="sortorder" ng-show="column === 'name' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+				<th ng-click="orderBy('parent_id')">
+					parent_id
+					<span class="sortorder" ng-show="column === 'parent_id' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="category in container.categories | orderBy:column:reverse">
+				<td>{{category.id}}</td>
+				<td>{{category.name}}</td>
+				<td>{{category.parent_id}}</td>
+			<tr>
+		</tbody>
+	</table>
+</div>
+

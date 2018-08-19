@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th ng-click="orderBy('toString()')">
+					date
+					<span class="sortorder" ng-show="column === 'toString()' && api.orderByEnabled" ng-class="{reverse:reverse}"></span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="date in container.vintage_dates | orderBy:column:reverse">
+				<td>{{date | date : "longDate"}}</td>
+			<tr>
+		</tbody>
+	</table>
+</div>
+
