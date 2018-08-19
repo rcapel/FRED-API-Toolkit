@@ -4,23 +4,21 @@
     {{ heading }}
   </div>
   <div class="card-body">
-    <div class="row">
-      <div class="col-md-3">
-        <filterValues realtime_start="{{response.realtime_start}}" realtime_end="{{response.realtime_start}}" order_by="{{response}}"
-                      sort_order="{{response.sort_order}}" count="{{response.count}}" offset="{{response.offset}}" limit="{{response.limit}}">
-        </filterValues>
-      </div>
-    </div>
+    <filterValues realtime_start="{{container.realtime_start}}" realtime_end="{{container.realtime_start}}" order_by="{{orderByAsString}}"
+                  sort_order="{{container.sort_order}}" count="{{container.count}}" offset="{{container.offset}}" limit="{{container.limit}}">
+    </filterValues>
     <hr />
     <div class="row">
       <div class="col-md-1 font-weight-bold">Id</div>
       <div class="col-md-2 font-weight-bold">Date</div>
+      <div class="col-md-9" *ngIf="showReleaseName == true">Name</div>
     </div>
-    <div class="row" *ngFor="let releaseDate of response.release_dates">
+    <div class="row" *ngFor="let releaseDate of releaseDates">
       <div class="col-md-1">{{ releaseDate.release_id }}</div>
       <div class="col-md-2">{{ releaseDate.date | date: 'MM/dd/yyyy' }}</div>
+      <div class="col-md-9" *ngIf="showReleaseName == true">{{ releaseDate.release_name }}</div>
     </div>
     <hr />
-    <footer fetchMessage="{{ response.fetchMessage }}" url="{{ response.url }}"></footer>
+    <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
   </div>
 </div>

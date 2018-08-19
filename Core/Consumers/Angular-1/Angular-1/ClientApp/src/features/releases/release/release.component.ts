@@ -15,10 +15,10 @@ export class ReleaseComponent implements OnInit {
   releaseId: number;
 
   // response
-  response: IReleaseResponse;
-  //sources: IRelease[];//sources is an ISource with a press_release flag
-  //fetchMessage: string;
-  //url: string;
+  container: IReleaseResponse;
+  releases: IRelease[];
+  fetchMessage: string;
+  url: string;
 
   constructor(
     private router: Router,
@@ -37,10 +37,10 @@ export class ReleaseComponent implements OnInit {
 
   parseData(data) {
     console.log(data);
-    this.response = data.container;
-    //this.sources = this.container.releases;
-    //this.fetchMessage = data.fetchMessage;
-    //this.url = data.url;
+    this.container = data.container;
+    this.releases = data.container.releases;
+    this.fetchMessage = data.fetchMessage;
+    this.url = data.url;
   }
 
   onSubmit() {

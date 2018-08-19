@@ -1,26 +1,26 @@
 <div class="row">
   <div class="col-md-3">
-    <div>
+    <div *ngIf="excludeStartDate.length == 0 || excludeStartDate == false">
       Start: {{ realtime_start | date: 'MM/dd/yyyy' }}
     </div>
-    <div>
+    <div *ngIf="excludeEndDate.length == 0 || excludeEndDate == false">
       End: {{ realtime_end | date: 'MM/dd/yyyy' }}
     </div>
-    <div>
+    <div *ngIf="excludeOrderBy.length == 0 || excludeOrderBy == false">
       Order By: {{ order_by }}
     </div>
-    <div>
+    <div *ngIf="excludeSortOrder.length == 0 || excludeSortOrder == false">
       Sort Order: {{ sort_order | sortOrder }}
     </div>
   </div>
   <div class="col-md-3">
-    <div>
+    <div *ngIf="excludeCount.length == 0 || excludeCount == false">
       Count: {{ count }}
     </div>
-    <div>
+    <div *ngIf="excludeOffset.length == 0 || excludeOffset == false">
       Offset: {{ offset }}
     </div>
-    <div>
+    <div *ngIf="excludeLimit.length == 0 || excludeLimit == false">
       Limit: {{ limit }}
     </div>
   </div>

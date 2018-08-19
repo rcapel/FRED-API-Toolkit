@@ -14,4 +14,12 @@ export class FilterValuesComponent {
   @Input() offset: number;
   @Input() limit: number;
 
+  @Input() excludeStartDate: boolean = false;
+  @Input() excludeEndDate: boolean = false;
+  @Input() excludeOrderBy: boolean = false;
+  @Input() excludeSortOrder: boolean = false;
+  @Input() excludeCount: boolean = false;
+  @Input() excludeOffset: boolean = false;
+  @Input() excludeLimit: boolean = false;
+
 }

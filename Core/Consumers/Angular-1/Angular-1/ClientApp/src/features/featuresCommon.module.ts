@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { FooterComponent } from './shared/footer/footer.component';
 import { FilterValuesComponent } from './shared/filterValues/filterValues.component';
+import { SourcesGridComponent } from './shared/sourcesGrid/sourcesGrid.component';
 
 import { FredapiModule } from '../fredapi/fredapi.module';
 
@@ -29,6 +30,7 @@ import { VintageDatesOrderByPipe } from './shared/pipes/vintageDatesOrderBy/vint
   declarations: [
     FooterComponent,
     FilterValuesComponent,
+    SourcesGridComponent,
     AggregationMethodPipe,
     FilterValuePipe,
     FilterVariablePipe,
@@ -54,6 +56,7 @@ import { VintageDatesOrderByPipe } from './shared/pipes/vintageDatesOrderBy/vint
   exports: [
     FooterComponent,
     FilterValuesComponent,
+    SourcesGridComponent,
     AggregationMethodPipe,
     FilterValuePipe,
     FilterVariablePipe,

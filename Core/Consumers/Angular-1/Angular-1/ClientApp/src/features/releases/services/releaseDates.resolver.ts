@@ -3,17 +3,17 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs';
 
 import { ReleaseService } from '../../../fredapi/releases/release.service';
-import { IReleaseDatesResponse } from '../../../fredapi/releases/releaseDates.interfaces';
+import { IReleaseDatesResponse, IReleaseDate } from '../../../fredapi/releases/releaseDates.interfaces';
 
 @Injectable()
-export class ReleaseDatesResolver implements Resolve<IReleaseDatesResponse>{
+export class ReleaseDatesResolver implements Resolve<IReleaseDatesResponse<IReleaseDate>>{
 
   constructor(
     private service: ReleaseService
   ) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IReleaseDatesResponse> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IReleaseDatesResponse<IReleaseDate>> {
     let releaseId: string = route.paramMap.get('id');
 
     return this.service.getDates(releaseId);

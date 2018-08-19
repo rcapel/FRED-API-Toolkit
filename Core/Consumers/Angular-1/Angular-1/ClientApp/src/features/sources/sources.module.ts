@@ -3,20 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { FredapiModule } from '../../fredapi/fredapi.module';
-import { FeaturesModule } from '../features.module';
-
-import { SourcesOrderByPipe } from './services/sourcesOrderBy.pipe';
-import { SortOrderPipe } from '../shared/sortOrder.pipe';
+import { FeaturesCommonModule } from '../featuresCommon.module';
 
 import { SourcesComponent } from './sources/sources.component';
 import { SourcesResolver } from '../sources/services/sources.resolver';
 
 @NgModule({
   declarations: [
-    SourcesComponent,
-    SourcesOrderByPipe,
-    SortOrderPipe
+    SourcesComponent
   ],
   imports: [
     CommonModule,
@@ -24,8 +18,7 @@ import { SourcesResolver } from '../sources/services/sources.resolver';
     RouterModule.forChild([
       { path: 'sources', component: SourcesComponent, resolve: { sources: SourcesResolver } }
     ]),
-    FredapiModule,
-    FeaturesModule
+    FeaturesCommonModule
   ],
   providers: [
     SourcesResolver

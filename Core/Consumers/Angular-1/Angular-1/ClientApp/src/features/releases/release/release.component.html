@@ -4,11 +4,9 @@
     {{ heading }}
   </div>
   <div class="card-body">
-    <div class="row">
-      <div class="col-md-3">
-        <startEndValues realtime_start="{{response.realtime_start}}" realtime_end="{{response.realtime_end}}"></startEndValues>
-      </div>
-    </div>
+    <filterValues realtime_start="{{container.realtime_start}}" realtime_end="{{container.realtime_start}}"
+                  includeOrderBy="false" includeSortOrder="false" includeCount="false" includeOffset="false" includeLimit="false">
+    </filterValues>
     <hr />
     <div class="row">
       <div class="col-md-1 font-weight-bold">Id</div>
@@ -18,7 +16,7 @@
       <div class="col-md-3 font-weight-bold">Link</div>
       <div class="col-md-1 font-weight-bold">Press Release</div>
     </div>
-    <div class="row" *ngFor="let release of response.releases">
+    <div class="row" *ngFor="let release of releases">
       <div class="col-md-1">{{ release.id }}</div>
       <div class="col-md-2">{{ release.realtime_start | date: 'MM/dd/yyyy' }}</div>
       <div class="col-md-2">{{ release.realtime_end | date: 'MM/dd/yyyy' }}</div>
@@ -27,6 +25,6 @@
       <div class="col-md-1">{{ release.press_release}}</div>
     </div>
     <hr />
-    <footer fetchMessage="{{ response.fetchMessage }}" url="{{ response.url }}"></footer>
+    <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
   </div>
 </div>

@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs';
 
 import { SeriesService } from '../../../fredapi/series/series.service';
-import { ISingleSeriesResponse } from '../../../fredapi/series/series.interfaces';
+import { ISingleSeriesResponse } from '../../../fredapi/series/singleSeries.interfaces';
 
 @Injectable()
 export class SeriesResolver implements Resolve<ISingleSeriesResponse>{

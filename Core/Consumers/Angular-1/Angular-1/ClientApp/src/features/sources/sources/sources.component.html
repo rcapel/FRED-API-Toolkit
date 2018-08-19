@@ -4,34 +4,13 @@
     {{ heading }}
   </div>
   <div class="card-body">
-    <div class="row">
-      <div class="col-md-3">
-        <div>
-          Start: {{ container.realtime_start | date: 'MM/dd/yyyy' }}
-        </div>
-        <div>
-          End: {{ container.realtime_end | date: 'MM/dd/yyyy' }}
-        </div>
-        <div>
-          Order By: {{ container.order_by | sourcesOrderBy }}
-        </div>
-        <div>
-          Sort Order: {{ container.sort_order | sortOrder }}
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div>
-          Count: {{ container.count }}
-        </div>
-        <div>
-          Offset: {{ container.offset }}
-        </div>
-        <div>
-          Limit: {{ container.limit }}
-        </div>
-      </div>
-    </div>
+    <filterValues realtime_start="{{container.realtime_start}}" realtime_end="{{container.realtime_start}}" order_by="{{orderByAsString}}"
+                  sort_order="{{container.sort_order}}" count="{{container.count}}" offset="{{container.offset}}" limit="{{container.limit}}"
+                  excludeOrderBy="{{excludeOrderBy}}" excludeSortOrder="{{excludeSortOrder}}" excludeCount="{{excludeCount}}"
+                  excludeOffset="{{excludeOffset}}" excludeLimit="{{excludeLimit}}">
+    </filterValues>
     <hr />
+    <!--<sourcesGrid sources="{{sources}}"></sourcesGrid>-->
     <div class="row">
       <div class="col-md-1 font-weight-bold">Id</div>
       <div class="col-md-2 font-weight-bold">Start</div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { IReleaseDatesResponse, IReleaseDate } from '../../../fredapi/releases/releaseDates.interfaces';
+import { IReleaseDatesContainer, IReleaseDate } from '../../../fredapi/releases/releaseDates.interfaces';
+import { ReleasesOrderByPipe } from '../../shared/pipes/releasesOrderBy/releasesOrderBy.pipe';
 
 @Component({
   selector: 'releaseDates',
@@ -15,8 +16,10 @@ export class ReleaseDatesComponent implements OnInit {
   releaseId: number;
 
   // response
-  response: IReleaseDatesResponse;
+  container: IReleaseDatesContainer<IReleaseDate>;
   releaseDates: IReleaseDate[];
+  orderByAsString: string;
+  showReleaseName: boolean = false;
   fetchMessage: string;
   url: string;
 
@@ -36,15 +39,16 @@ export class ReleaseDatesComponent implements OnInit {
   }
 
   parseData(data) {
-    console.log(data);
-    this.response = data.container;
-    //this.sources = this.container.releases;
-    //this.fetchMessage = data.fetchMessage;
-    //this.url = data.url;
+    this.container = data.container;
+    console.log(this.container);
+    this.releaseDates = this.container.release_dates;
+    this.orderByAsString = new ReleasesOrderByPipe().transform(this.container.order_by);
+    this.fetchMessage = data.fetchMessage;
+    this.url = data.url;
   }
 
   onSubmit() {
-    this.router.navigate(["/release/" + this.releaseId]);
+    this.router.navigate(["/releaseDates/" + this.releaseId]);
   }
 
 }

@@ -1,5 +1,5 @@
 import { SourcesComponent } from "./sources.component";
-import { ISourceContainer, ISource } from "../../../fredapi/sources/sources.interfaces";
+import { ISourceContainer, ISource } from "../../../fredapi/sources/source.interfaces";
 
 describe("SourcesComponent", () => {
   let component: SourcesComponent;
