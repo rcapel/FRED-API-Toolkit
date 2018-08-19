@@ -1,0 +1,80 @@
+<br />
+<div class="card">
+  <div class="card-header">
+    {{ heading }}
+  </div>
+  <div class="card-body">
+    <form (submit)="onSubmit()" #formValidator="ngForm">
+      <div class="form-group">
+        <label for="categoryId">Category Id</label>
+        <div class="row">
+          <div class="col-md-1">
+            <input type="text" class="form-control" name="categoryId" [(ngModel)]="categoryId" #categoryIdValidator="ngModel" required minlength="1" />
+          </div>
+        </div>
+        <div *ngIf="categoryIdValidator.errors && (categoryIdValidator.dirty || categoryIdValidator.touched)" class="text text-danger">
+          <div [hidden]="!categoryIdValidator.errors.required">
+            Category Id is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="tagNames">Tag Names</label>
+        <div class="row">
+          <div class="col-md-4">
+            <input type="text" class="form-control" name="tagNames" [(ngModel)]="tagNames" #tagNamesValidator="ngModel" required />
+          </div>
+        </div>
+        <div *ngIf="tagNamesValidator.errors && (tagNamesValidator.dirty || tagNamesValidator.touched)" class="text text-danger">
+          <div [hidden]="!tagNamesValidator.errors.required">
+            Tag Names is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <div class="row">
+          <div class="col-md-2">
+            <input type="text" class="form-control" name="startDate" [(ngModel)]="startDate" placeholder="yyyy-mm-dd" />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="startDate">End Date</label>
+        <div class="row">
+          <div class="col-md-2">
+            <input type="text" class="form-control" name="endDate" [(ngModel)]="endDate" placeholder="yyyy-mm-dd" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <br />
+        <input type="submit" class="btn btn-sm btn-default" value="Fetch" [disabled]="formValidator.invalid" />
+      </div>
+    </form>
+    <hr />
+    <filterValues realtime_start="{{container.realtime_start}}" realtime_end="{{container.realtime_start}}" order_by="{{orderByAsString}}"
+                  sort_order="{{container.sort_order}}" count="{{container.count}}" offset="{{container.offset}}" limit="{{container.limit}}">
+    </filterValues>
+    <hr />
+    <br />
+    <div class="row">
+      <div class="col-md-2 font-weight-bold">Name</div>
+      <div class="col-md-2 font-weight-bold">Group Id</div>
+      <div class="col-md-2 font-weight-bold">Notes</div>
+      <div class="col-md-2 font-weight-bold">Created</div>
+      <div class="col-md-2 font-weight-bold">Popularity</div>
+      <div class="col-md-2 font-weight-bold">Series Count</div>
+    </div>
+    <div class="row" *ngFor="let tag of tags">
+      <div class="col-md-2">{{ tag.name }}</div>
+      <div class="col-md-2">{{ tag.group_id }}</div>
+      <div class="col-md-2">{{ tag.notes }}</div>
+      <div class="col-md-2">{{ tag.created }}</div>
+      <div class="col-md-2">{{ tag.popularity }}</div>
+      <div class="col-md-2">{{ tag.series_count }}</div>
+    </div>
+    <hr />
+    <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
+  </div>
+</div>

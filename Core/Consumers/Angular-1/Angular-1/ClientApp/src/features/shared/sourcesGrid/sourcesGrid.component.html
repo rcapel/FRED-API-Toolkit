@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-1 font-weight-bold">Id</div>
+  <div class="col-md-2 font-weight-bold">Start</div>
+  <div class="col-md-2 font-weight-bold">End</div>
+  <div class="col-md-3 font-weight-bold">Name</div>
+  <div class="col-md-3 font-weight-bold">Link</div>
+  <div class="col-md-1 font-weight-bold" *ngIf="press_release == true">Press Release</div>
+  <!--<div class="col-md-1 font-weight-bold">Press Release</div>-->
+</div>
+<div class="row" *ngFor="let source of sources">
+  <div class="col-md-1">{{ source.id }}</div>
+  <div class="col-md-2">{{ source.realtime_start | date: 'MM/dd/yyyy' }}</div>
+  <div class="col-md-2">{{ source.realtime_end | date: 'MM/dd/yyyy' }}</div>
+  <div class="col-md-3">{{ source.name }}</div>
+  <div class="col-md-3">{{ source.link}}</div>
+  <!--<div class="col-md-1">{{ press_release}}</div>-->
+</div>
