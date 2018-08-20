@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 
 import { FooterComponent } from './shared/footer/footer.component';
 import { FilterValuesComponent } from './shared/filterValues/filterValues.component';
+import { CategoriesGridHeaderComponent } from './shared/categoriesGrid/categoriesGridHeader.component';
+import { CategoriesGridDetailComponent } from './shared/categoriesGrid/categoriesGridDetail.component';
 import { SeriesGridHeaderComponent } from './shared/seriesGrid/seriesGridHeader.component';
 import { SeriesGridDetailComponent } from './shared/seriesGrid/seriesGridDetail.component';
 import { SourcesGridHeaderComponent } from './shared/sourcesGrid/sourcesGridHeader.component';
@@ -35,6 +37,8 @@ import { VintageDatesOrderByPipe } from './shared/pipes/vintageDatesOrderBy/vint
   declarations: [
     FooterComponent,
     FilterValuesComponent,
+    CategoriesGridHeaderComponent,
+    CategoriesGridDetailComponent,
     SeriesGridHeaderComponent,
     SeriesGridDetailComponent,
     SourcesGridHeaderComponent,
@@ -66,6 +70,8 @@ import { VintageDatesOrderByPipe } from './shared/pipes/vintageDatesOrderBy/vint
   exports: [
     FooterComponent,
     FilterValuesComponent,
+    CategoriesGridHeaderComponent,
+    CategoriesGridDetailComponent,
     SeriesGridHeaderComponent,
     SeriesGridDetailComponent,
     SourcesGridHeaderComponent,
