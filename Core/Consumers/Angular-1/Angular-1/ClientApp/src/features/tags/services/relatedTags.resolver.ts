@@ -15,7 +15,7 @@ export class RelatedTagsResolver implements Resolve<ITagResponse>{
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ITagResponse> {
     let tagNames: string = route.paramMap.get("tag_names");
-    let queryString: string = "?";
+    let queryString: string = "";
 
     return this.service.getRelatedTags(tagNames, queryString);
   }
