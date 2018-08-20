@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { IReleaseContainer, IRelease } from '../../../fredapi/releases/release.interfaces';
+import { ReleasesOrderByPipe } from '../../shared/pipes/releasesOrderBy/releasesOrderBy.pipe';
 
 @Component({
-  selector: 'release',
-  templateUrl: './release.component.html'
+  selector: 'releases',
+  templateUrl: './releases.component.html'
 })
-export class ReleaseComponent implements OnInit {
+export class ReleasesComponent implements OnInit {
 
-  heading: string = "Release";
+  heading: string = "Releases";
 
   // request arguments
-  releaseId: number;
 
   // response
   container: IReleaseContainer;
@@ -20,17 +20,16 @@ export class ReleaseComponent implements OnInit {
   fetchMessage: string;
   url: string;
 
+  orderByAsString: string;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(data => {
-      this.releaseId = +data.get("id");
-    });
     this.route.data.subscribe(data => {
-        this.parseData(data['release']);
+        this.parseData(data['releases']);
       }
     );
   }
@@ -41,10 +40,12 @@ export class ReleaseComponent implements OnInit {
     this.releases = data.container.releases;
     this.fetchMessage = data.fetchMessage;
     this.url = data.url;
+
+    this.orderByAsString = new ReleasesOrderByPipe().transform(this.container.order_by);
   }
 
   onSubmit() {
-    this.router.navigate(["/release/" + this.releaseId]);
+    this.router.navigate(["/releases"]);
   }
 
 }
