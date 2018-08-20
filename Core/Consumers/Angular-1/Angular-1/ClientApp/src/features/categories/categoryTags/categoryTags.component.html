@@ -48,22 +48,6 @@
     <br />
     <tagsGridHeader></tagsGridHeader>
     <tagsGridDetail *ngFor="let tag of tags" [tag]="tag"></tagsGridDetail>
-    <!--<div class="row">
-      <div class="col-md-2 font-weight-bold">Name</div>
-      <div class="col-md-2 font-weight-bold">Group Id</div>
-      <div class="col-md-2 font-weight-bold">Notes</div>
-      <div class="col-md-2 font-weight-bold">Created</div>
-      <div class="col-md-2 font-weight-bold">Popularity</div>
-      <div class="col-md-2 font-weight-bold">Series Count</div>
-    </div>
-    <div class="row" *ngFor="let tag of tags">
-      <div class="col-md-2">{{ tag.name }}</div>
-      <div class="col-md-2">{{ tag.group_id }}</div>
-      <div class="col-md-2">{{ tag.notes }}</div>
-      <div class="col-md-2">{{ tag.created }}</div>
-      <div class="col-md-2">{{ tag.popularity }}</div>
-      <div class="col-md-2">{{ tag.series_count }}</div>
-    </div>-->
     <hr />
     <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
   </div>
