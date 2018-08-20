@@ -13,7 +13,7 @@ export class SeriesComponent implements OnInit {
   heading: string = "Series";
 
   // request arguments
-  seriesId: number;
+  seriesId: string;
 
   // response
   container: ISeriesContainer;
@@ -30,7 +30,7 @@ export class SeriesComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(data => {
-      this.seriesId = +data.get("id");
+      this.seriesId = data.get("id");
     });
     this.route.data.subscribe(
       data => {
