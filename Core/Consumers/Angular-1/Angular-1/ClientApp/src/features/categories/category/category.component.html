@@ -26,16 +26,8 @@
     </form>
     <hr />
     <br />
-    <div class="row">
-      <div class="col-md-2 font-weight-bold">Id</div>
-      <div class="col-md-4 font-weight-bold">Name</div>
-      <div class="col-md-2 font-weight-bold">Parent Id</div>
-    </div>
-    <div class="row" *ngFor="let category of categories">
-      <div class="col-md-2">{{ category.id }}</div>
-      <div class="col-md-4">{{ category.name }}</div>
-      <div class="col-md-2">{{ category.parent_id}}</div>
-    </div>
+    <categoriesGridHeader></categoriesGridHeader>
+    <categoriesGridDetail *ngFor="let category of categories" [category]="category"></categoriesGridDetail>
     <hr />
     <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
   </div>
