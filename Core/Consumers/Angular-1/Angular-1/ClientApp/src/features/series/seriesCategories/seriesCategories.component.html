@@ -1,1 +1,12 @@
-categories
+<br />
+<div class="card">
+  <div class="card-header">
+    {{ heading }}
+  </div>
+  <div class="card-body">
+    <categoriesGridHeader></categoriesGridHeader>
+    <categoriesGridDetail *ngFor="let category of categories" [category]="category"></categoriesGridDetail>
+    <hr />
+    <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
+  </div>
+</div>

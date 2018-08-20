@@ -1,1 +1,17 @@
-seriesSearchTags
+<br />
+<div class="card">
+  <div class="card-header">
+    {{ heading }}
+  </div>
+  <div class="card-body">
+    <filterValues realtime_start="{{container.realtime_start}}" realtime_end="{{container.realtime_end}}" order_by="{{orderByAsString}}"
+                  sort_order="{{container.sort_order}}" count="{{container.count}}" offset="{{container.offset}}" limit="{{container.limit}}">
+    </filterValues>
+    <hr />
+    <br />
+    <tagsGridHeader></tagsGridHeader>
+    <tagsGridDetail *ngFor="let tag of tags" [tag]="tag"></tagsGridDetail>
+    <hr />
+    <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
+  </div>
+</div>
