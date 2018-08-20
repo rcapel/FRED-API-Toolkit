@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ISourceResponse } from './source.interfaces'
 
 @Injectable()
-export class SourcesService {
+export class SourceService {
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
   }
