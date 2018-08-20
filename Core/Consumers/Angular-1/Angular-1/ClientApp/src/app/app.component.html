@@ -42,14 +42,14 @@
         Series
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" [routerLink]="['/series/GNPCA']">series</a>
-        <a class="dropdown-item" [routerLink]="['/seriesCategories/EXJPUS']">categories</a>
+        <a class="dropdown-item" [routerLink]="['/series/GNPCA']">Series</a>
+        <a class="dropdown-item" [routerLink]="['/seriesCategories/EXJPUS']">Categories</a>
         <a class="dropdown-item" [routerLink]="['/seriesObservations/GNPCA']">observations</a>
         <a class="dropdown-item" [routerLink]="['/seriesRelease/IRA']">release</a>
         <a class="dropdown-item" [routerLink]="['/seriesSearch/monetary service index']">search</a>
-        <a class="dropdown-item" [routerLink]="['/seriesSearchTags/monetary service index']">search tags</a>
+        <a class="dropdown-item" [routerLink]="['/seriesSearchTags/monetary service index']">Search Tags</a>
         <a class="dropdown-item" [routerLink]="['/seriesSearchRelatedTags/mortgage rate']">search related tags (not working)</a>
-        <a class="dropdown-item" [routerLink]="['/seriesTags/STLFSI']">tags</a>
+        <a class="dropdown-item" [routerLink]="['/seriesTags/STLFSI']">Tags</a>
         <a class="dropdown-item" [routerLink]="['/seriesUpdates']">updates</a>
         <a class="dropdown-item" [routerLink]="['/seriesVintageDates/GNPCA']">vintage dates</a>
       </div>
@@ -69,8 +69,8 @@
         Tags
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="http://localhost:65275/api/tags">tags</a>
-        <a class="dropdown-item" href="http://localhost:65275/api/relatedTags/monetary aggregates;weekly">related tags</a>
+        <a class="dropdown-item" [routerLink]="['/tags']">Tags</a>
+        <a class="dropdown-item" [routerLink]="['/relatedTags/monetary aggregates;weekly']">related tags (500 response)</a>
         <a class="dropdown-item" href="http://localhost:65275/api/tagsSeries/slovenia;food;oecd">tag series</a>
       </div>
     </li>
