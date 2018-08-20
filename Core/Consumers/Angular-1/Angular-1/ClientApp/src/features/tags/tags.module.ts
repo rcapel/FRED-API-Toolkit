@@ -5,24 +5,29 @@ import { RouterModule } from '@angular/router';
 
 import { FeaturesCommonModule } from '../featuresCommon.module';
 
-//import { TagsComponent } from './tags/tags.component';
+import { TagsComponent } from './tags/tags.component';
+import { RelatedTagsComponent } from './relatedTags/relatedTags.component';
 
-//import { TagsResolver } from './services/tags.resolver';
+import { TagsResolver } from './services/tags.resolver';
+import { RelatedTagsResolver } from './services/relatedTags.resolver';
 
 @NgModule({
   declarations: [
-    //TagsComponent
+    TagsComponent,
+    RelatedTagsComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild([
-      //{ path: 'tags/:id', component: TagsComponent, resolve: { tags: TagsResolver } }
+      { path: 'tags', component: TagsComponent, resolve: { tags: TagsResolver } },
+      { path: 'relatedTags/:id', component: RelatedTagsComponent, resolve: { relatedTags: RelatedTagsResolver } }
     ]),
     FeaturesCommonModule
   ],
   providers: [
-    //TagsResolver
+    TagsResolver,
+    RelatedTagsResolver
   ]
 })
 export class TagsModule { }
