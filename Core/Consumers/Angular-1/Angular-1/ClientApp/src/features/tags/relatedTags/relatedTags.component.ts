@@ -41,7 +41,7 @@ export class RelatedTagsComponent implements OnInit {
   parseData(data) {
     console.log(data);
     this.container = data.container;
-    this.tags = data.container.sources;
+    this.tags = data.container.tags;
     this.fetchMessage = data.fetchMessage;
     this.url = data.url;
 
