@@ -5,7 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoryService } from '../fredapi/categories/category.service';
 import { ReleaseService } from './releases/release.service';
 import { SeriesService } from './series/series.service';
-import { SourcesService } from '../fredapi/sources/source.service';
+import { SourceService } from '../fredapi/sources/source.service';
+import { TagService } from './tags/tag.service';
 import { QueryStringService } from './services/queryString.service';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { QueryStringService } from './services/queryString.service';
     CategoryService,
     ReleaseService,
     SeriesService,
-    SourcesService,
+    SourceService,
+    TagService,
     QueryStringService
   ]
 })
