@@ -1,18 +1,10 @@
-export interface ISeriesResponse {
+import { IContainerExtensions, IFilters } from "../shared/shared.interfaces";
+
+export interface ISeriesResponse extends IContainerExtensions {
   container: ISeriesContainer;
-  fetchMessage: string;
-  url: string;
 }
 
-export interface ISeriesContainer {
-  realtime_start: Date;
-  realtime_end: Date;
-  count: number;
-  limit: number;
-  offset: number;
-  order_by: number;
-  sort_order: number;
-
+export interface ISeriesContainer extends IFilters {
   seriess: ISeriesItem[];
 }
 
@@ -21,7 +13,7 @@ export interface ISeriesItem {
   realtime_start: Date,
   realtime_end: Date,
   title: string;
-  //parent_id: number;//add to fred
+  //parent_id: number;//todo:add to fred
   observation_start: Date;
   observation_end: Date;
   frequency: string;

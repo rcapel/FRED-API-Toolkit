@@ -1,18 +1,10 @@
-export interface IReleaseDatesResponse<T> {
+import { IContainerExtensions, IFilters } from "../shared/shared.interfaces";
+
+export interface IReleaseDatesResponse<T> extends IContainerExtensions {
   container: IReleaseDatesContainer<T>;
-  fetchMessage: string;
-  url: string;
 }
 
-export interface IReleaseDatesContainer<T> {
-  realtime_start: Date;
-  realtime_end: Date;
-  count: number;
-  limit: number;
-  offset: number;
-  order_by: number;
-  sort_order: number;
-
+export interface IReleaseDatesContainer<T> extends IFilters {
   release_dates: T[];
 }
 

@@ -1,9 +1,8 @@
+import { IContainerExtensions } from '../shared/shared.interfaces';
 import { ISeriesItem } from './series.interfaces';
 
-export interface ISeriesUpdateResponse {
+export interface ISeriesUpdateResponse extends IContainerExtensions {
   container: ISeriesUpdateContainer;
-  fetchMessage: string;
-  url: string;
 }
 
 export interface ISeriesUpdateContainer {

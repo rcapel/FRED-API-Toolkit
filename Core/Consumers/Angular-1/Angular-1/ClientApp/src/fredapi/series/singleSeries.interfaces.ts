@@ -1,14 +1,10 @@
+import { IContainerExtensions, IFilters } from '../shared/shared.interfaces';
 import { ISeriesItem } from './series.interfaces';
 
-export interface ISingleSeriesResponse {
+export interface ISingleSeriesResponse extends IContainerExtensions {
   container: ISingleSeriesContainer;
-  fetchMessage: string;
-  url: string;
 }
 
-export interface ISingleSeriesContainer {
-  realtime_start: Date;
-  realtime_end: Date;
-
+export interface ISingleSeriesContainer extends IFilters {
   seriess: ISeriesItem[];
 }

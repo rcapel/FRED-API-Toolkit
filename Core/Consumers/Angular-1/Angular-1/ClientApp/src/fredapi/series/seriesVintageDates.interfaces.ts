@@ -1,15 +1,9 @@
-export interface ISeriesVintageDatesResponse {
+import { IContainerExtensions, IFilters } from "../shared/shared.interfaces";
+
+export interface ISeriesVintageDatesResponse extends IContainerExtensions {
   container: IVintageDateContainer;
-  fetchMessage: string;
-  url: string;
 }
 
-export interface IVintageDateContainer {
-  count: number;
-  limit: number;
-  offset: number;
-  order_by: number;
-  sort_order: number;
-
+export interface IVintageDateContainer extends IFilters {
   vintage_dates: Date[];
 }

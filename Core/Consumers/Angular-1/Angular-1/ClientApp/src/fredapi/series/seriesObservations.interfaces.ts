@@ -1,12 +1,10 @@
-export interface ISeriesObservationsResponse {
+import { IContainerExtensions, IFilters } from "../shared/shared.interfaces";
+
+export interface ISeriesObservationsResponse extends IContainerExtensions {
   container: ISeriesObservationsContainer;
-  fetchMessage: string;
-  url: string;
 }
 
-export interface ISeriesObservationsContainer {
-  realtime_start: Date;
-  realtime_end: Date;
+export interface ISeriesObservationsContainer extends IFilters {
   units: number;
   output_type: number;
   file_type: string;

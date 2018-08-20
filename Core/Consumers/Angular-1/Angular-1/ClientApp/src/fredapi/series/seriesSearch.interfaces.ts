@@ -1,17 +1,10 @@
+import { IContainerExtensions, IFilters } from '../shared/shared.interfaces';
 import { ISeriesItem } from './series.interfaces';
 
-export interface ISeriesSearchResponse {
+export interface ISeriesSearchResponse extends IContainerExtensions {
   container: ISeriesSearchContainer;
-  fetchMessage: string;
-  url: string;
 }
 
-export interface ISeriesSearchContainer {
-  count: number;
-  limit: number;
-  offset: number;
-  order_by: number;
-  sort_order: number;
-
+export interface ISeriesSearchContainer extends IFilters {
   seriess: ISeriesItem[];
 }
