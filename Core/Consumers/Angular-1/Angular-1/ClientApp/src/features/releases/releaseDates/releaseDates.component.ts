@@ -18,10 +18,11 @@ export class ReleaseDatesComponent implements OnInit {
   // response
   container: IReleaseDatesContainer<IReleaseDate>;
   releaseDates: IReleaseDate[];
-  orderByAsString: string;
-  showReleaseName: boolean = false;
   fetchMessage: string;
   url: string;
+
+  orderByAsString: string;
+  showReleaseName: boolean = false;
 
   constructor(
     private router: Router,
@@ -42,9 +43,10 @@ export class ReleaseDatesComponent implements OnInit {
     this.container = data.container;
     console.log(this.container);
     this.releaseDates = this.container.release_dates;
-    this.orderByAsString = new ReleasesOrderByPipe().transform(this.container.order_by);
     this.fetchMessage = data.fetchMessage;
     this.url = data.url;
+
+    this.orderByAsString = new ReleasesOrderByPipe().transform(this.container.order_by);
   }
 
   onSubmit() {
