@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ICategoryResponse, ICategory } from '../../../fredapi/categories/category.interfaces';
+import { ICategory } from '../../../fredapi/categories/category.interfaces';
 
 @Component({
   selector: 'categoryRelated',
