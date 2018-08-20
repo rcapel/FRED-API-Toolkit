@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ISeriesResponse, ISeriesContainer, ISeriesItem } from '../../../fredapi/series/series.interfaces';
+import { ISeriesResponse, ISeriesContainer, ISeries } from '../../../fredapi/series/series.interfaces';
 import { SeriesOrderByPipe } from '../../shared/pipes/seriesOrderBy/seriesOrderBy.pipe';
 
 @Component({
@@ -20,7 +20,7 @@ export class CategorySeriesComponent implements OnInit {
 
   // response
   container: ISeriesContainer;
-  series: ISeriesItem[];
+  seriess: ISeries[];
   orderByAsString: string;
   fetchMessage: string;
   url: string;
@@ -52,7 +52,7 @@ export class CategorySeriesComponent implements OnInit {
 
   parseData(data) {
     this.container = data.container;
-    this.series = data.container.seriess;
+    this.seriess = data.container.seriess;
     this.orderByAsString = new SeriesOrderByPipe().transform(this.container.order_by);
     this.fetchMessage = data.fetchMessage;
     this.url = data.url;

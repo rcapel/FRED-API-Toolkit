@@ -5,10 +5,10 @@ export interface ISeriesResponse extends IContainerExtensions {
 }
 
 export interface ISeriesContainer extends IFilters {
-  seriess: ISeriesItem[];
+  seriess: ISeries[];
 }
 
-export interface ISeriesItem {
+export interface ISeries {
   id: number;
   realtime_start: Date,
   realtime_end: Date,

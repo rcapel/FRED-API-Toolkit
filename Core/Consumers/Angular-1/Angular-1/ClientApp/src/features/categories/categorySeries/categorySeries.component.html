@@ -53,11 +53,11 @@
       <div class="col-md-2 font-weight-bold">End</div>
       <div class="col-md-2 font-weight-bold">Title</div>
     </div>
-    <div class="row" *ngFor="let seriesItem of series">
-      <div class="col-md-2">{{ seriesItem.id }}</div>
-      <div class="col-md-2">{{ seriesItem.realtime_start | date: 'MM/dd/yyyy' }}</div>
-      <div class="col-md-2">{{ seriesItem.realtime_end | date: 'MM/dd/yyyy' }}</div>
-      <div class="col-md-2">{{ seriesItem.title }}</div>
+    <div class="row" *ngFor="let series of seriess">
+      <div class="col-md-2">{{ series.id }}</div>
+      <div class="col-md-2">{{ series.realtime_start | date: 'MM/dd/yyyy' }}</div>
+      <div class="col-md-2">{{ series.realtime_end | date: 'MM/dd/yyyy' }}</div>
+      <div class="col-md-2">{{ series.title }}</div>
     </div>
     <hr />
     <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>

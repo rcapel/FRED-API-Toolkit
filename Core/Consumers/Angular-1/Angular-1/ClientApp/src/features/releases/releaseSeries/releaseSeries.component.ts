@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ISeriesContainer, ISeriesItem } from '../../../fredapi/series/series.interfaces';
+import { ISeriesContainer, ISeries } from '../../../fredapi/series/series.interfaces';
 
 @Component({
   selector: 'releaseSeries',
@@ -16,7 +16,7 @@ export class ReleaseSeriesComponent implements OnInit {
 
   // response
   container: ISeriesContainer;
-  series: ISeriesItem[];
+  series: ISeries[];
   fetchMessage: string;
   url: string;
 
