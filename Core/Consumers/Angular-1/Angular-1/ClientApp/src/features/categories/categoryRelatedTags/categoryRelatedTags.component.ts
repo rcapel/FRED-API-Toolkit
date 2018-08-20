@@ -21,9 +21,10 @@ export class CategoryRelatedTagsComponent implements OnInit {
   // response
   container: ITagContainer;
   tags: ITag[];
-  orderByAsString: string;
   fetchMessage: string;
   url: string;
+
+  orderByAsString: string;
 
   constructor(
     private router: Router,
@@ -49,9 +50,10 @@ export class CategoryRelatedTagsComponent implements OnInit {
     console.log(data);
     this.container = data.container;
     this.tags = data.container.tags;
-    this.orderByAsString = new TagsOrderByPipe().transform(this.container.order_by);
     this.fetchMessage = data.fetchMessage;
     this.url = data.url;
+
+    this.orderByAsString = new TagsOrderByPipe().transform(this.container.order_by);
   }
 
   onSubmit() {
