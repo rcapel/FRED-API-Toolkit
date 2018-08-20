@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ISeriesContainer, ISeries } from '../../../fredapi/series/series.interfaces';
+import { SeriesOrderByPipe } from '../../shared/pipes/seriesOrderBy/seriesOrderBy.pipe';
 
 @Component({
   selector: 'releaseSeries',
-  templateUrl: '../../series/series/series.component.html'
+  templateUrl: './releaseSeries.component.html'
 })
 export class ReleaseSeriesComponent implements OnInit {
 
@@ -19,6 +20,8 @@ export class ReleaseSeriesComponent implements OnInit {
   series: ISeries[];
   fetchMessage: string;
   url: string;
+
+  orderByAsString: string;
 
   constructor(
     private router: Router,
@@ -41,6 +44,8 @@ export class ReleaseSeriesComponent implements OnInit {
     this.series = data.container.seriess;
     this.fetchMessage = data.fetchMessage;
     this.url = data.url;
+
+    this.orderByAsString = new SeriesOrderByPipe().transform(this.container.order_by);
   }
 
   onSubmit() {
