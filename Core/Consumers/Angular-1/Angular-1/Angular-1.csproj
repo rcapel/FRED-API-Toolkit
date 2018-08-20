@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\features\tags\services\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
