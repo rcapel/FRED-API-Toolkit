@@ -21,7 +21,7 @@ import { RelatedTagsResolver } from './services/relatedTags.resolver';
     FormsModule,
     RouterModule.forChild([
       { path: 'tags', component: TagsComponent, resolve: { tags: TagsResolver } },
-      { path: 'relatedTags/:id', component: RelatedTagsComponent, resolve: { relatedTags: RelatedTagsResolver } }
+      { path: 'relatedTags/:tag_names', component: RelatedTagsComponent, resolve: { relatedTags: RelatedTagsResolver } }
     ]),
     FeaturesCommonModule
   ],
