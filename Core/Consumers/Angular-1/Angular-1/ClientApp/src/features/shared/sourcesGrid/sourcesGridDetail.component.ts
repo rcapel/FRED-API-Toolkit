@@ -8,6 +8,6 @@ import { ISource } from '../../../fredapi/sources/source.interfaces';
 })
 export class SourcesGridDetailComponent {
   @Input() source: ISource;
-  @Input() excludePressRelease: boolean = false;
+  @Input() showPressRelease: string = "false";
 
 }

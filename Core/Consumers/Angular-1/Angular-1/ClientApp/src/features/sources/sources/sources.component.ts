@@ -19,6 +19,7 @@ export class SourcesComponent implements OnInit {
   url: string;
 
   orderByAsString: string;
+  showPressRelease: boolean = false;
 
   constructor(
     private route: ActivatedRoute) {

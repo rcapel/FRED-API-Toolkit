@@ -5,4 +5,5 @@ import { Component, Input } from '@angular/core';
   templateUrl: './sourcesGridHeader.component.html'
 })
 export class SourcesGridHeaderComponent {
+  @Input() showPressRelease: string = "false";
 }
