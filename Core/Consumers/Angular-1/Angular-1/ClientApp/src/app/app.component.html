@@ -31,7 +31,7 @@
         <a class="dropdown-item" [routerLink]="['/releasesDates']">Releases Dates</a>
         <a class="dropdown-item" [routerLink]="['/release/53']">Release</a>
         <a class="dropdown-item" [routerLink]="['/releaseDates/82']">Release Dates</a>
-        <a class="dropdown-item" [routerLink]="['/releaseSeries/51']">Series (needs html</a>
+        <a class="dropdown-item" [routerLink]="['/releaseSeries/51']">Series</a>
         <a class="dropdown-item" [routerLink]="['/releaseSources/51']">Sources</a>
         <a class="dropdown-item" [routerLink]="['/releaseTags/86']">Tags</a>
         <a class="dropdown-item" [routerLink]="['/releaseRelatedTags/86/sa;foreign']">Related Tags</a>
@@ -43,15 +43,15 @@
       </a>
       <div class="dropdown-menu">
         <a class="dropdown-item" [routerLink]="['/series/GNPCA']">series</a>
-        <a class="dropdown-item" href="http://localhost:65275/api/seriesCategories/EXJPUS">categories</a>
-        <a class="dropdown-item" href="http://localhost:65275/api/seriesObservations/GNPCA">observations</a>
-        <a class="dropdown-item" href="http://localhost:65275/api/seriesRelease/IRA">release</a>
-        <a class="dropdown-item" href="http://localhost:65275/api/seriesSearch/monetary service index">search</a>
-        <a class="dropdown-item" href="http://localhost:65275/api/seriesSearchTags/monetary service index">search tags</a>
-        <a class="dropdown-item" href="http://localhost:65275/api/seriesSearchRelatedTags/mortgage rate">search related tags (not working)</a>
-        <a class="dropdown-item" href="http://localhost:65275/api/seriesTags/STLFSI">tags</a>
-        <a class="dropdown-item" href="http://localhost:65275/api/seriesUpdates">updates</a>
-        <a class="dropdown-item" href="http://localhost:65275/api/seriesVintageDates/GNPCA">vintage dates</a>
+        <a class="dropdown-item" [routerLink]="['/seriesCategories/EXJPUS']">categories</a>
+        <a class="dropdown-item" [routerLink]="['/seriesObservations/GNPCA']">observations</a>
+        <a class="dropdown-item" [routerLink]="['/seriesRelease/IRA']">release</a>
+        <a class="dropdown-item" [routerLink]="['/seriesSearch/monetary service index']">search</a>
+        <a class="dropdown-item" [routerLink]="['/seriesSearchTags/monetary service index']">search tags</a>
+        <a class="dropdown-item" [routerLink]="['/seriesSearchRelatedTags/mortgage rate']">search related tags (not working)</a>
+        <a class="dropdown-item" [routerLink]="['/seriesTags/STLFSI']">tags</a>
+        <a class="dropdown-item" [routerLink]="['/seriesUpdates']">updates</a>
+        <a class="dropdown-item" [routerLink]="['/seriesVintageDates/GNPCA']">vintage dates</a>
       </div>
     </li>
     <li class="nav-item dropdown" routerLinkActive="active">
