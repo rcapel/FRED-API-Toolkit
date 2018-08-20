@@ -9,22 +9,22 @@ using System.Threading.Tasks;
 namespace AngularConsumer1.Controllers.Tags
 {
 	[Route("api/[controller]")]
-	public class TagsSeriesController : ControllerBase
+	public class TagSeriesController : ControllerBase
 	{
 		#region fields
 
 		private readonly ITagsSeries api;
 		private readonly IAppSettings appSettings;
-		private readonly ILogger<TagsSeriesController> logger;
+		private readonly ILogger<TagSeriesController> logger;
 
 		#endregion
 
 		#region constructors
 
-		public TagsSeriesController(
+		public TagSeriesController(
 			ITagsSeries api,
 			IAppSettings appSettings,
-			ILogger<TagsSeriesController> logger)
+			ILogger<TagSeriesController> logger)
 		{
 			this.api = api;
 			this.appSettings = appSettings;
