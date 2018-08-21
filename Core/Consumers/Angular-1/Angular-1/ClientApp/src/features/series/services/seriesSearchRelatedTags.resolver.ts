@@ -14,9 +14,10 @@ export class SeriesSearchRelatedTagsResolver implements Resolve<ITagResponse>{
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ITagResponse> {
-    let seriesId: string = route.paramMap.get('id');
+    let searchText: string = route.paramMap.get('series_search_text');
+    let tagNames: string = route.paramMap.get('tag_names');
 
-    return this.service.getSearchRelatedTags(seriesId);
+    return this.service.getSearchRelatedTags(searchText, tagNames);
   }
 
 }

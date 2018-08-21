@@ -63,8 +63,8 @@ export class SeriesService {
     return this.client.get<ITagResponse>(apiRoute);
   }
 
-  public getSearchRelatedTags(searchText: string): Observable<ITagResponse> {
-    let apiRoute = this.baseUrl + 'api/seriesSearchRelatedTags/' + searchText;
+  public getSearchRelatedTags(searchText: string, tagNames: string): Observable<ITagResponse> {
+    let apiRoute = this.baseUrl + 'api/seriesSearchRelatedTags/' + searchText + "/" + tagNames;
     console.log(apiRoute);
 
     return this.client.get<ITagResponse>(apiRoute);

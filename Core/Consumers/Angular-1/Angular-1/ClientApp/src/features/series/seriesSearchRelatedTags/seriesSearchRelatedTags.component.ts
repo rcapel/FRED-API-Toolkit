@@ -13,7 +13,8 @@ export class SeriesSearchRelatedTagsComponent implements OnInit {
   heading: string = "SeriesSearchRelatedTags";
 
   // request arguments
-  seriesId: string;
+  searchText: string;
+  tagNames: string;
   startDate: string;
   endDate: string;
 
@@ -32,7 +33,8 @@ export class SeriesSearchRelatedTagsComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(data => {
-      this.seriesId = data.get("id");
+      this.searchText = data.get("series_search_text");
+      this.tagNames = data.get("tag_names");
     });
     this.route.queryParamMap.subscribe(data => {
       //this.startDate = data.get("realtime_start");
@@ -55,7 +57,7 @@ export class SeriesSearchRelatedTagsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(["/seriesSearchRelatedTags/" + this.seriesId]);
+    this.router.navigate(["/seriesSearchRelatedTags/" + this.searchText + "/" + this.tagNames]);
   }
 
 }

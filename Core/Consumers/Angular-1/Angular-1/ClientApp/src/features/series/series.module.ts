@@ -31,7 +31,7 @@ import { SeriesTagsResolver } from './services/seriesTags.resolver';
     RouterModule.forChild([
       { path: 'series/:id', component: SeriesComponent, resolve: { series: SeriesResolver } },
       { path: 'seriesCategories/:id', component: SeriesCategoriesComponent, resolve: { seriesCategories: SeriesCategoriesResolver } },
-      { path: 'seriesSearchRelatedTags/:id', component: SeriesSearchRelatedTagsComponent, resolve: { seriesSearchRelatedTags: SeriesSearchRelatedTagsResolver } },
+      { path: 'seriesSearchRelatedTags/:series_search_text/:tag_names', component: SeriesSearchRelatedTagsComponent, resolve: { seriesSearchRelatedTags: SeriesSearchRelatedTagsResolver } },
       { path: 'seriesSearchTags/:id', component: SeriesSearchTagsComponent, resolve: { seriesSearchTags: SeriesSearchTagsResolver } },
       { path: 'seriesTags/:id', component: SeriesTagsComponent, resolve: { seriesTags: SeriesTagsResolver } }
     ]),
