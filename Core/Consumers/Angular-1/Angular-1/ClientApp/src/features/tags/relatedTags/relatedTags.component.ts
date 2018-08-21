@@ -30,7 +30,7 @@ export class RelatedTagsComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(data => {
-      this.tagNames = data.get("id");
+      this.tagNames = data.get("tag_names");
     });
     this.route.data.subscribe(data => {
         this.parseData(data['relatedTags']);
