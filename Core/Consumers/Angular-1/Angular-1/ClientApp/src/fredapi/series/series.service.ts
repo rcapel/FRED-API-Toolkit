@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 
 import { ISeriesResponse } from './series.interfaces'
 import { ISingleSeriesResponse } from './singleSeries.interfaces'
-import { ISeriesObservationsResponse } from './seriesObservations.interfaces'
-import { ISeriesSearchResponse } from './seriesSearch.interfaces'
-import { ISeriesVintageDatesResponse } from './seriesVintageDates.interfaces'
 import { ICategoryResponse } from '../categories/category.interfaces';
+import { ISeriesObservationsResponse } from './seriesObservations.interfaces'
+import { IReleaseResponse } from '../releases/release.interfaces';
+import { ISeriesSearchResponse } from './seriesSearch.interfaces'
 import { ITagResponse } from '../tags/tag.interfaces';
-//import { ITagResponse } from '../tags/tag.interfaces';
+import { ISeriesUpdatesResponse } from './seriesUpdates.interfaces';
+import { ISeriesVintageDatesResponse } from './seriesVintageDates.interfaces'
 
 @Injectable()
 export class SeriesService {
@@ -42,12 +43,12 @@ export class SeriesService {
     return this.client.get<ISeriesObservationsResponse>(apiRoute);
   }
 
-  //public getReleases(seriesId: string): Observable<IReleasesResponse> {
-  //  let apiRoute = this.baseUrl + 'api/seriesObservations/' + seriesId;
-  //  console.log(apiRoute);
+  public getRelease(seriesId: string): Observable<IReleaseResponse> {
+    let apiRoute = this.baseUrl + 'api/seriesRelease/' + seriesId;
+    console.log(apiRoute);
 
-  //  return this.client.get<ISeriesObservationsResponse>(apiRoute);
-  //}
+    return this.client.get<IReleaseResponse>(apiRoute);
+  }
 
   public getSearch(searchText: string): Observable<ISeriesSearchResponse> {
     let apiRoute = this.baseUrl + 'api/seriesSearch/' + searchText;
@@ -75,6 +76,13 @@ export class SeriesService {
     console.log(apiRoute);
 
     return this.client.get<ITagResponse>(apiRoute);
+  }
+
+  public getUpdates(): Observable<ISeriesUpdatesResponse> {
+    let apiRoute = this.baseUrl + 'api/seriesUpdates';
+    console.log(apiRoute);
+
+    return this.client.get<ISeriesUpdatesResponse>(apiRoute);
   }
 
   public getVintageDates(seriesId: string): Observable<ISeriesVintageDatesResponse> {
