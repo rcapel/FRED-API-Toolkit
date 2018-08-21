@@ -7,27 +7,32 @@ import { FeaturesCommonModule } from '../featuresCommon.module';
 
 import { TagsComponent } from './tags/tags.component';
 import { RelatedTagsComponent } from './relatedTags/relatedTags.component';
+import { TagsSeriesComponent } from './tagsSeries/tagsSeries.component';
 
 import { TagsResolver } from './services/tags.resolver';
 import { RelatedTagsResolver } from './services/relatedTags.resolver';
+import { TagsSeriesResolver } from './services/tagsSeries.resolver';
 
 @NgModule({
   declarations: [
     TagsComponent,
-    RelatedTagsComponent
+    RelatedTagsComponent,
+    TagsSeriesComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild([
       { path: 'tags', component: TagsComponent, resolve: { tags: TagsResolver } },
-      { path: 'relatedTags/:tag_names', component: RelatedTagsComponent, resolve: { relatedTags: RelatedTagsResolver } }
+      { path: 'relatedTags/:tag_names', component: RelatedTagsComponent, resolve: { relatedTags: RelatedTagsResolver } },
+      { path: 'tagsSeries/:tag_names', component: TagsSeriesComponent, resolve: { tagsSeries: TagsSeriesResolver } }
     ]),
     FeaturesCommonModule
   ],
   providers: [
     TagsResolver,
-    RelatedTagsResolver
+    RelatedTagsResolver,
+    TagsSeriesResolver
   ]
 })
 export class TagsModule { }

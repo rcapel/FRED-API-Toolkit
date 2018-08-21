@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { ITagResponse } from './tag.interfaces'
+import { ISeriesResponse } from '../series/series.interfaces';
 
 @Injectable()
 export class TagService {
@@ -22,6 +23,13 @@ export class TagService {
     console.log(apiRoute);
 
     return this.client.get<ITagResponse>(apiRoute);
+  }
+
+  public getTagsSeries(tagNames: string, queryParams: string): Observable<ISeriesResponse> {
+    let apiRoute = this.baseUrl + 'api/tagsSeries/' + tagNames + (queryParams || "");
+    console.log(apiRoute);
+
+    return this.client.get<ISeriesResponse>(apiRoute);
   }
 
 }
