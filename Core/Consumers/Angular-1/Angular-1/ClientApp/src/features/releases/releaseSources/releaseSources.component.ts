@@ -21,8 +21,6 @@ export class ReleaseSourcesComponent implements OnInit {
   fetchMessage: string;
   url: string;
 
-  showPressRelease: boolean = false;
-
   constructor(
     private router: Router,
     private route: ActivatedRoute) {
