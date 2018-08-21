@@ -19,8 +19,6 @@ export class SeriesCategoriesComponent implements OnInit {
   fetchMessage: string;
   url: string;
 
-  orderByAsString: string;
-
   constructor(
     private router: Router,
     private route: ActivatedRoute) {
