@@ -16,7 +16,7 @@ export class ReleaseSeriesResolver implements Resolve<ISeriesResponse>{
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ISeriesResponse> {
     let releaseId: string = route.paramMap.get('id');
 
-    return this.service.getSeries(releaseId);
+    return this.service.getSeries(+releaseId);
   }
 
 }

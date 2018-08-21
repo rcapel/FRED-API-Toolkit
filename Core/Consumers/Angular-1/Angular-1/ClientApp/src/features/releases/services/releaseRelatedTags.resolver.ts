@@ -17,7 +17,7 @@ export class ReleaseRelatedTagsResolver implements Resolve<ITagResponse>{
     let releaseId: string = route.paramMap.get('id');
     let tagNames: string = route.paramMap.get("tag_names");
 
-    return this.service.getRelatedTags(releaseId, tagNames);
+    return this.service.getRelatedTags(+releaseId, tagNames);
   }
 
 }

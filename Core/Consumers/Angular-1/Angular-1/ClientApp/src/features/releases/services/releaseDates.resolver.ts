@@ -16,7 +16,7 @@ export class ReleaseDatesResolver implements Resolve<IReleaseDatesResponse<IRele
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IReleaseDatesResponse<IReleaseDate>> {
     let releaseId: string = route.paramMap.get('id');
 
-    return this.service.getDates(releaseId);
+    return this.service.getDates(+releaseId);
   }
 
 }
