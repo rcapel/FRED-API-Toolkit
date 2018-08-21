@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { IVintageDateContainer } from '../../../fredapi/series/seriesVintageDates.interfaces';
+
 @Component({
   selector: 'seriesVintageDates',
   templateUrl: './seriesVintageDates.component.html'
@@ -13,6 +15,7 @@ export class SeriesVintageDatesComponent implements OnInit {
   seriesId: string;
 
   // response
+  container: IVintageDateContainer;
   vintageDates: Date[];
   fetchMessage: string;
   url: string;
@@ -27,13 +30,14 @@ export class SeriesVintageDatesComponent implements OnInit {
       this.seriesId = data.get("id");
     });
     this.route.data.subscribe(data => {
-        this.parseData(data['seriesCategories']);
+      this.parseData(data['seriesVintageDates']);
       }
     );
   }
 
   parseData(data) {
     console.log(data);
+    this.container = data.container;
     this.vintageDates = data.container.vintage_dates;
     this.fetchMessage = data.fetchMessage;
     this.url = data.url;

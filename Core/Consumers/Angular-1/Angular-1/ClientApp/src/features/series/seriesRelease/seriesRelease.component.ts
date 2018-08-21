@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { IRelease } from '../../../fredapi/releases/release.interfaces';
+import { IReleaseContainer, IRelease } from '../../../fredapi/releases/release.interfaces';
 
 @Component({
   selector: 'seriesRelease',
@@ -15,6 +15,7 @@ export class SeriesReleaseComponent implements OnInit {
   seriesId: string;
 
   // response
+  container: IReleaseContainer;
   releases: IRelease[];
   fetchMessage: string;
   url: string;
@@ -36,6 +37,7 @@ export class SeriesReleaseComponent implements OnInit {
 
   parseData(data) {
     console.log(data);
+    this.container = data.container;
     this.releases = data.container.releases;
     this.fetchMessage = data.fetchMessage;
     this.url = data.url;

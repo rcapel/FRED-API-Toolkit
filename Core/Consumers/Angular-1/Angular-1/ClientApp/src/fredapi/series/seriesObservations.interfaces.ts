@@ -5,6 +5,8 @@ export interface ISeriesObservationsResponse extends IContainerExtensions {
 }
 
 export interface ISeriesObservationsContainer extends IFilters {
+  observation_start: Date,
+  observation_end: Date,
   units: number;
   output_type: number;
   file_type: string;

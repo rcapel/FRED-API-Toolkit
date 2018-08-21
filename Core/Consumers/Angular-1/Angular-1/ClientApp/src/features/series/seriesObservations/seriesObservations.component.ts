@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { IObservation } from '../../../fredapi/series/seriesObservations.interfaces';
+import { ISeriesObservationsContainer, IObservation } from '../../../fredapi/series/seriesObservations.interfaces';
 
 @Component({
   selector: 'seriesObservations',
@@ -15,6 +15,7 @@ export class SeriesObservationsComponent implements OnInit {
   seriesId: string;
 
   // response
+  container: ISeriesObservationsContainer;
   observations: IObservation[];
   fetchMessage: string;
   url: string;
@@ -36,6 +37,7 @@ export class SeriesObservationsComponent implements OnInit {
 
   parseData(data) {
     console.log(data);
+    this.container = data.container;
     this.observations = data.container.observations;
     this.fetchMessage = data.fetchMessage;
     this.url = data.url;

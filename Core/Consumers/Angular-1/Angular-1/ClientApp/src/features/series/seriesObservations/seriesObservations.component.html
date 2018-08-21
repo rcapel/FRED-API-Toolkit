@@ -1,1 +1,27 @@
-seriesObservations
+<br />
+<div class="card">
+  <div class="card-header">
+    {{ heading }}
+  </div>
+  <div class="card-body">
+    <filterValues realtime_start="{{container.realtime_start}}" realtime_end="{{container.realtime_end}}" order_by="observation_date"
+                  sort_order="{{container.sort_order}}" count="{{container.count}}" offset="{{container.offset}}" limit="{{container.limit}}">
+    </filterValues>
+    <hr />
+    <div class="row">
+      <div class="col-md-2 font-weight-bold">Start</div>
+      <div class="col-md-2 font-weight-bold">End</div>
+      <div class="col-md-3 font-weight-bold">Date</div>
+      <div class="col-md-4 font-weight-bold">Value</div>
+    </div>
+    <div class="row" *ngFor="let observation of observations">
+      <div class="col-md-2">{{ observation.realtime_start | date: 'MM/dd/yyyy' }}</div>
+      <div class="col-md-2">{{ observation.realtime_end | date: 'MM/dd/yyyy' }}</div>
+      <div class="col-md-3">{{ observation.date | date: 'MM/dd/yyyy' }}</div>
+      <div class="col-md-4">{{ observation.value }}</div>
+    </div>
+    <seriesGridDetail *ngFor="let series of seriess" [series]="series"></seriesGridDetail>
+    <hr />
+    <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
+  </div>
+</div>

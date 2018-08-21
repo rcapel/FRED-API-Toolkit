@@ -52,7 +52,7 @@ import { SeriesVintageDatesResolver } from './services/seriesVintageDates.resolv
       { path: 'seriesSearchRelatedTags/:series_search_text/:tag_names', component: SeriesSearchRelatedTagsComponent, resolve: { seriesSearchRelatedTags: SeriesSearchRelatedTagsResolver } },
       { path: 'seriesSearchTags/:id', component: SeriesSearchTagsComponent, resolve: { seriesSearchTags: SeriesSearchTagsResolver } },
       { path: 'seriesTags/:id', component: SeriesTagsComponent, resolve: { seriesTags: SeriesTagsResolver } },
-      { path: 'seriesUpdates/:id', component: SeriesUpdatesComponent, resolve: { seriesUpdates: SeriesUpdatesResolver } },
+      { path: 'seriesUpdates', component: SeriesUpdatesComponent, resolve: { seriesUpdates: SeriesUpdatesResolver } },
       { path: 'seriesVintageDates/:id', component: SeriesVintageDatesComponent, resolve: { seriesVintageDates: SeriesVintageDatesResolver } }
     ]),
     FeaturesCommonModule

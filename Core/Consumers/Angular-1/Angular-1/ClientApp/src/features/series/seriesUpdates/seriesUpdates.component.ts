@@ -17,7 +17,7 @@ export class SeriesUpdatesComponent implements OnInit {
 
   // response
   container: ISeriesContainer;
-  series: ISeries[];
+  seriess: ISeries[];
   fetchMessage: string;
   url: string;
 
@@ -41,7 +41,7 @@ export class SeriesUpdatesComponent implements OnInit {
   parseData(data) {
     console.log(data);
     this.container = data.container;
-    this.series = data.container.seriess;
+    this.seriess = data.container.seriess;
     this.fetchMessage = data.fetchMessage;
     this.url = data.url;
 
