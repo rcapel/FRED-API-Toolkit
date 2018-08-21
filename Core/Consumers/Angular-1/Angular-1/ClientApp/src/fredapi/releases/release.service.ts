@@ -18,14 +18,14 @@ export class ReleaseService {
     @Inject('BASE_URL') private baseUrl: string) {
   }
 
-  public get(releaseId: string): Observable<IReleaseResponse> {
+  public get(releaseId: number): Observable<IReleaseResponse> {
     let apiRoute = this.baseUrl + 'api/release/' + releaseId;
     console.log(apiRoute);
 
     return this.client.get<IReleaseResponse>(apiRoute);
   }
 
-  public getDates(releaseId: string): Observable<IReleaseDatesResponse<IReleaseDate>> {
+  public getDates(releaseId: number): Observable<IReleaseDatesResponse<IReleaseDate>> {
     let apiRoute = this.baseUrl + 'api/releaseDates/' + releaseId;
     console.log(apiRoute);
 
@@ -46,28 +46,28 @@ export class ReleaseService {
     return this.client.get<IReleaseDatesResponse<IReleasesDate>>(apiRoute);
   }
 
-  public getSeries(releaseId: string): Observable<ISeriesResponse> {
+  public getSeries(releaseId: number): Observable<ISeriesResponse> {
     let apiRoute = this.baseUrl + 'api/releaseSeries/' + releaseId;
     console.log(apiRoute);
 
     return this.client.get<ISeriesResponse>(apiRoute);
   }
 
-  public getSources(releaseId: string): Observable<ISourceResponse> {
+  public getSources(releaseId: number): Observable<ISourceResponse> {
     let apiRoute = this.baseUrl + 'api/releaseSources/' + releaseId;
     console.log(apiRoute);
 
     return this.client.get<ISourceResponse>(apiRoute);
   }
 
-  public getTags(releaseId: string): Observable<ITagResponse> {
+  public getTags(releaseId: number): Observable<ITagResponse> {
     let apiRoute = this.baseUrl + 'api/releaseTags/' + releaseId;
     console.log(apiRoute);
 
     return this.client.get<ITagResponse>(apiRoute);
   }
 
-  public getRelatedTags(releaseId: string, tagNames: string): Observable<ITagResponse> {
+  public getRelatedTags(releaseId: number, tagNames: string): Observable<ITagResponse> {
     let apiRoute = this.baseUrl + 'api/releaseRelatedTags/' + releaseId + "/" + tagNames;
     console.log(apiRoute);
 
