@@ -16,11 +16,6 @@ namespace FRED.Api.Core.Requests
 		#region properties
 
 		/// <summary>
-		/// Indicates whether this instance will attempt to deserialize JSON returned from a fetch.
-		/// </summary>
-		public bool Deserialize { get; set; }
-
-		/// <summary>
 		/// Indicates whether this instance expects JSON as the format for data returned from a fetch. 
 		/// False indicates that this instance expects XML as the format.
 		/// </summary>
@@ -49,7 +44,7 @@ namespace FRED.Api.Core.Requests
 		/// Fetches data from a FRED service endpoint.
 		/// </summary>
 		/// <param name="arguments">The arguments used in the FRED API call.</param>
-		/// <returns>A string containing fetch results.</returns>
+		/// <returns>A string containing fetch results, or null when any argument is invalid.</returns>
 		public string Fetch(ArgumentsBase arguments)
 		{
 			string result = null;
@@ -64,7 +59,7 @@ namespace FRED.Api.Core.Requests
 			}
 			catch (WebException exception)
 			{
-				HandleException(exception, Json || Deserialize);
+				HandleException(exception, Json);
 			}
 
 			return result;
@@ -89,7 +84,7 @@ namespace FRED.Api.Core.Requests
 			}
 			catch (WebException exception)
 			{
-				HandleException(exception, Json || Deserialize);
+				HandleException(exception, Json);
 			}
 
 			return result;
@@ -137,7 +132,7 @@ namespace FRED.Api.Core.Requests
 			if (stringifiedArguments == null)
 				return null;
 
-			string fileType = Json || Deserialize ? "&file_type=json" : null;
+			string fileType = Json ? "&file_type=json" : null;
 			string url = string.Format("https://api.stlouisfed.org/fred/{0}?{1}{2}", arguments.UrlExtension, stringifiedArguments, fileType);
 			return url;
 		}
