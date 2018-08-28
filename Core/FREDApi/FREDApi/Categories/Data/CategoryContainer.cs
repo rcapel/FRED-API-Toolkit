@@ -9,7 +9,7 @@ namespace FRED.Api.Categories.Data
 	{
 		#region properties
 
-		public List<CategoryItem> Categories { get; set; }
+		public List<CategoryItem> categories { get; set; }
 
 		#endregion
 
