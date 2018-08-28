@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-md-1 font-weight-bold">Id</div>
       <div class="col-md-2 font-weight-bold">Date</div>
-      <div class="col-md-9" *ngIf="showReleaseName == true">Name</div>
+      <div class="col-md-9 font-weight-bold" *ngIf="showReleaseName == true">Name</div>
     </div>
     <div class="row" *ngFor="let releaseDate of releaseDates">
       <div class="col-md-1">{{ releaseDate.release_id }}</div>
