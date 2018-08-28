@@ -1,4 +1,5 @@
 using FRED.Api.Categories.ApiFacades;
+using FRED.Api.Tags.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Linq;
@@ -35,8 +36,8 @@ namespace FREDApi.UnitTests
 
 			var expectedName = "U.S. Trade & International Transactions";
 
-			Assert.IsTrue(categoryContainer.Categories.Count == 1);
-			Assert.AreEqual<string>(categoryContainer.Categories[0].name, expectedName);
+			Assert.IsTrue(categoryContainer.categories.Count == 1);
+			Assert.AreEqual<string>(categoryContainer.categories[0].name, expectedName);
 		}
 
 		[TestMethod]
@@ -46,8 +47,8 @@ namespace FREDApi.UnitTests
 
 			var expectedName = "U.S. Trade & International Transactions";
 
-			Assert.IsTrue(categoryContainer.Categories.Count == 1);
-			Assert.AreEqual<string>(categoryContainer.Categories[0].name, expectedName);
+			Assert.IsTrue(categoryContainer.categories.Count == 1);
+			Assert.AreEqual<string>(categoryContainer.categories[0].name, expectedName);
 		}
 
 		[TestMethod]
@@ -100,9 +101,9 @@ namespace FREDApi.UnitTests
 		public void FetchCategoryChildren()
 		{
 			var api = GetCategoryChildrenApi();
-			var categoryContainer = api.Fetch();
+			var categoryContainer = GetCategoryChildrenApi().Fetch();
 
-			var errorCount = categoryContainer.Categories.Count(item => item.parent_id != api.Arguments.category_id);
+			var errorCount = categoryContainer.categories.Count(item => item.parent_id != api.Arguments.category_id);
 
 			Assert.IsTrue(errorCount == 0);
 		}
@@ -113,7 +114,7 @@ namespace FREDApi.UnitTests
 			var api = GetCategoryChildrenApi();
 			var categoryContainer = await api.FetchAsync();
 
-			var errorCount = categoryContainer.Categories.Count(item => item.parent_id != api.Arguments.category_id);
+			var errorCount = categoryContainer.categories.Count(item => item.parent_id != api.Arguments.category_id);
 
 			Assert.IsTrue(errorCount == 0);
 		}
@@ -178,6 +179,23 @@ namespace FREDApi.UnitTests
 
 		#endregion
 
+		#region category related tags
+
+		[TestMethod]
+		public void FetchCategoryRelatedTags()
+		{
+			var api = GetCategoryRelatedTagsApi();
+			var tagContainer = api.Fetch();
+
+			Assert.IsTrue(tagContainer.tags.Count > 0);
+			var tagName = tagContainer.tags.FirstOrDefault(item => item.name == "bea"); 
+			Assert.IsNotNull(tagName);
+		}
+
+		// add more here...
+
+		#endregion
+
 		#endregion
 
 		#region private methods
@@ -196,6 +214,16 @@ namespace FREDApi.UnitTests
 			var api = new CategoryChildren();
 			api.Arguments.ApiKey = apiKey;
 			api.Arguments.category_id = 13;
+
+			return api;
+		}
+
+		private CategoryRelatedTags GetCategoryRelatedTagsApi()
+		{
+			var api = new CategoryRelatedTags();
+			api.Arguments.ApiKey = apiKey;
+			api.Arguments.category_id = 125;
+			api.Arguments.tag_names = "services;quarterly";
 
 			return api;
 		}
