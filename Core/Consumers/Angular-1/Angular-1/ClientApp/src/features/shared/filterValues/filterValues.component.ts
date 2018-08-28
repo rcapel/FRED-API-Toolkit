@@ -21,5 +21,8 @@ export class FilterValuesComponent {
   @Input() excludeCount: string = "false";
   @Input() excludeOffset: string = "false";
   @Input() excludeLimit: string = "false";
+  @Input() excludeUnits: string = "true";
+  @Input() excludeOutputType: string = "true";
+  @Input() excludeFileType: string = "true";
 
 }
