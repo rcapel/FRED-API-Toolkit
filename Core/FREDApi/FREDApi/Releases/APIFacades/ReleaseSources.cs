@@ -39,10 +39,9 @@ namespace FRED.Api.Releases.ApiFacades
 		/// A <see cref="SourcesContainer"/> containing FRED data. 
 		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
 		/// </returns>
-		public new SourcesContainer Fetch()
+		public SourcesContainer Fetch()
 		{
-			string json = base.Fetch();
-			var result = JsonConvert.DeserializeObject<SourcesContainer>(json);
+			SourcesContainer result = base.Fetch<SourcesContainer>();
 
 			return result;
 		}
@@ -54,10 +53,9 @@ namespace FRED.Api.Releases.ApiFacades
 		/// A <see cref="SourcesContainer"/> containing FRED data.
 		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
 		/// </returns>
-		public new async Task<SourcesContainer> FetchAsync()
+		public async Task<SourcesContainer> FetchAsync()
 		{
-			string json = await base.FetchAsync();
-			var result = JsonConvert.DeserializeObject<SourcesContainer>(json);
+			SourcesContainer result = await base.FetchAsync<SourcesContainer>();
 
 			return result;
 		}

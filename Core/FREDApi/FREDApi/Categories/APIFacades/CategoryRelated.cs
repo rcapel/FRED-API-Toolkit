@@ -39,10 +39,9 @@ namespace FRED.Api.Categories.ApiFacades
 		/// A <see cref="CategoryContainer"/> containing FRED data. 
 		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
 		/// </returns>
-		public new CategoryContainer Fetch()
+		public CategoryContainer Fetch()
 		{
-			string json = base.Fetch();
-			var result = JsonConvert.DeserializeObject<CategoryContainer>(json);
+			CategoryContainer result = base.Fetch<CategoryContainer>();
 
 			return result;
 		}
@@ -54,10 +53,9 @@ namespace FRED.Api.Categories.ApiFacades
 		/// A <see cref="CategoryContainer"/> containing FRED data.
 		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
 		/// </returns>
-		public new async Task<CategoryContainer> FetchAsync()
+		public async Task<CategoryContainer> FetchAsync()
 		{
-			string json = await base.FetchAsync();
-			var result = JsonConvert.DeserializeObject<CategoryContainer>(json);
+			CategoryContainer result = await base.FetchAsync<CategoryContainer>();
 
 			return result;
 		}

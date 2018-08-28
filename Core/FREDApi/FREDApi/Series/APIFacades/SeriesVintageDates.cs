@@ -39,10 +39,9 @@ namespace FRED.Api.Series.ApiFacades
 		/// A <see cref="VintageDateContainer"/> containing FRED data. 
 		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
 		/// </returns>
-		public new VintageDateContainer Fetch()
+		public VintageDateContainer Fetch()
 		{
-			string json = base.Fetch();
-			var result = JsonConvert.DeserializeObject<VintageDateContainer>(json);
+			VintageDateContainer result = base.Fetch<VintageDateContainer>();
 
 			return result;
 		}
@@ -54,10 +53,9 @@ namespace FRED.Api.Series.ApiFacades
 		/// A <see cref="VintageDateContainer"/> containing FRED data.
 		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
 		/// </returns>
-		public new async Task<VintageDateContainer> FetchAsync()
+		public async Task<VintageDateContainer> FetchAsync()
 		{
-			string json = await base.FetchAsync();
-			var result = JsonConvert.DeserializeObject<VintageDateContainer>(json);
+			VintageDateContainer result = await base.FetchAsync<VintageDateContainer>();
 
 			return result;
 		}
