@@ -1,5 +1,6 @@
 ﻿using FRED.Api.Core.Arguments;
 using FRED.Api.Core.Requests;
+using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
@@ -142,48 +143,60 @@ namespace FRED.Api.Core.ApiFacades
 		/// Fetches data from a FRED service endpoint.
 		/// </summary>
 		/// <returns>
-		/// A json string containing FRED data. 
+		/// An object of type T containing FRED data. 
 		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
 		/// </returns>
-		protected string Fetch()
+		protected T Fetch<T>() where T : class
 		{
-			string container = null;
+			string fetchResult = null;
+			T result = null;
 			try
 			{
-				//Request.Deserialize = typeof(T) != typeof(string);
 				Request.Json = Json;
-				container = Request.Fetch(GetArguments());
+				fetchResult = Request.Fetch(GetArguments());
+				if (fetchResult != null)
+				{
+					bool deserialize = typeof(T) != typeof(string);
+					result = deserialize ? JsonConvert.DeserializeObject<T>(fetchResult) : fetchResult as T;
+				}
+
 				SetResultProperties();
 			}
 			catch (Exception exception)
 			{
 				Exception = exception;
             }
-			return container;
+			return result;
 		}
 
 		/// <summary>
 		/// Fetches data from a FRED service endpoint asynchronously.
 		/// </summary>
 		/// <returns>
-		/// A json string containing FRED data. 
+		/// An object of type T containing FRED data. 
 		/// An abnormal fetch returns null and a message is available in the <see cref="FetchMessage"/> property.
 		/// </returns>
-		protected async Task<string> FetchAsync()
+		protected async Task<T> FetchAsync<T>() where T : class
 		{
-			string container = null;
+			string fetchResult = null;
+			T result = null;
 			try
 			{
-				//Request.Deserialize = typeof(object) != typeof(string);
 				Request.Json = Json;
-				container = await Request.FetchAsync(GetArguments());
+				fetchResult = await Request.FetchAsync(GetArguments());
+				if (fetchResult == null)
+					return null;
+
+				bool deserialize = typeof(T) != typeof(string);
+				result = deserialize ? JsonConvert.DeserializeObject<T>(fetchResult) : fetchResult as T;
+
 				SetResultProperties();
 			}
 			catch (Exception exception)
 			{
 				Exception = exception;
 			}
-			return container;
+			return result;
 		}
 
 		protected void SetResultProperties()
@@ -203,7 +216,7 @@ namespace FRED.Api.Core.ApiFacades
 		{
 			bool savedJson = Json;
 			Json = json;
-			var result = Fetch();
+			var result = Fetch<string>();
 			Json = savedJson;
 
 			return result;
@@ -213,7 +226,7 @@ namespace FRED.Api.Core.ApiFacades
 		{
 			bool savedJson = Json;
 			Json = json;
-			var result = await FetchAsync();
+			var result = await FetchAsync<string>();
 			Json = savedJson;
 
 			return result;
