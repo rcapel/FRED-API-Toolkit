@@ -1,0 +1,16 @@
+<br />
+<div class="card">
+  <div class="card-header">
+    {{ heading }}
+  </div>
+  <div class="card-body">
+    <filterValues realtime_start="{{container.realtime_start}}" realtime_end="{{container.realtime_end}}"
+                  excludeOrderBy="true" excludeSortOrder="true" excludeCount="true" excludeOffset="true" excludeLimit="true">
+    </filterValues>
+    <hr />
+    <sourcesGridHeader showPressRelease="true"></sourcesGridHeader>
+    <sourcesGridDetail showPressRelease="true" *ngFor="let release of releases" [source]="release"></sourcesGridDetail>
+    <hr />
+    <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
+  </div>
+</div>
