@@ -18,6 +18,7 @@ export class CategoryService {
 
   public get(categoryId: number): Observable<ICategoryResponse> {
     let apiRoute = this.baseUrl + 'api/category/' + categoryId;
+    console.log(apiRoute);
 
     return this.client.get<ICategoryResponse>(apiRoute);
   }
