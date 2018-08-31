@@ -1,0 +1,9 @@
+<div>
+  <div *ngIf="argumentValidationErrors">
+    <nameValueGridHeader name="Argument" value="Message"></nameValueGridHeader>
+    <nameValueGridDetail *ngFor="let error of argumentValidationErrors" [nameValuePair]="error"></nameValueGridDetail>
+  </div>
+  <div *ngIf="values.fetchMessage || values.url">
+    <footer [fetchMessage]="values.fetchMessage" [url]="values.url"></footer>
+  </div>
+</div>
