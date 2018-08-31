@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ISourceResponse, ISourceContainer, ISource } from '../../../fredapi/sources/source.interfaces';
-import { SourcesOrderByPipe } from '../../shared/pipes/sourcesOrderBy/sourcesOrderBy.pipe';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'sources',
@@ -13,12 +13,9 @@ export class SourcesComponent implements OnInit {
   heading: string = "Sources";
 
   // response
+  response: IContainerExtensions;
   container: ISourceContainer
   sources: ISource[];
-  fetchMessage: string;
-  url: string;
-
-  orderByAsString: string;
 
   constructor(
     private route: ActivatedRoute) {
@@ -27,18 +24,16 @@ export class SourcesComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       data => {
-        console.log(data['sources']);
         this.parseData(data['sources']);
       }
     );
   }
 
   parseData(data) {
+    console.log(data);
+    this.response = data;
     this.container = data.container;
     this.sources = data.container.sources;
-    this.orderByAsString = new SourcesOrderByPipe().transform(this.container.order_by);
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
   }
 
 }

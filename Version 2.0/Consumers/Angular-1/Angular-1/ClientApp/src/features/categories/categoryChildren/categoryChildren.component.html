@@ -43,9 +43,13 @@
     </form>
     <hr />
     <br />
-    <categoriesGridHeader></categoriesGridHeader>
-    <categoriesGridDetail *ngFor="let category of categories" [category]="category"></categoriesGridDetail>
-    <hr />
-    <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
+    <div *ngIf="categories">
+      <categoriesGridHeader></categoriesGridHeader>
+      <categoriesGridDetail *ngFor="let category of categories" [category]="category"></categoriesGridDetail>
+      <hr />
+    </div>
+    <div>
+      <commonValues [values]="response"></commonValues>
+    </div>
   </div>
 </div>

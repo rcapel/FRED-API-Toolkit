@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ICategory } from '../../../fredapi/categories/category.interfaces';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'categoryRelated',
@@ -9,7 +10,7 @@ import { ICategory } from '../../../fredapi/categories/category.interfaces';
 })
 export class CategoryRelatedComponent implements OnInit {
 
-  heading: string = "CategoryRelated";
+  heading: string = "Category Related";
 
   // request arguments
   categoryId: number;
@@ -17,12 +18,10 @@ export class CategoryRelatedComponent implements OnInit {
   endDate: string;
 
   // response
+  response: IContainerExtensions;
   categories: ICategory[];
-  fetchMessage: string;
-  url: string;
 
   constructor(
-    //private service: CategoryService,
     private router: Router,
     private route: ActivatedRoute) {
   }
@@ -43,9 +42,8 @@ export class CategoryRelatedComponent implements OnInit {
   }
 
   parseData(data) {
-    this.categories = data.container.categories;
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
+    this.response = data;
+    this.categories = data.container && data.container.categories;
   }
 
   onSubmit() {

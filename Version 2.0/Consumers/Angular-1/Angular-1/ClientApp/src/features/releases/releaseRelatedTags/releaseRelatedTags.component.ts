@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ITagContainer, ITag } from '../../../fredapi/tags/tag.interfaces';
-import { TagsOrderByPipe } from '../../shared/pipes/tagsOrderBy/tagsOrderBy.pipe';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'releaseRelatedTags',
@@ -10,19 +10,16 @@ import { TagsOrderByPipe } from '../../shared/pipes/tagsOrderBy/tagsOrderBy.pipe
 })
 export class ReleaseRelatedTagsComponent implements OnInit {
 
-  heading: string = "ReleaseRelatedTags";
+  heading: string = "Release Related Tags";
 
   // request arguments
   releaseId: number;
   tagNames: string;
 
   // response
+  response: IContainerExtensions;
   container: ITagContainer;
   tags: ITag[];
-  fetchMessage: string;
-  url: string;
-
-  orderByAsString: string;
 
   constructor(
     private router: Router,
@@ -42,12 +39,9 @@ export class ReleaseRelatedTagsComponent implements OnInit {
 
   parseData(data) {
     console.log(data);
+    this.response = data;
     this.container = data.container;
-    this.tags = data.container.tags;
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
-
-    this.orderByAsString = new TagsOrderByPipe().transform(this.container.order_by);
+    this.tags = data.container && data.container.tags;
   }
 
   onSubmit() {

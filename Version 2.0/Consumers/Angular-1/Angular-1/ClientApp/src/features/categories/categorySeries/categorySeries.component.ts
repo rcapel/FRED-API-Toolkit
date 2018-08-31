@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ISeriesResponse, ISeriesContainer, ISeries } from '../../../fredapi/series/series.interfaces';
-import { SeriesOrderByPipe } from '../../shared/pipes/seriesOrderBy/seriesOrderBy.pipe';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'categorySeries',
@@ -10,7 +10,7 @@ import { SeriesOrderByPipe } from '../../shared/pipes/seriesOrderBy/seriesOrderB
 })
 export class CategorySeriesComponent implements OnInit {
 
-  heading: string = "CategorySeries";
+  heading: string = "Category Series";
 
   // request arguments
   categoryId: number;
@@ -19,18 +19,11 @@ export class CategorySeriesComponent implements OnInit {
   title: string;
 
   // response
+  response: IContainerExtensions;
   container: ISeriesContainer;
   seriess: ISeries[];
-  orderByAsString: string;
-  fetchMessage: string;
-  url: string;
-
-  get orderBy(): string {
-    return new SeriesOrderByPipe().transform(this.container.order_by);
-  }
 
   constructor(
-    //private service: CategoryService,
     private router: Router,
     private route: ActivatedRoute) {
   }
@@ -44,18 +37,16 @@ export class CategorySeriesComponent implements OnInit {
       this.endDate = data.get("realtime_end");
     });
     this.route.data.subscribe(data => {
-      console.log(data['categorySeries']);
       this.parseData(data['categorySeries']);
     }
     );
   }
 
   parseData(data) {
+    console.log(data);
+    this.response = data;
     this.container = data.container;
-    this.seriess = data.container.seriess;
-    this.orderByAsString = new SeriesOrderByPipe().transform(this.container.order_by);
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
+    this.seriess = data.container && data.container.seriess;
   }
 
   onSubmit() {

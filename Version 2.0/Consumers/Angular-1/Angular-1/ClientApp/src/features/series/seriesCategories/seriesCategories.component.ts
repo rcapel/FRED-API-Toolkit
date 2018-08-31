@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ICategory } from '../../../fredapi/categories/category.interfaces';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'seriesCategories',
@@ -9,15 +10,14 @@ import { ICategory } from '../../../fredapi/categories/category.interfaces';
 })
 export class SeriesCategoriesComponent implements OnInit {
 
-  heading: string = "SeriesCategories";
+  heading: string = "Series Categories";
 
   // request arguments
   seriesId: string;
 
   // response
+  response: IContainerExtensions;
   categories: ICategory[];
-  fetchMessage: string;
-  url: string;
 
   constructor(
     private router: Router,
@@ -36,9 +36,8 @@ export class SeriesCategoriesComponent implements OnInit {
 
   parseData(data) {
     console.log(data);
-    this.categories = data.container.categories;
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
+    this.response = data;
+    this.categories = data.container && data.container.categories;
   }
 
   onSubmit() {

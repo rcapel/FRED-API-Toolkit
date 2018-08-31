@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ISourceContainer, ISource } from '../../../fredapi/sources/source.interfaces';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'source',
@@ -15,10 +16,9 @@ export class SourceComponent implements OnInit {
   sourceId: number;
 
   // response
+  response: IContainerExtensions;
   container: ISourceContainer;
   sources: ISource[];
-  fetchMessage: string;
-  url: string;
 
   constructor(
     private router: Router,
@@ -37,10 +37,9 @@ export class SourceComponent implements OnInit {
 
   parseData(data) {
     console.log(data);
+    this.response = data;
     this.container = data.container;
     this.sources = data.container.sources;
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
   }
 
   onSubmit() {

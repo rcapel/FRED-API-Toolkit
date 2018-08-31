@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { IReleaseContainer, IRelease } from '../../../fredapi/releases/release.interfaces';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'seriesRelease',
@@ -9,16 +10,15 @@ import { IReleaseContainer, IRelease } from '../../../fredapi/releases/release.i
 })
 export class SeriesReleaseComponent implements OnInit {
 
-  heading: string = "SeriesRelease";
+  heading: string = "Series Release";
 
   // request arguments
   seriesId: string;
 
   // response
+  response: IContainerExtensions;
   container: IReleaseContainer;
   releases: IRelease[];
-  fetchMessage: string;
-  url: string;
 
   constructor(
     private router: Router,
@@ -31,16 +31,15 @@ export class SeriesReleaseComponent implements OnInit {
     });
     this.route.data.subscribe(data => {
       this.parseData(data['seriesRelease']);
-      }
+    }
     );
   }
 
   parseData(data) {
     console.log(data);
+    this.response = data;
     this.container = data.container;
-    this.releases = data.container.releases;
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
+    this.releases = data.container && data.container.releases;
   }
 
   onSubmit() {

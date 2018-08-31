@@ -43,8 +43,8 @@ describe("SourcesComponent", () => {
     expect(component.container.count).toBe(58);
     expect(component.container.offset).toBe(0);
     expect(component.container.limit).toBe(0);
-    expect(component.fetchMessage).toBe("");
-    expect(component.url).toBe("https://api.stlouisfed.org/fred/sources?api_key=abcdefghijklmnopqrstuvwxyz123456");
+    expect(component.response.fetchMessage).toBe("");
+    expect(component.response.url).toBe("https://api.stlouisfed.org/fred/sources?api_key=abcdefghijklmnopqrstuvwxyz123456");
   });
 
 })

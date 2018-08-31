@@ -4,21 +4,27 @@
     {{ heading }}
   </div>
   <div class="card-body">
-    <filterValues realtime_start="{{container.realtime_start}}" realtime_end="{{container.realtime_end}}" order_by="{{orderByAsString}}"
-                  sort_order="{{container.sort_order}}" count="{{container.count}}" offset="{{container.offset}}" limit="{{container.limit}}">
-    </filterValues>
-    <hr />
-    <div class="row">
-      <div class="col-md-1 font-weight-bold">Id</div>
-      <div class="col-md-2 font-weight-bold">Date</div>
-      <div class="col-md-9 font-weight-bold" *ngIf="showReleaseName == true">Name</div>
-    </div>
-    <div class="row" *ngFor="let releaseDate of releaseDates">
-      <div class="col-md-1">{{ releaseDate.release_id }}</div>
-      <div class="col-md-2">{{ releaseDate.date | date: 'MM/dd/yyyy' }}</div>
-      <div class="col-md-9" *ngIf="showReleaseName == true">{{ releaseDate.release_name }}</div>
+    <div *ngIf="container">
+      <filterValues [values]="container" orderByType="releasesDates"></filterValues>
+      <hr />
+      <br />
     </div>
     <hr />
-    <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
+    <div *ngIf="releaseDates">
+      <div class="row">
+        <div class="col-md-1 font-weight-bold">Id</div>
+        <div class="col-md-2 font-weight-bold">Date</div>
+        <div class="col-md-9 font-weight-bold" *ngIf="showReleaseName == true">Name</div>
+      </div>
+      <div class="row" *ngFor="let releaseDate of releaseDates">
+        <div class="col-md-1">{{ releaseDate.release_id }}</div>
+        <div class="col-md-2">{{ releaseDate.date | date: 'MM/dd/yyyy' }}</div>
+        <div class="col-md-9" *ngIf="showReleaseName == true">{{ releaseDate.release_name }}</div>
+      </div>
+      <hr />
+    </div>
+    <div>
+      <commonValues [values]="response"></commonValues>
+    </div>
   </div>
 </div>

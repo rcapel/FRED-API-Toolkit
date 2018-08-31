@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { IVintageDateContainer } from '../../../fredapi/series/seriesVintageDates.interfaces';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'seriesVintageDates',
@@ -9,16 +10,15 @@ import { IVintageDateContainer } from '../../../fredapi/series/seriesVintageDate
 })
 export class SeriesVintageDatesComponent implements OnInit {
 
-  heading: string = "SeriesVintageDates";
+  heading: string = "Series Vintage Dates";
 
   // request arguments
   seriesId: string;
 
   // response
+  response: IContainerExtensions;
   container: IVintageDateContainer;
   vintageDates: Date[];
-  fetchMessage: string;
-  url: string;
 
   constructor(
     private router: Router,
@@ -37,10 +37,9 @@ export class SeriesVintageDatesComponent implements OnInit {
 
   parseData(data) {
     console.log(data);
+    this.response = data;
     this.container = data.container;
-    this.vintageDates = data.container.vintage_dates;
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
+    this.vintageDates = data.container && data.container.vintage_dates;
   }
 
   onSubmit() {

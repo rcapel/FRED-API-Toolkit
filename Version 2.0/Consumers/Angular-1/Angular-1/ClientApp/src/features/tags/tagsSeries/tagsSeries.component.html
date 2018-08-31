@@ -4,13 +4,18 @@
     {{ heading }}
   </div>
   <div class="card-body">
-    <filterValues realtime_start="{{container.realtime_start}}" realtime_end="{{container.realtime_end}}" order_by="{{orderByAsString}}"
-                  sort_order="{{container.sort_order}}" count="{{container.count}}" offset="{{container.offset}}" limit="{{container.limit}}">
-    </filterValues>
-    <hr />
-    <seriesGridHeader></seriesGridHeader>
-    <seriesGridDetail *ngFor="let series of seriess" [series]="series"></seriesGridDetail>
-    <hr />
-    <footer fetchMessage="{{ fetchMessage }}" url="{{ url }}"></footer>
+    <div *ngIf="container">
+      <filterValues [values]="container" orderByType="series"></filterValues>
+      <hr />
+      <br />
+    </div>
+    <div *ngIf="seriess">
+      <seriesGridHeader></seriesGridHeader>
+      <seriesGridDetail *ngFor="let series of seriess" [series]="series"></seriesGridDetail>
+      <hr />
+    </div>
+    <div>
+      <commonValues [values]="response"></commonValues>
+    </div>
   </div>
 </div>

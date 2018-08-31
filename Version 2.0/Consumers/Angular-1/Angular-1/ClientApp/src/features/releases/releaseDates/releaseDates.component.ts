@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { IReleaseDatesContainer, IReleaseDate } from '../../../fredapi/releases/releaseDates.interfaces';
-import { ReleasesOrderByPipe } from '../../shared/pipes/releasesOrderBy/releasesOrderBy.pipe';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'releaseDates',
@@ -10,19 +10,15 @@ import { ReleasesOrderByPipe } from '../../shared/pipes/releasesOrderBy/releases
 })
 export class ReleaseDatesComponent implements OnInit {
 
-  heading: string = "ReleaseDates";
+  heading: string = "Release Dates";
 
   // request arguments
   releaseId: number;
 
   // response
+  response: IContainerExtensions;
   container: IReleaseDatesContainer<IReleaseDate>;
   releaseDates: IReleaseDate[];
-  fetchMessage: string;
-  url: string;
-
-  orderByAsString: string;
-  showReleaseName: boolean = false;
 
   constructor(
     private router: Router,
@@ -40,13 +36,10 @@ export class ReleaseDatesComponent implements OnInit {
   }
 
   parseData(data) {
+    console.log(data);
+    this.response = data;
     this.container = data.container;
-    console.log(this.container);
-    this.releaseDates = this.container.release_dates;
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
-
-    this.orderByAsString = new ReleasesOrderByPipe().transform(this.container.order_by);
+    this.releaseDates = data.container && data.container.release_dates;
   }
 
   onSubmit() {

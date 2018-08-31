@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ISeriesContainer, ISeries } from '../../../fredapi/series/series.interfaces';
-import { SeriesOrderByPipe } from '../../shared/pipes/seriesOrderBy/seriesOrderBy.pipe';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'seriesSearch',
@@ -10,18 +10,15 @@ import { SeriesOrderByPipe } from '../../shared/pipes/seriesOrderBy/seriesOrderB
 })
 export class SeriesSearchComponent implements OnInit {
 
-  heading: string = "SeriesSearch";
+  heading: string = "Series Search";
 
   // request arguments
   searchText: string;
 
   // response
+  response: IContainerExtensions;
   container: ISeriesContainer;
   seriess: ISeries[];
-  fetchMessage: string;
-  url: string;
-
-  orderByAsString: string;
 
   constructor(
     private router: Router,
@@ -40,12 +37,9 @@ export class SeriesSearchComponent implements OnInit {
 
   parseData(data) {
     console.log(data);
+    this.response = data;
     this.container = data.container;
-    this.seriess = data.container.seriess;
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
-
-    this.orderByAsString = new SeriesOrderByPipe().transform(this.container.order_by);
+    this.seriess = data.container && data.container.seriess;
   }
 
   onSubmit() {

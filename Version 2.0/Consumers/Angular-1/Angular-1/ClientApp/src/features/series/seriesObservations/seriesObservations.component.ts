@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ISeriesObservationsContainer, IObservation } from '../../../fredapi/series/seriesObservations.interfaces';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'seriesObservations',
@@ -9,16 +10,15 @@ import { ISeriesObservationsContainer, IObservation } from '../../../fredapi/ser
 })
 export class SeriesObservationsComponent implements OnInit {
 
-  heading: string = "SeriesObservations";
+  heading: string = "Series Observations";
 
   // request arguments
   seriesId: string;
 
   // response
+  response: IContainerExtensions;
   container: ISeriesObservationsContainer;
   observations: IObservation[];
-  fetchMessage: string;
-  url: string;
 
   constructor(
     private router: Router,
@@ -37,10 +37,9 @@ export class SeriesObservationsComponent implements OnInit {
 
   parseData(data) {
     console.log(data);
+    this.response = data;
     this.container = data.container;
-    this.observations = data.container.observations;
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
+    this.observations = data.container && data.container.observations;
 }
 
   onSubmit() {

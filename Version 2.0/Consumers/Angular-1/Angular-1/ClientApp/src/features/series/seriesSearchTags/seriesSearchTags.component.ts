@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ITagResponse, ITagContainer, ITag } from '../../../fredapi/tags/tag.interfaces';
-import { TagsOrderByPipe } from '../../shared/pipes/tagsOrderBy/tagsOrderBy.pipe';
+import { ITagContainer, ITag } from '../../../fredapi/tags/tag.interfaces';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'seriesSearchTags',
@@ -10,7 +10,7 @@ import { TagsOrderByPipe } from '../../shared/pipes/tagsOrderBy/tagsOrderBy.pipe
 })
 export class SeriesSearchTagsComponent implements OnInit {
 
-  heading: string = "SeriesSearchTags";
+  heading: string = "Series Search Tags";
 
   // request arguments
   seriesId: string;
@@ -18,12 +18,9 @@ export class SeriesSearchTagsComponent implements OnInit {
   endDate: string;
 
   // response
+  response: IContainerExtensions;
   container: ITagContainer;
   tags: ITag[];
-  fetchMessage: string;
-  url: string;
-
-  orderByAsString: string;
 
   constructor(
     private router: Router,
@@ -46,12 +43,9 @@ export class SeriesSearchTagsComponent implements OnInit {
 
   parseData(data) {
     console.log(data);
+    this.response = data;
     this.container = data.container;
-    this.tags = data.container.tags;
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
-
-    this.orderByAsString = new TagsOrderByPipe().transform(this.container.order_by);
+    this.tags = data.container && data.container.tags;
   }
 
   onSubmit() {

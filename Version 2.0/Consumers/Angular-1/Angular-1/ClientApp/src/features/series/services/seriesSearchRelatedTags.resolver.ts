@@ -18,6 +18,7 @@ export class SeriesSearchRelatedTagsResolver implements Resolve<ITagResponse>{
     let tagNames: string = route.paramMap.get('tag_names');
 
     return this.service.getSearchRelatedTags(searchText, tagNames);
+    //return this.service.gett("", { searchText, tagNames });
   }
 
 }

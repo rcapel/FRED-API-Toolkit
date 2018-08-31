@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { IReleaseContainer, IRelease } from '../../../fredapi/releases/release.interfaces';
-import { ReleasesOrderByPipe } from '../../shared/pipes/releasesOrderBy/releasesOrderBy.pipe';
+import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
 
 @Component({
   selector: 'releases',
@@ -15,12 +15,9 @@ export class ReleasesComponent implements OnInit {
   // request arguments
 
   // response
+  response: IContainerExtensions;
   container: IReleaseContainer;
   releases: IRelease[];
-  fetchMessage: string;
-  url: string;
-
-  orderByAsString: string;
 
   constructor(
     private router: Router,
@@ -36,12 +33,9 @@ export class ReleasesComponent implements OnInit {
 
   parseData(data) {
     console.log(data);
+    this.response = data;
     this.container = data.container;
-    this.releases = data.container.releases;
-    this.fetchMessage = data.fetchMessage;
-    this.url = data.url;
-
-    this.orderByAsString = new ReleasesOrderByPipe().transform(this.container.order_by);
+    this.releases = data.container && data.container.releases;
   }
 
   onSubmit() {
