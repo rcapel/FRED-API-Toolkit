@@ -1,5 +1,5 @@
 import { Injectable, Inject, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { ISeriesResponse } from './series.interfaces'
@@ -70,6 +70,14 @@ export class SeriesService {
 
     return this.client.get<ITagResponse>(apiRoute);
   }
+
+  //public gett<T>(extension: string, params: any): Observable<T> {
+  //  let apiRoute = this.baseUrl + 'api/' + extension;
+  //  console.log(apiRoute);
+  //  console.log(params);
+
+  //  return this.client.get<T>((apiRoute, params);
+  //}
 
   public getTags(seriesId: string): Observable<ITagResponse> {
     let apiRoute = this.baseUrl + 'api/seriesTags/' + seriesId;
