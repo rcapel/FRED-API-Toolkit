@@ -1,6 +1,12 @@
 export interface IContainerExtensions {
+  argumentValidationErrors: INameValuePair[];
   fetchMessage: string;
   url: string;
+}
+
+export interface INameValuePair {
+  key: string;
+  value: string;
 }
 
 export interface IFilters {
