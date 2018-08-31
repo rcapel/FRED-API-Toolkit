@@ -13,6 +13,7 @@ namespace AngularConsumer1.Controllers.Categories
 	{
 		#region fields
 
+		private readonly IControllerCommon controllerCommon;
 		private readonly ICategoryRelated api;
 		private readonly IAppSettings appSettings;
 		private readonly ILogger<CategoryRelatedController> logger;
@@ -22,10 +23,12 @@ namespace AngularConsumer1.Controllers.Categories
 		#region constructors
 
 		public CategoryRelatedController(
+			IControllerCommon controllerCommon,
 			ICategoryRelated api,
 			IAppSettings appSettings,
 			ILogger<CategoryRelatedController> logger)
 		{
+			this.controllerCommon = controllerCommon;
 			this.api = api;
 			this.appSettings = appSettings;
 			this.logger = logger;
@@ -52,8 +55,7 @@ namespace AngularConsumer1.Controllers.Categories
 
 				result.container = await api.FetchAsync();
 
-				result.FetchMessage = api.FetchMessage;
-				result.Url = api.Url;
+				controllerCommon.SetApiValues(api, api.Arguments.ValidationErrors, result);
 			}
 			catch (Exception exception)
 			{

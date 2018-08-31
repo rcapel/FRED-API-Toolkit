@@ -13,6 +13,7 @@ namespace AngularConsumer1.Controllers.Releases
 	{
 		#region fields
 
+		private readonly IControllerCommon controllerCommon;
 		private readonly IRelease api;
 		private readonly IAppSettings appSettings;
 		private readonly ILogger<ReleaseController> logger;
@@ -22,10 +23,12 @@ namespace AngularConsumer1.Controllers.Releases
 		#region constructors
 
 		public ReleaseController(
+			IControllerCommon controllerCommon,
 			IRelease api,
 			IAppSettings appSettings,
 			ILogger<ReleaseController> logger)
 		{
+			this.controllerCommon = controllerCommon;
 			this.api = api;
 			this.appSettings = appSettings;
 			this.logger = logger;
@@ -82,8 +85,7 @@ namespace AngularConsumer1.Controllers.Releases
 
 				result.container = await api.FetchAsync();
 
-				result.FetchMessage = api.FetchMessage;
-				result.Url = api.Url;
+				controllerCommon.SetApiValues(api, api.Arguments.ValidationErrors, result);
 			}
 			catch (Exception exception)
 			{

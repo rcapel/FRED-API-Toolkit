@@ -13,6 +13,7 @@ namespace AngularConsumer1.Controllers.Series
 	{
 		#region fields
 
+		private readonly IControllerCommon controllerCommon;
 		private readonly ISeriesRelease api;
 		private readonly IAppSettings appSettings;
 		private readonly ILogger<SeriesReleaseController> logger;
@@ -22,10 +23,12 @@ namespace AngularConsumer1.Controllers.Series
 		#region constructors
 
 		public SeriesReleaseController(
+			IControllerCommon controllerCommon,
 			ISeriesRelease api,
 			IAppSettings appSettings,
 			ILogger<SeriesReleaseController> logger)
 		{
+			this.controllerCommon = controllerCommon;
 			this.api = api;
 			this.appSettings = appSettings;
 			this.logger = logger;
@@ -52,8 +55,7 @@ namespace AngularConsumer1.Controllers.Series
 
 				result.container = await api.FetchAsync();
 
-				result.FetchMessage = api.FetchMessage;
-				result.Url = api.Url;
+				controllerCommon.SetApiValues(api, api.Arguments.ValidationErrors, result);
 			}
 			catch (Exception exception)
 			{

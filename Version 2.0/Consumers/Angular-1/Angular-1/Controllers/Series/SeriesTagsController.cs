@@ -13,6 +13,7 @@ namespace AngularConsumer1.Controllers.Series
 	{
 		#region fields
 
+		private readonly IControllerCommon controllerCommon;
 		private readonly ISeriesTags api;
 		private readonly IAppSettings appSettings;
 		private readonly ILogger<SeriesTagsController> logger;
@@ -22,10 +23,12 @@ namespace AngularConsumer1.Controllers.Series
 		#region constructors
 
 		public SeriesTagsController(
+			IControllerCommon controllerCommon,
 			ISeriesTags api,
 			IAppSettings appSettings,
 			ILogger<SeriesTagsController> logger)
 		{
+			this.controllerCommon = controllerCommon;
 			this.api = api;
 			this.appSettings = appSettings;
 			this.logger = logger;
@@ -52,8 +55,7 @@ namespace AngularConsumer1.Controllers.Series
 
 				result.container = await api.FetchAsync();
 
-				result.FetchMessage = api.FetchMessage;
-				result.Url = api.Url;
+				controllerCommon.SetApiValues(api, api.Arguments.ValidationErrors, result);
 			}
 			catch (Exception exception)
 			{
