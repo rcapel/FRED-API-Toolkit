@@ -1,5 +1,6 @@
 using AngularConsumer1.Configuration;
 using AngularConsumer1.Configuration.Interfaces;
+using AngularConsumer1.Controllers;
 using FRED.Api.Categories.ApiFacades;
 using FRED.Api.Releases.ApiFacades;
 using FRED.Api.Series.ApiFacades;
@@ -35,6 +36,8 @@ namespace AngularConsumer1
 			services.AddSingleton<IAppSettings, AppSettings>();
 			//services.AddSingleton<FREDHttpClient, FREDHttpClient>();
 			//services.AddSingleton<IRepository, Repository>();
+
+			services.AddTransient<IControllerCommon, ControllerCommon>();
 
 			services.AddTransient<ICategory, Category>();
 			services.AddTransient<ICategoryChildren, CategoryChildren>();
