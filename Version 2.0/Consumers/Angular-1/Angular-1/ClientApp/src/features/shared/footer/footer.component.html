@@ -1,6 +1,6 @@
 <div *ngIf="fetchMessage && fetchMessage.length > 0" class="text text-danger">
   Message: {{ fetchMessage }}
 </div>
-<div>
+<div *ngIf="url && url.length > 0">
   Url: <a href="{{ url }}">{{ url }}</a>
 </div>
