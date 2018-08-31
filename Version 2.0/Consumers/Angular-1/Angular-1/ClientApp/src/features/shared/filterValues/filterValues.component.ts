@@ -1,10 +1,15 @@
 import { Component, Input } from '@angular/core';
 
+import { IFilters } from '../../../fredapi/shared/shared.interfaces';
+
 @Component({
   selector: 'filterValues',
   templateUrl: './filterValues.component.html'
 })
 export class FilterValuesComponent {
+
+  @Input() values: IFilters;
+  @Input() orderByType: string;
 
   @Input() realtime_start: Date;
   @Input() realtime_end: Date;
