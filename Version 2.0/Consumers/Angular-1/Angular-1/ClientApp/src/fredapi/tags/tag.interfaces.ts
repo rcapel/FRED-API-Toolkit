@@ -1,18 +1,10 @@
-export interface ITagResponse {
+import { IFilters, IContainerExtensions } from "../shared/shared.interfaces";
+
+export interface ITagResponse extends IContainerExtensions {
   container: ITagContainer;
-  fetchMessage: string;
-  url: string;
 }
 
-export interface ITagContainer {
-  realtime_start: Date;
-  realtime_end: Date;
-  count: number;
-  limit: number;
-  offset: number;
-  order_by: number;
-  sort_order: number;
-
+export interface ITagContainer extends IFilters {
   Tags: ITag[];
 }
 

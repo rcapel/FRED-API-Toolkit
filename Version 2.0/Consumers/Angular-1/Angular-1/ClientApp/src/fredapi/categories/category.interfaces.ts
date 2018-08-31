@@ -1,7 +1,7 @@
-export interface ICategoryResponse {
+import { IContainerExtensions } from "../shared/shared.interfaces";
+
+export interface ICategoryResponse extends IContainerExtensions {
   categories: ICategory[];
-  fetchMessage: string;
-  url: string;
 }
 
 export interface ICategory {
