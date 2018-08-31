@@ -3,6 +3,6 @@
   <div class="col-md-2">{{ source.realtime_start | date: 'MM/dd/yyyy' }}</div>
   <div class="col-md-2">{{ source.realtime_end | date: 'MM/dd/yyyy' }}</div>
   <div class="col-md-3">{{ source.name }}</div>
-  <div class="col-md-3">{{ source.link}}</div>
+  <div class="col-md-3"><a href="{{ source.link}}">{{ source.link}}</a></div>
   <div class="col-md-1" *ngIf="showPressRelease == 'true'">{{ source.press_release }}</div>
 </div>
