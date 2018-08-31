@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace AngularConsumer1.Models
 {
@@ -6,6 +6,7 @@ namespace AngularConsumer1.Models
     {
 		#region properties
 
+		public List<KeyValuePair<string, string>> ArgumentValidationErrors { get; set; }
 		public string FetchMessage { get; set; }
 		public string Url { get; set; }
 
