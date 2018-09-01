@@ -13,7 +13,6 @@ namespace AngularConsumer1.Controllers.Releases
 	{
 		#region fields
 
-		private readonly IControllerCommon controllerCommon;
 		private readonly IReleaseDates api;
 		private readonly IAppSettings appSettings;
 		private readonly ILogger<ReleaseDatesController> logger;
@@ -23,12 +22,10 @@ namespace AngularConsumer1.Controllers.Releases
 		#region constructors
 
 		public ReleaseDatesController(
-			IControllerCommon controllerCommon,
 			IReleaseDates api,
 			IAppSettings appSettings,
-			ILogger<ReleaseDatesController> logger)
+			ILogger<ReleaseDatesController> logger) : base()
 		{
-			this.controllerCommon = controllerCommon;
 			this.api = api;
 			this.appSettings = appSettings;
 			this.logger = logger;
@@ -85,7 +82,7 @@ namespace AngularConsumer1.Controllers.Releases
 
 				result.container = await api.FetchAsync();
 
-				controllerCommon.SetApiValues(api, api.Arguments.ValidationErrors, result);
+				SetApiValues(api, result);
 			}
 			catch (Exception exception)
 			{

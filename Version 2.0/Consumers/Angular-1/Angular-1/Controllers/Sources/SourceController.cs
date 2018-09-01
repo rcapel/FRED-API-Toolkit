@@ -13,7 +13,6 @@ namespace AngularConsumer1.Controllers.Sources
 	{
 		#region fields
 
-		private readonly IControllerCommon controllerCommon;
 		private readonly ISource api;
 		private readonly IAppSettings appSettings;
 		private readonly ILogger<SourceController> logger;
@@ -23,12 +22,10 @@ namespace AngularConsumer1.Controllers.Sources
 		#region constructors
 
 		public SourceController(
-			IControllerCommon controllerCommon,
 			ISource api,
 			IAppSettings appSettings,
-			ILogger<SourceController> logger)
+			ILogger<SourceController> logger) : base()
 		{
-			this.controllerCommon = controllerCommon;
 			this.api = api;
 			this.appSettings = appSettings;
 			this.logger = logger;
@@ -55,7 +52,7 @@ namespace AngularConsumer1.Controllers.Sources
 
 				result.container = await api.FetchAsync();
 
-				controllerCommon.SetApiValues(api, api.Arguments.ValidationErrors, result);
+				SetApiValues(api, result);
 			}
 			catch (Exception exception)
 			{

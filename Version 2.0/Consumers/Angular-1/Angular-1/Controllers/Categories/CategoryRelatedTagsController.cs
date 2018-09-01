@@ -13,7 +13,6 @@ namespace AngularConsumer1.Controllers.Categories
 	{
 		#region fields
 
-		private readonly IControllerCommon controllerCommon;
 		private readonly ICategoryRelatedTags api;
 		private readonly IAppSettings appSettings;
 		private readonly ILogger<CategoryRelatedTagsController> logger;
@@ -23,12 +22,10 @@ namespace AngularConsumer1.Controllers.Categories
 		#region constructors
 
 		public CategoryRelatedTagsController(
-			IControllerCommon controllerCommon,
 			ICategoryRelatedTags api,
 			IAppSettings appSettings,
-			ILogger<CategoryRelatedTagsController> logger)
+			ILogger<CategoryRelatedTagsController> logger) : base()
 		{
-			this.controllerCommon = controllerCommon;
 			this.api = api;
 			this.appSettings = appSettings;
 			this.logger = logger;
@@ -87,7 +84,7 @@ namespace AngularConsumer1.Controllers.Categories
 
 				result.container = await api.FetchAsync();
 
-				controllerCommon.SetApiValues(api, api.Arguments.ValidationErrors, result);
+				SetApiValues(api, result);
 			}
 			catch (Exception exception)
 			{

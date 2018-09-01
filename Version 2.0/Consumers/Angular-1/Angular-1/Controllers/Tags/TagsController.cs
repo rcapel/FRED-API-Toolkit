@@ -13,7 +13,6 @@ namespace AngularConsumer1.Controllers.Tags
 	{
 		#region fields
 
-		private readonly IControllerCommon controllerCommon;
 		private readonly ITags api;
 		private readonly IAppSettings appSettings;
 		private readonly ILogger<TagsController> logger;
@@ -23,12 +22,10 @@ namespace AngularConsumer1.Controllers.Tags
 		#region constructors
 
 		public TagsController(
-			IControllerCommon controllerCommon,
 			ITags api,
 			IAppSettings appSettings,
-			ILogger<TagsController> logger)
+			ILogger<TagsController> logger) : base()
 		{
-			this.controllerCommon = controllerCommon;
 			this.api = api;
 			this.appSettings = appSettings;
 			this.logger = logger;
@@ -52,7 +49,7 @@ namespace AngularConsumer1.Controllers.Tags
 
 				result.container = await api.FetchAsync();
 
-				controllerCommon.SetApiValues(api, api.Arguments.ValidationErrors, result);
+				SetApiValues(api, result);
 			}
 			catch (Exception exception)
 			{
