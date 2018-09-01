@@ -135,6 +135,12 @@ namespace FRED.Api.Core.ApiFacades
 			return await FetchAsync(json: false);
 		}
 
+		/// <summary>
+		/// Returns the arguments for the instance. Subclasses must implement this method.
+		/// </summary>
+		/// <returns>The arguments for the instance.</returns>
+		public abstract ArgumentsBase GetArguments();
+
 		#endregion
 
 		#region protected methods
@@ -206,8 +212,6 @@ namespace FRED.Api.Core.ApiFacades
 			Exception = Request.Exception;
 		}
 
-		protected abstract ArgumentsBase GetArguments();
-
 		#endregion
 
 		#region private methods
@@ -252,6 +256,8 @@ namespace FRED.Api.Core.ApiFacades
 
 		Task<string> FetchJsonAsync();
 		Task<string> FetchXmlAsync();
+
+		ArgumentsBase GetArguments();
 
 		#endregion
 
