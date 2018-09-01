@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\ControllerCommon.cs" />
     <Compile Remove="Controllers\Releases\ReleaseTablesController.cs" />
   </ItemGroup>
 
