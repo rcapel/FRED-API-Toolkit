@@ -1,9 +1,9 @@
 ﻿using FRED.Api.Categories.Arguments;
 using FRED.Api.Categories.Data;
+using FRED.Api.Core;
 using FRED.Api.Core.ApiFacades;
 using FRED.Api.Core.Arguments;
 using FRED.Api.Core.Requests;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -25,7 +25,7 @@ namespace FRED.Api.Categories.ApiFacades
 		/// A dictionary of errors that are a result of validating argument values.
 		/// Each key is the argument property name and each value is the associated error message.
 		/// </summary>
-		public Dictionary<string, string> ValidationErrors { get; private set; }
+		public Dictionary<string, string> ValidationErrors => Arguments.ValidationErrors;
 
 		#endregion
 
@@ -67,15 +67,15 @@ namespace FRED.Api.Categories.ApiFacades
 			return result;
 		}
 
-		#endregion
-
-		#region protected methods
-
-		protected override ArgumentsBase GetArguments()
+		/// <summary>
+		/// Returns the arguments for the instance.
+		/// </summary>
+		/// <returns>The arguments for the instance.</returns>
+		public override ArgumentsBase GetArguments()
 		{
 			return Arguments;
 		}
-	
+
 		#endregion
 
 	}
@@ -83,7 +83,7 @@ namespace FRED.Api.Categories.ApiFacades
 	/// <summary>
 	/// Defines the interface for Category types.
 	/// </summary>
-	public interface ICategory : IApiBase, IArgumentsBase
+	public interface ICategory : IApiBase
 	{
 		#region properties
 

@@ -60,11 +60,11 @@ namespace FRED.Api.Series.ApiFacades
 			return result;
 		}
 
-		#endregion
-
-		#region protected methods
-
-		protected override ArgumentsBase GetArguments()
+		/// <summary>
+		/// Returns the arguments for the instance.
+		/// </summary>
+		/// <returns>The arguments for the instance.</returns>
+		public override ArgumentsBase GetArguments()
 		{
 			return Arguments;
 		}
