@@ -37,8 +37,6 @@ namespace AngularConsumer1
 			//services.AddSingleton<FREDHttpClient, FREDHttpClient>();
 			//services.AddSingleton<IRepository, Repository>();
 
-			services.AddTransient<IControllerCommon, ControllerCommon>();
-
 			services.AddTransient<ICategory, Category>();
 			services.AddTransient<ICategoryChildren, CategoryChildren>();
 			services.AddTransient<ICategoryRelated, CategoryRelated>();
