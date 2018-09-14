@@ -1,38 +1,72 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { ComponentBase } from '../../componentBase/component.base';
 
 import { IVintageDateContainer } from '../../../fredapi/series/seriesVintageDates.interfaces';
 import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
+
+import { FormBuildAndValidationService } from '../../../shared/formBuildAndValidation/formBuildAndValidation.service';
+import { FormsConfigurationService, IFormsConfiguration } from '../../shared/formsConfiguration/formsConfiguration.service';
+import { RouteToFormBindingService, RouteToFormBinding } from '../../../shared/routeToFormBinding/routeToFormBinding.service';
+import { SeriesService } from '../../../fredapi/series/series.service';
 
 @Component({
   selector: 'seriesVintageDates',
   templateUrl: './seriesVintageDates.component.html'
 })
-export class SeriesVintageDatesComponent implements OnInit {
+export class SeriesVintageDatesComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Series Vintage Dates";
-
-  // request arguments
-  seriesId: string;
 
   // response
   response: IContainerExtensions;
   container: IVintageDateContainer;
   vintageDates: Date[];
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute) {
+  get dataName(): string {
+    return "seriesVintageDates";
   }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(data => {
-      this.seriesId = data.get("id");
-    });
-    this.route.data.subscribe(data => {
-      this.parseData(data['seriesVintageDates']);
-      }
-    );
+  get formsConfigurations(): IFormsConfiguration[] {
+    return [
+      this.configurationService.getId("Series"),
+      this.configurationService.dateRange,
+      this.configurationService.getList()
+    ];
+  }
+
+  get routeParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("id", "id")
+    ];
+  }
+
+  get queryParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("realtime_start", "startDate"),
+      new RouteToFormBinding("realtime_end", "endDate"),
+      new RouteToFormBinding("limit"),
+      new RouteToFormBinding("offset"),
+      new RouteToFormBinding("sort_order", "sortOrder")
+    ];
+  }
+
+  get navigationRoute(): any[] {
+    let seriesId = this.theForm.get("id").value;
+    return ["/seriesVintageDates/", seriesId];
+  }
+
+  constructor(
+    router: Router,
+    route: ActivatedRoute,
+    formBuilder: FormBuildAndValidationService,
+    configurationService: FormsConfigurationService,
+    bindingService: RouteToFormBindingService,
+    private service: SeriesService) {
+
+    super(router, route, formBuilder, configurationService, bindingService);
   }
 
   parseData(data) {
@@ -42,8 +76,9 @@ export class SeriesVintageDatesComponent implements OnInit {
     this.vintageDates = data.container && data.container.vintage_dates;
   }
 
-  onSubmit() {
-    this.router.navigate(["/seriesVintageDates/" + this.seriesId]);
+  callService(queryString: string): Observable<any> {
+    let seriesId = this.theForm.get("id").value;
+    return this.service.getVintageDates(seriesId, queryString);
   }
 
 }

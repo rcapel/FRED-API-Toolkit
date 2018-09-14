@@ -4,10 +4,48 @@
     {{ heading }}
   </div>
   <div class="card-body">
+    <form (ngSubmit)="onSubmit()" [formGroup]="theForm" novalidate>
+      <div class="row">
+        <div class="col-md-2">
+          <div class="form-group" [ngClass]="{'is-invalid text-danger': idValidationMessages}">
+            <label for="seriesId">Series Id</label>
+            <input type="text" class="form-control" id="seriesId" formControlName="id" />
+            <span class="text-danger" *ngIf="idValidationMessages">
+              {{ idValidationMessages }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <a data-toggle="collapse" href="#optionalArguments">Optional Arguments</a>
+        </div>
+      </div>
+      <div class="collapse" id="optionalArguments">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="startDate">Start Date</label>
+              <input type="date" class="form-control" id="startDate" formControlName="startDate" />
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="endDate">End Date</label>
+              <input type="date" class="form-control" id="endDate" formControlName="endDate" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <br />
+        <input type="submit" class="btn btn-sm btn-default" value="Fetch" [disabled]="!theForm.valid" />
+      </div>
+    </form>
+    <hr />
     <div *ngIf="container">
       <filterValues [values]="container"
-                    excludeOrderBy="true" excludeSortOrder="true" excludeCount="true" excludeOffset="true" excludeLimit="true">
-      </filterValues>
+                    showOrderBy="false" showSortOrder="false" showCount="false" showOffset="false" showLimit="false"></filterValues>
       <hr />
       <br />
     </div>

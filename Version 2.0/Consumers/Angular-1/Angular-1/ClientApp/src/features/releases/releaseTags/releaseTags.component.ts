@@ -1,38 +1,80 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { ComponentBase } from '../../componentBase/component.base';
 
 import { ITagContainer, ITag } from '../../../fredapi/tags/tag.interfaces';
 import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
+
+import { FormBuildAndValidationService } from '../../../shared/formBuildAndValidation/formBuildAndValidation.service';
+import { FormsConfigurationService, IFormsConfiguration } from '../../shared/formsConfiguration/formsConfiguration.service';
+import { RouteToFormBindingService, RouteToFormBinding } from '../../../shared/routeToFormBinding/routeToFormBinding.service';
+import { ReleaseService } from '../../../fredapi/releases/release.service';
 
 @Component({
   selector: 'releaseTags',
   templateUrl: './releaseTags.component.html'
 })
-export class ReleaseTagsComponent implements OnInit {
+export class ReleaseTagsComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Release Tags";
-
-  // request arguments
-  releaseId: number;
 
   // response
   response: IContainerExtensions;
   container: ITagContainer;
   tags: ITag[];
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute) {
+  get dataName(): string {
+    return "releaseTags";
   }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(data => {
-      this.releaseId = +data.get("id");
-    });
-    this.route.data.subscribe(data => {
-      this.parseData(data['releaseTags']);
-      }
-    );
+  get formsConfigurations(): IFormsConfiguration[] {
+    return [
+      this.configurationService.getId("Release"),
+      this.configurationService.dateRange,
+      this.configurationService.getList("series_count"),
+      this.configurationService.tagNames,
+      this.configurationService.tagGroupId,
+      this.configurationService.searchText
+    ];
+  }
+
+  get routeParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("id", "id")
+    ];
+  }
+
+  get queryParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("realtime_start", "startDate"),
+      new RouteToFormBinding("realtime_end", "endDate"),
+      new RouteToFormBinding("limit"),
+      new RouteToFormBinding("offset"),
+      new RouteToFormBinding("order_by", "orderBy"),
+      new RouteToFormBinding("sort_order", "sortOrder"),
+      new RouteToFormBinding("tag_names", "tagNames"),
+      new RouteToFormBinding("exclude_tag_names", "excludeTagNames"),
+      new RouteToFormBinding("tag_group_id", "tagGroupId"),
+      new RouteToFormBinding("search_text", "searchText")
+    ];
+  }
+
+  get navigationRoute(): any[] {
+    let releaseId = this.theForm.get("id").value;
+    return ["/releaseTags/", releaseId];
+  }
+
+  constructor(
+    router: Router,
+    route: ActivatedRoute,
+    formBuilder: FormBuildAndValidationService,
+    configurationService: FormsConfigurationService,
+    bindingService: RouteToFormBindingService,
+    private service: ReleaseService) {
+
+    super(router, route, formBuilder, configurationService, bindingService);
   }
 
   parseData(data) {
@@ -42,8 +84,13 @@ export class ReleaseTagsComponent implements OnInit {
     this.tags = data.container && data.container.tags;
   }
 
-  onSubmit() {
-    this.router.navigate(["/releaseTags/" + this.releaseId]);
+  callService(queryString: string): Observable<any> {
+    let releaseId = this.theForm.get("id").value;
+    return this.service.getTags(+releaseId, queryString);
+  }
+
+  removeDefaultQueryParams(queryParams: { [key: string]: string }, orderByDefault: string): void {
+    super.removeDefaultQueryParams(queryParams, "series_count");
   }
 
 }

@@ -1,39 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { ComponentBase } from '../../componentBase/component.base';
 
 import { ISourceContainer, ISource } from '../../../fredapi/sources/source.interfaces';
 import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
-//import { IReleaseResponse, IRelease } from '../../../fredapi/releases/release.interfaces';
+
+import { FormBuildAndValidationService } from '../../../shared/formBuildAndValidation/formBuildAndValidation.service';
+import { FormsConfigurationService, IFormsConfiguration } from '../../shared/formsConfiguration/formsConfiguration.service';
+import { RouteToFormBindingService, RouteToFormBinding } from '../../../shared/routeToFormBinding/routeToFormBinding.service';
+import { ReleaseService } from '../../../fredapi/releases/release.service';
 
 @Component({
   selector: 'releaseSources',
   templateUrl: './releaseSources.component.html'
 })
-export class ReleaseSourcesComponent implements OnInit {
+export class ReleaseSourcesComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Release Sources";
-
-  // request arguments
-  releaseId: number;
 
   // response
   response: IContainerExtensions;
   container: ISourceContainer;
   sources: ISource[];
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute) {
+  get dataName(): string {
+    return "releaseSources";
   }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(data => {
-      this.releaseId = +data.get("id");
-    });
-    this.route.data.subscribe(data => {
-        this.parseData(data['releaseSources']);
-      }
-    );
+  get formsConfigurations(): IFormsConfiguration[] {
+    return [
+      this.configurationService.getId("Release"),
+      this.configurationService.dateRange
+    ];
+  }
+
+  get routeParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("id", "id")
+    ];
+  }
+
+  get queryParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("realtime_start", "startDate"),
+      new RouteToFormBinding("realtime_end", "endDate")
+    ];
+  }
+
+  get navigationRoute(): any[] {
+    let releaseId = this.theForm.get("id").value;
+    return ["/releaseSources/", releaseId];
+  }
+
+  constructor(
+    router: Router,
+    route: ActivatedRoute,
+    formBuilder: FormBuildAndValidationService,
+    configurationService: FormsConfigurationService,
+    bindingService: RouteToFormBindingService,
+    private service: ReleaseService) {
+
+    super(router, route, formBuilder, configurationService, bindingService);
   }
 
   parseData(data) {
@@ -43,8 +72,9 @@ export class ReleaseSourcesComponent implements OnInit {
     this.sources = data.container && data.container.sources;
   }
 
-  onSubmit() {
-    this.router.navigate(["/releaseSources/" + this.releaseId]);
+  callService(queryString: string): Observable<any> {
+    let releaseId = this.theForm.get("id").value;
+    return this.service.getSources(+releaseId, queryString);
   }
 
 }

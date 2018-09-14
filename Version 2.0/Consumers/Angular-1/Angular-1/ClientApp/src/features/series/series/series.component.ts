@@ -1,39 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
-import { ISeries, ISeriesContainer } from '../../../fredapi/series/series.interfaces';
+import { ComponentBase } from '../../componentBase/component.base';
+
+import { ISeriesContainer, ISeries } from '../../../fredapi/series/series.interfaces';
 import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
+
+import { FormBuildAndValidationService } from '../../../shared/formBuildAndValidation/formBuildAndValidation.service';
+import { FormsConfigurationService, IFormsConfiguration } from '../../shared/formsConfiguration/formsConfiguration.service';
+import { RouteToFormBindingService, RouteToFormBinding } from '../../../shared/routeToFormBinding/routeToFormBinding.service';
+import { SeriesService } from '../../../fredapi/series/series.service';
 
 @Component({
   selector: 'series',
   templateUrl: './series.component.html'
 })
-export class SeriesComponent implements OnInit {
+export class SeriesComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Series";
-
-  // request arguments
-  seriesId: string;
 
   // response
   response: IContainerExtensions;
   container: ISeriesContainer;
   seriess: ISeries[];
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute) {
+  get dataName(): string {
+    return "series";
   }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(data => {
-      this.seriesId = data.get("id");
-    });
-    this.route.data.subscribe(
-      data => {
-        this.parseData(data['series']);
-      }
-    );
+  get formsConfigurations(): IFormsConfiguration[] {
+    return [
+      this.configurationService.getId("Series"),
+      this.configurationService.dateRange
+    ];
+  }
+
+  get routeParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("id", "id")
+    ];
+  }
+
+  get queryParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("realtime_start", "startDate"),
+      new RouteToFormBinding("realtime_end", "endDate")
+    ];
+  }
+
+  get navigationRoute(): any[] {
+    let seriesId = this.theForm.get("id").value;
+    return ["/series/", seriesId];
+  }
+
+  constructor(
+    router: Router,
+    route: ActivatedRoute,
+    formBuilder: FormBuildAndValidationService,
+    configurationService: FormsConfigurationService,
+    bindingService: RouteToFormBindingService,
+    private service: SeriesService) {
+
+    super(router, route, formBuilder, configurationService, bindingService);
   }
 
   parseData(data) {
@@ -43,8 +72,9 @@ export class SeriesComponent implements OnInit {
     this.seriess = data.container && data.container.seriess;
   }
 
-  onSubmit() {
-    this.router.navigate(["/series/" + this.seriesId]);
+  callService(queryString: string): Observable<any> {
+    let seriesId = this.theForm.get("id").value;
+    return this.service.get(seriesId, queryString);
   }
 
 }

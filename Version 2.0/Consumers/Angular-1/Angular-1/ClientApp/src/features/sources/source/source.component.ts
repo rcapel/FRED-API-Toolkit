@@ -1,38 +1,68 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { ComponentBase } from '../../componentBase/component.base';
 
 import { ISourceContainer, ISource } from '../../../fredapi/sources/source.interfaces';
 import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
+
+import { FormBuildAndValidationService } from '../../../shared/formBuildAndValidation/formBuildAndValidation.service';
+import { FormsConfigurationService, IFormsConfiguration } from '../../shared/formsConfiguration/formsConfiguration.service';
+import { RouteToFormBindingService, RouteToFormBinding } from '../../../shared/routeToFormBinding/routeToFormBinding.service';
+import { SourceService } from '../../../fredapi/sources/source.service';
 
 @Component({
   selector: 'source',
   templateUrl: './source.component.html'
 })
-export class SourceComponent implements OnInit {
+export class SourceComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Source";
-
-  // request arguments
-  sourceId: number;
 
   // response
   response: IContainerExtensions;
   container: ISourceContainer;
   sources: ISource[];
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute) {
+  get dataName(): string {
+    return "source";
   }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(data => {
-      this.sourceId = +data.get("id");
-    });
-    this.route.data.subscribe(data => {
-      this.parseData(data['source']);
-      }
-    );
+  get formsConfigurations(): IFormsConfiguration[] {
+    return [
+      this.configurationService.getId("Source"),
+      this.configurationService.dateRange
+    ];
+  }
+
+  get routeParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("id", "id")
+    ];
+  }
+
+  get queryParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("realtime_start", "startDate"),
+      new RouteToFormBinding("realtime_end", "endDate")
+    ];
+  }
+
+  get navigationRoute(): any[] {
+    let sourceId = this.theForm.get("id").value;
+    return ["/source/", sourceId];
+  }
+
+  constructor(
+    router: Router,
+    route: ActivatedRoute,
+    formBuilder: FormBuildAndValidationService,
+    configurationService: FormsConfigurationService,
+    bindingService: RouteToFormBindingService,
+    private service: SourceService) {
+
+    super(router, route, formBuilder, configurationService, bindingService);
   }
 
   parseData(data) {
@@ -42,8 +72,9 @@ export class SourceComponent implements OnInit {
     this.sources = data.container.sources;
   }
 
-  onSubmit() {
-    this.router.navigate(["/source/" + this.sourceId]);
+  callService(queryString: string): Observable<any> {
+    let sourceId = this.theForm.get("id").value;
+    return this.service.getSource(sourceId, queryString);
   }
 
 }

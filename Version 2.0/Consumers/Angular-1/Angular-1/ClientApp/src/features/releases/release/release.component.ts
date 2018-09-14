@@ -1,38 +1,71 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { ComponentBase } from '../../componentBase/component.base';
 
 import { IReleaseContainer, IRelease } from '../../../fredapi/releases/release.interfaces';
 import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
+
+import { FormBuildAndValidationService } from '../../../shared/formBuildAndValidation/formBuildAndValidation.service';
+import { FormsConfigurationService, IFormsConfiguration } from '../../shared/formsConfiguration/formsConfiguration.service';
+import { RouteToFormBindingService, RouteToFormBinding } from '../../../shared/routeToFormBinding/routeToFormBinding.service';
+import { ReleaseService } from '../../../fredapi/releases/release.service';
 
 @Component({
   selector: 'release',
   templateUrl: './release.component.html'
 })
-export class ReleaseComponent implements OnInit {
+export class ReleaseComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Release";
-
-  // request arguments
-  releaseId: number;
 
   // response
   response: IContainerExtensions;
   container: IReleaseContainer;
   releases: IRelease[];
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute) {
+  get dataName(): string {
+    return "release";
   }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(data => {
-      this.releaseId = +data.get("id");
-    });
-    this.route.data.subscribe(data => {
-        this.parseData(data['release']);
-      }
-    );
+  get formsConfigurations(): IFormsConfiguration[] {
+    return [
+      this.configurationService.getId("Release"),
+      this.configurationService.dateRange
+    ];
+  }
+
+  get routeParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("id", "id")
+    ];
+  }
+
+  get queryParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("realtime_start", "startDate"),
+      new RouteToFormBinding("realtime_end", "endDate"),
+      new RouteToFormBinding("limit"),
+      new RouteToFormBinding("offset"),
+      new RouteToFormBinding("sort_order", "sortOrder")
+    ];
+  }
+
+  get navigationRoute(): any[] {
+    let releaseId = this.theForm.get("id").value;
+    return ["/release/", releaseId];
+  }
+
+  constructor(
+    router: Router,
+    route: ActivatedRoute,
+    formBuilder: FormBuildAndValidationService,
+    configurationService: FormsConfigurationService,
+    bindingService: RouteToFormBindingService,
+    private service: ReleaseService) {
+
+    super(router, route, formBuilder, configurationService, bindingService);
   }
 
   parseData(data) {
@@ -42,8 +75,9 @@ export class ReleaseComponent implements OnInit {
     this.releases = data.container && data.container.releases;
   }
 
-  onSubmit() {
-    this.router.navigate(["/release/" + this.releaseId]);
+  callService(queryString: string): Observable<any> {
+    let releaseId = this.theForm.get("id").value;
+    return this.service.get(+releaseId, queryString);
   }
 
 }

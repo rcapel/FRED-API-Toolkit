@@ -4,24 +4,21 @@
     {{ heading }}
   </div>
   <div class="card-body">
-    <form (submit)="onSubmit()" #formValidator="ngForm">
-      <div class="form-group">
-        <label for="categoryId">Category Id</label>
-        <div class="row">
-          <div class="col-md-1">
-            <input type="text" class="form-control" name="categoryId" [(ngModel)]="categoryId" #categoryIdValidator="ngModel" required minlength="1" />
+    <form (ngSubmit)="onSubmit()" [formGroup]="theForm" novalidate>
+      <div class="row">
+        <div class="col-md-2">
+          <div class="form-group" [ngClass]="{'is-invalid text-danger': idValidationMessages}">
+            <label for="categoryId">Category Id</label>
+            <input type="number" class="form-control" id="categoryId" formControlName="id" />
+            <span class="text-danger" *ngIf="idValidationMessages">
+              {{ idValidationMessages }}
+            </span>
           </div>
         </div>
-        <div *ngIf="categoryIdValidator.errors && (categoryIdValidator.dirty || categoryIdValidator.touched)" class="text text-danger">
-          <div [hidden]="!categoryIdValidator.errors.required">
-            Category Id is required.
-          </div>
-        </div>
-        <!--https://stackoverflow.com/questions/42437822/angular-2-form-validation-error-unhandled-promise-rejection-cannot-assign-to-a-->
       </div>
       <div>
         <br />
-        <input type="submit" class="btn btn-sm btn-default" value="Fetch" [disabled]="formValidator.invalid" />
+        <input type="submit" class="btn btn-sm btn-default" value="Fetch" [disabled]="!theForm.valid" />
       </div>
     </form>
     <hr />
