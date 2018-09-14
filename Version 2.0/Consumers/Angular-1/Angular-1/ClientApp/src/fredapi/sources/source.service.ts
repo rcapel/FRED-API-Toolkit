@@ -11,19 +11,21 @@ export class SourceService {
   constructor(private client: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
   }
 
-  public get(): Observable<ISourceResponse> {
-    return this.client.get<ISourceResponse>(this.baseUrl + 'api/sources');
+  public get(queryString: string): Observable<ISourceResponse> {
+    let apiRoute = this.baseUrl + 'api/sources/' + (queryString || "");
+
+    return this.client.get<ISourceResponse>(apiRoute);
   }
 
-  public getSource(sourceId: number): Observable<ISourceResponse> {
-    let apiRoute = this.baseUrl + 'api/source/' + sourceId;
+  public getSource(sourceId: number, queryString: string): Observable<ISourceResponse> {
+    let apiRoute = this.baseUrl + 'api/source/' + sourceId + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ISourceResponse>(apiRoute);
   }
 
-  public getSourceReleases(sourceId: number): Observable<IReleaseResponse> {
-    let apiRoute = this.baseUrl + 'api/sourceReleases/' + sourceId;
+  public getSourceReleases(sourceId: number, queryString: string): Observable<IReleaseResponse> {
+    let apiRoute = this.baseUrl + 'api/sourceReleases/' + sourceId + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<IReleaseResponse>(apiRoute);

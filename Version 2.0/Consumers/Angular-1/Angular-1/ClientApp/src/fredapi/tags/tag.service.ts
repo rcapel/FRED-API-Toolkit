@@ -11,22 +11,22 @@ export class TagService {
   constructor(private client: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
   }
 
-  public get(): Observable<ITagResponse> {
-    let apiRoute = this.baseUrl + 'api/tags';
+  public get(queryString: string): Observable<ITagResponse> {
+    let apiRoute = this.baseUrl + 'api/tags' + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ITagResponse>(apiRoute);
   }
 
-  public getRelatedTags(tagNames: string, queryParams: string): Observable<ITagResponse> {
-    let apiRoute = this.baseUrl + 'api/relatedTags/' + tagNames + (queryParams || "");
+  public getRelatedTags(tagNames: string, queryString: string): Observable<ITagResponse> {
+    let apiRoute = this.baseUrl + 'api/relatedTags/' + tagNames + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ITagResponse>(apiRoute);
   }
 
-  public getTagsSeries(tagNames: string, queryParams: string): Observable<ISeriesResponse> {
-    let apiRoute = this.baseUrl + 'api/tagsSeries/' + tagNames + (queryParams || "");
+  public getTagsSeries(tagNames: string, queryString: string): Observable<ISeriesResponse> {
+    let apiRoute = this.baseUrl + 'api/tagsSeries/' + tagNames + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ISeriesResponse>(apiRoute);

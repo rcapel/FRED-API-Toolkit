@@ -9,8 +9,6 @@ import { ITagResponse } from '../tags/tag.interfaces';
 @Injectable()
 export class CategoryService {
 
-  queryString: string;
-
   constructor(
     private client: HttpClient,
     @Inject('BASE_URL') private baseUrl: string) {
@@ -23,36 +21,36 @@ export class CategoryService {
     return this.client.get<ICategoryResponse>(apiRoute);
   }
 
-  public getChildren(categoryId: number, queryParams: string): Observable<ICategoryResponse> {
-    let apiRoute = this.baseUrl + 'api/categoryChildren/' + categoryId + (queryParams || "");
+  public getChildren(categoryId: number, queryString: string): Observable<ICategoryResponse> {
+    let apiRoute = this.baseUrl + 'api/categoryChildren/' + categoryId + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ICategoryResponse>(apiRoute);
   }
 
-  public getRelated(categoryId: number, queryParams: string): Observable<ICategoryResponse> {
-    let apiRoute = this.baseUrl + 'api/categoryRelated/' + categoryId + (queryParams || "");
+  public getRelated(categoryId: number, queryString: string): Observable<ICategoryResponse> {
+    let apiRoute = this.baseUrl + 'api/categoryRelated/' + categoryId + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ICategoryResponse>(apiRoute);
   }
 
-  public getSeries(categoryId: number, queryParams: string): Observable<ISeriesResponse> {
-    let apiRoute = this.baseUrl + 'api/categorySeries/' + categoryId + (queryParams || "");
+  public getSeries(categoryId: number, queryString: string): Observable<ISeriesResponse> {
+    let apiRoute = this.baseUrl + 'api/categorySeries/' + categoryId + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ISeriesResponse>(apiRoute);
   }
 
-  public getTags(categoryId: number, queryParams: string): Observable<ITagResponse> {
-    let apiRoute = this.baseUrl + 'api/categoryTags/' + categoryId + (queryParams || "");
+  public getTags(categoryId: number, queryString: string): Observable<ITagResponse> {
+    let apiRoute = this.baseUrl + 'api/categoryTags/' + categoryId + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ITagResponse>(apiRoute);
   }
 
-  public getRelatedTags(categoryId: number, tagNames: string, queryParams: string): Observable<ITagResponse> {
-    let apiRoute = this.baseUrl + 'api/categoryRelatedTags/' + categoryId + "/" + tagNames + (queryParams || "");
+  public getRelatedTags(categoryId: number, tagNames: string, queryString: string): Observable<ITagResponse> {
+    let apiRoute = this.baseUrl + 'api/categoryRelatedTags/' + categoryId + "/" + tagNames + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ITagResponse>(apiRoute);

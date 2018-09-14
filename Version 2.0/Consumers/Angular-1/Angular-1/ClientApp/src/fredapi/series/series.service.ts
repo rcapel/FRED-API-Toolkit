@@ -22,79 +22,71 @@ export class SeriesService {
     @Inject('BASE_URL') private baseUrl: string) {
   }
 
-  public get(seriesId: string): Observable<ISingleSeriesResponse> {
-    let apiRoute = this.baseUrl + 'api/series/' + seriesId;
+  public get(seriesId: string, queryString: string): Observable<ISingleSeriesResponse> {
+    let apiRoute = this.baseUrl + 'api/series/' + seriesId + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ISingleSeriesResponse>(apiRoute);
   }
 
-  public getCategories(seriesId: string): Observable<ICategoryResponse> {
-    let apiRoute = this.baseUrl + 'api/seriesCategories/' + seriesId;
+  public getCategories(seriesId: string, queryString: string): Observable<ICategoryResponse> {
+    let apiRoute = this.baseUrl + 'api/seriesCategories/' + seriesId + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ICategoryResponse>(apiRoute);
   }
 
-  public getObservations(seriesId: string): Observable<ISeriesObservationsResponse> {
-    let apiRoute = this.baseUrl + 'api/seriesObservations/' + seriesId;
+  public getObservations(seriesId: string, queryString: string): Observable<ISeriesObservationsResponse> {
+    let apiRoute = this.baseUrl + 'api/seriesObservations/' + seriesId + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ISeriesObservationsResponse>(apiRoute);
   }
 
-  public getRelease(seriesId: string): Observable<IReleaseResponse> {
-    let apiRoute = this.baseUrl + 'api/seriesRelease/' + seriesId;
+  public getRelease(seriesId: string, queryString: string): Observable<IReleaseResponse> {
+    let apiRoute = this.baseUrl + 'api/seriesRelease/' + seriesId + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<IReleaseResponse>(apiRoute);
   }
 
-  public getSearch(searchText: string): Observable<ISeriesSearchResponse> {
-    let apiRoute = this.baseUrl + 'api/seriesSearch/' + searchText;
+  public getSearch(searchText: string, queryString: string): Observable<ISeriesSearchResponse> {
+    let apiRoute = this.baseUrl + 'api/seriesSearch/' + searchText + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ISeriesSearchResponse>(apiRoute);
   }
 
-  public getSearchTags(searchText: string): Observable<ITagResponse> {
-    let apiRoute = this.baseUrl + 'api/seriesSearchTags/' + searchText;
+  public getSearchTags(searchText: string, queryString: string): Observable<ITagResponse> {
+    let apiRoute = this.baseUrl + 'api/seriesSearchTags/' + searchText + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ITagResponse>(apiRoute);
   }
 
-  public getSearchRelatedTags(searchText: string, tagNames: string): Observable<ITagResponse> {
-    let apiRoute = this.baseUrl + 'api/seriesSearchRelatedTags/' + searchText + "/" + tagNames;
+  public getSearchRelatedTags(searchText: string, tagNames: string, queryString: string): Observable<ITagResponse> {
+    let apiRoute = this.baseUrl + 'api/seriesSearchRelatedTags/' + searchText + "/" + tagNames + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ITagResponse>(apiRoute);
   }
 
-  //public gett<T>(extension: string, params: any): Observable<T> {
-  //  let apiRoute = this.baseUrl + 'api/' + extension;
-  //  console.log(apiRoute);
-  //  console.log(params);
-
-  //  return this.client.get<T>((apiRoute, params);
-  //}
-
-  public getTags(seriesId: string): Observable<ITagResponse> {
-    let apiRoute = this.baseUrl + 'api/seriesTags/' + seriesId;
+  public getTags(seriesId: string, queryString: string): Observable<ITagResponse> {
+    let apiRoute = this.baseUrl + 'api/seriesTags/' + seriesId + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ITagResponse>(apiRoute);
   }
 
-  public getUpdates(): Observable<ISeriesUpdatesResponse> {
-    let apiRoute = this.baseUrl + 'api/seriesUpdates';
+  public getUpdates(queryString: string): Observable<ISeriesUpdatesResponse> {
+    let apiRoute = this.baseUrl + 'api/seriesUpdates' + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ISeriesUpdatesResponse>(apiRoute);
   }
 
-  public getVintageDates(seriesId: string): Observable<ISeriesVintageDatesResponse> {
-    let apiRoute = this.baseUrl + 'api/seriesVintageDates/' + seriesId;
+  public getVintageDates(seriesId: string, queryString: string): Observable<ISeriesVintageDatesResponse> {
+    let apiRoute = this.baseUrl + 'api/seriesVintageDates/' + seriesId + (queryString || "");
     console.log(apiRoute);
 
     return this.client.get<ISeriesVintageDatesResponse>(apiRoute);
