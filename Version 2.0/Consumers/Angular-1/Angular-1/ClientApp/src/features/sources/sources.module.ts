@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { FeaturesCommonModule } from '../featuresCommon.module';
@@ -22,6 +22,7 @@ import { SourceReleasesResolver } from '../sources/services/sourceReleases.resol
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: 'sources', component: SourcesComponent, resolve: { sources: SourcesResolver } },
       { path: 'source/:id', component: SourceComponent, resolve: { source: SourceResolver } },

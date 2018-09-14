@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { FeaturesCommonModule } from '../featuresCommon.module';
@@ -37,6 +37,7 @@ import { ReleaseRelatedTagsResolver } from './services/releaseRelatedTags.resolv
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: 'releases', component: ReleasesComponent, resolve: { releases: ReleasesResolver } },
       { path: 'releasesDates', component: ReleasesDatesComponent, resolve: { releasesDates: ReleasesDatesResolver } },

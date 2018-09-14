@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { FeaturesCommonModule } from '../featuresCommon.module';
@@ -22,6 +22,7 @@ import { TagsSeriesResolver } from './services/tagsSeries.resolver';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: 'tags', component: TagsComponent, resolve: { tags: TagsResolver } },
       { path: 'relatedTags/:tag_names', component: RelatedTagsComponent, resolve: { relatedTags: RelatedTagsResolver } },

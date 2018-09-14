@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { FeaturesCommonModule } from '../featuresCommon.module';
@@ -43,6 +43,7 @@ import { SeriesVintageDatesResolver } from './services/seriesVintageDates.resolv
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: 'series/:id', component: SeriesComponent, resolve: { series: SeriesResolver } },
       { path: 'seriesCategories/:id', component: SeriesCategoriesComponent, resolve: { seriesCategories: SeriesCategoriesResolver } },

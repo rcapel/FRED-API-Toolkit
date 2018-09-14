@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { FeaturesCommonModule } from '../featuresCommon.module';
@@ -19,6 +19,8 @@ import { CategorySeriesResolver } from './services/categorySeries.resolver';
 import { CategoryTagsResolver } from './services/categoryTags.resolver';
 import { CategoryRelatedTagsResolver } from './services/categoryRelatedTags.resolver';
 
+import { FormsConfigurationService } from '../shared/formsConfiguration/formsConfiguration.service'
+
 @NgModule({
   declarations: [
     CategoryComponent,
@@ -31,6 +33,7 @@ import { CategoryRelatedTagsResolver } from './services/categoryRelatedTags.reso
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       //{ path: 'category', component: CategoryComponent },
       { path: 'category/:id', component: CategoryComponent, resolve: { category: CategoryResolver } },
@@ -48,7 +51,8 @@ import { CategoryRelatedTagsResolver } from './services/categoryRelatedTags.reso
     CategoryRelatedResolver,
     CategorySeriesResolver,
     CategoryTagsResolver,
-    CategoryRelatedTagsResolver
+    CategoryRelatedTagsResolver,
+    FormsConfigurationService
   ]
 })
 export class CategoryModule { }
