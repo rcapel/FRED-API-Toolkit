@@ -1,0 +1,5 @@
+<div class="row">
+  <div class="col-md-1">{{ releaseDate.release_id }}</div>
+  <div class="col-md-2">{{ releaseDate.date | date: 'MM/dd/yyyy' }}</div>
+  <div class="col-md-9" *ngIf="showReleaseName">{{ releaseDate.release_name }}</div>
+</div>
