@@ -14,7 +14,9 @@ export class ReleasesResolver implements Resolve<IReleaseResponse>{
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IReleaseResponse> {
-    return this.service.getReleases();
+    let queryString: string = "";
+
+    return this.service.getReleases(queryString);
   }
 
 }

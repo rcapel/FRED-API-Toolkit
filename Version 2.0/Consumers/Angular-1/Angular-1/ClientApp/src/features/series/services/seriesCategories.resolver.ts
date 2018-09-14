@@ -15,8 +15,9 @@ export class SeriesCategoriesResolver implements Resolve<ICategoryResponse>{
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ICategoryResponse> {
     let seriesId: string = route.paramMap.get('id');
+    let queryString: string = "";
 
-    return this.service.getCategories(seriesId);
+    return this.service.getCategories(seriesId, queryString);
   }
 
 }

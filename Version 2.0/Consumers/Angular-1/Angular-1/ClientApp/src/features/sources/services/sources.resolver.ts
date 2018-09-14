@@ -15,7 +15,9 @@ export class SourcesResolver implements Resolve<ISourceResponse>{
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ISourceResponse> {
-    return this.service.get();
+    let queryString: string = "";
+
+    return this.service.get(queryString);
   }
 
 }

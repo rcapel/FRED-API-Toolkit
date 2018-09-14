@@ -15,8 +15,9 @@ export class SeriesSearchResolver implements Resolve<ISeriesResponse>{
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ISeriesResponse> {
     let searchText: string = route.paramMap.get('search_text');
+    let queryString: string = "";
 
-    return this.service.getSearch(searchText);
+    return this.service.getSearch(searchText, queryString);
   }
 
 }

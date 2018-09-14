@@ -15,8 +15,9 @@ export class SeriesVintageDatesResolver implements Resolve<ISeriesVintageDatesRe
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ISeriesVintageDatesResponse> {
     let seriesId: string = route.paramMap.get('id');
+    let queryString: string = "";
 
-    return this.service.getVintageDates(seriesId);
+    return this.service.getVintageDates(seriesId, queryString);
   }
 
 }

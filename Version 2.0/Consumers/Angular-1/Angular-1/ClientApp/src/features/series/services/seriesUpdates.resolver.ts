@@ -14,7 +14,9 @@ export class SeriesUpdatesResolver implements Resolve<ISeriesUpdatesResponse>{
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ISeriesUpdatesResponse> {
-    return this.service.getUpdates();
+    let queryString: string = "";
+
+    return this.service.getUpdates(queryString);
   }
 
 }

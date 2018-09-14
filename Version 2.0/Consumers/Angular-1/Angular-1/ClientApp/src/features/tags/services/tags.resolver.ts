@@ -14,7 +14,9 @@ export class TagsResolver implements Resolve<ITagResponse>{
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ITagResponse> {
-    return this.service.get();
+    let queryString: string = "";
+
+    return this.service.get(queryString);
   }
 
 }

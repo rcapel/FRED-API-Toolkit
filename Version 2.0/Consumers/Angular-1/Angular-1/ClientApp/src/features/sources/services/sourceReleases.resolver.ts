@@ -15,8 +15,9 @@ export class SourceReleasesResolver implements Resolve<IReleaseResponse>{
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IReleaseResponse> {
     let sourceId: string = route.paramMap.get('id');
+    let queryString: string = "";
 
-    return this.service.getSourceReleases(+sourceId);
+    return this.service.getSourceReleases(+sourceId, queryString);
   }
 
 }

@@ -15,8 +15,9 @@ export class SeriesTagsResolver implements Resolve<ITagResponse>{
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ITagResponse> {
     let seriesId: string = route.paramMap.get('id');
+    let queryString: string = "";
 
-    return this.service.getTags(seriesId);
+    return this.service.getTags(seriesId, queryString);
   }
 
 }

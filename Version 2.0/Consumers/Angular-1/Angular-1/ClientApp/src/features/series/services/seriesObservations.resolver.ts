@@ -15,8 +15,9 @@ export class SeriesObservationsResolver implements Resolve<ISeriesObservationsRe
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ISeriesObservationsResponse> {
     let seriesId: string = route.paramMap.get('id');
+    let queryString: string = "";
 
-    return this.service.getObservations(seriesId);
+    return this.service.getObservations(seriesId, queryString);
   }
 
 }

@@ -16,8 +16,9 @@ export class ReleaseRelatedTagsResolver implements Resolve<ITagResponse>{
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ITagResponse> {
     let releaseId: string = route.paramMap.get('id');
     let tagNames: string = route.paramMap.get("tag_names");
+    let queryString: string = "";
 
-    return this.service.getRelatedTags(+releaseId, tagNames);
+    return this.service.getRelatedTags(+releaseId, tagNames, queryString);
   }
 
 }
