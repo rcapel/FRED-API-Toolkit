@@ -2,12 +2,12 @@ import { FormGroup } from "@angular/forms";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { Subscription, Observable } from "rxjs";
 
-import { OrderByEnumerables } from "../shared/enumerables/orderBy.enumerables";
-import { FilterEnumerables } from "../shared/enumerables/filter.enumerables";
-import { TagEnumerables } from "../shared/enumerables/tag.enumerables";
-import { FormBuildAndValidationService } from "../../shared/formBuildAndValidation/formBuildAndValidation.service";
-import { FormsConfigurationService, IFormsConfiguration } from "../shared/formsConfiguration/formsConfiguration.service";
-import { RouteToFormBindingService, RouteToFormBinding } from "../../shared/routeToFormBinding/routeToFormBinding.service";
+import { OrderByEnumerables } from "../../shared/enumerables/orderBy.enumerables";
+import { FilterEnumerables } from "../../shared/enumerables/filter.enumerables";
+import { TagEnumerables } from "../../shared/enumerables/tag.enumerables";
+import { FormBuildAndValidationService } from "../../../shared/formBuildAndValidation/formBuildAndValidation.service";
+import { FormsConfigurationService, IFormsConfiguration } from "../../shared/formsConfiguration/formsConfiguration.service";
+import { RouteToFormBindingService, RouteToFormBinding } from "../../../shared/routeToFormBinding/routeToFormBinding.service";
 
 export abstract class ComponentBase {
   private paramMapSubscription: Subscription;
