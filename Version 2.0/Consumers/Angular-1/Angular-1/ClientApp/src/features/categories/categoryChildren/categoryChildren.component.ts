@@ -37,7 +37,7 @@ export class CategoryChildrenComponent extends ComponentBase implements OnInit, 
 
   get routeParamsToFormBindings(): RouteToFormBinding[] {
     return [
-      new RouteToFormBinding("id", "id")
+      new RouteToFormBinding("id")
     ];
   }
 

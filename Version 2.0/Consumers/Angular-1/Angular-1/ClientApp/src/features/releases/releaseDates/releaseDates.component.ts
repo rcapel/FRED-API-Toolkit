@@ -40,7 +40,7 @@ export class ReleaseDatesComponent extends ComponentBase implements OnInit, OnDe
 
   get routeParamsToFormBindings(): RouteToFormBinding[] {
     return [
-      new RouteToFormBinding("id", "id")
+      new RouteToFormBinding("id")
     ];
   }
 

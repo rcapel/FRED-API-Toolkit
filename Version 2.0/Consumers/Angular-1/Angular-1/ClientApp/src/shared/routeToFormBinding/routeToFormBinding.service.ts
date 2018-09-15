@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRoute, ParamMap, Data } from "@angular/router";
+import { ParamMap } from "@angular/router";
 import { FormGroup } from "@angular/forms";
 
 @Injectable()
@@ -17,10 +17,22 @@ export class RouteToFormBindingService {
     }
   }
 
-  getQueryParams(theForm: FormGroup, bindings: RouteToFormBinding[]): { [key: string]: string } {
+  buildQueryParamsFromRoute(paramMap: ParamMap, bindings: RouteToFormBinding[]): { [key: string]: string } {
     let result = {};
     for (let binding of bindings) {
-      let formName = binding.getFormName();// === "" ? binding.paramName : binding.formName;
+      let paramName = binding.paramName;
+      let value = paramMap.get(paramName);
+      if (value && value !== "") {
+        result[paramName] = value;
+      }
+    }
+    return result;
+  }
+
+  buildQueryParamsFromForm(theForm: FormGroup, bindings: RouteToFormBinding[]): { [key: string]: string } {
+    let result = {};
+    for (let binding of bindings) {
+      let formName = binding.formName;
       let value = theForm.get(formName).value;
       if (value && value !== "") {
         result[binding.paramName] = value;
@@ -45,7 +57,7 @@ export class RouteToFormBindingService {
     if (!value) {
       return;
     }
-    let formName = binding.getFormName();// === "" ? binding.paramName : binding.formName;
+    let formName = binding.formName;
     theForm.patchValue({ [formName]: value });
     console.log(`bound ${formName} and ${value}`);
   }
@@ -55,11 +67,11 @@ export class RouteToFormBindingService {
 export class RouteToFormBinding {
   constructor(
     public paramName: string,
-    public formName: string = "") {
+    private _formName: string = "") {
   }
 
-  getFormName(): string {
-    return this.formName === "" ? this.paramName : this.formName;
+  get formName(): string {
+    return this._formName === "" ? this.paramName : this._formName;
   }
 
 }

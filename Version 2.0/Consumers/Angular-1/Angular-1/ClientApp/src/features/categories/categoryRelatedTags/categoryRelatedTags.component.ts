@@ -43,7 +43,7 @@ export class CategoryRelatedTagsComponent extends ComponentBase implements OnIni
 
   get routeParamsToFormBindings(): RouteToFormBinding[] {
     return [
-      new RouteToFormBinding("id", "id"),
+      new RouteToFormBinding("id"),
       new RouteToFormBinding("tag_names", "tagNames")
     ];
   }

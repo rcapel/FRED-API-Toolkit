@@ -39,7 +39,7 @@ export class SeriesTagsComponent extends ComponentBase implements OnInit, OnDest
 
   get routeParamsToFormBindings(): RouteToFormBinding[] {
     return [
-      new RouteToFormBinding("id", "id")
+      new RouteToFormBinding("id")
     ];
   }
 

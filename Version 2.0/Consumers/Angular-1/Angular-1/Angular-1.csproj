@@ -8,8 +8,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ClientApp\src\features\shared\formGroups\**" />
+    <Compile Remove="ClientApp\src\features\shared\queryStringBuilder\**" />
+    <Compile Remove="ClientApp\src\shared\numericValidators\**" />
+    <Content Remove="ClientApp\src\features\shared\formGroups\**" />
+    <Content Remove="ClientApp\src\features\shared\queryStringBuilder\**" />
+    <Content Remove="ClientApp\src\shared\numericValidators\**" />
+    <EmbeddedResource Remove="ClientApp\src\features\shared\formGroups\**" />
+    <EmbeddedResource Remove="ClientApp\src\features\shared\queryStringBuilder\**" />
+    <EmbeddedResource Remove="ClientApp\src\shared\numericValidators\**" />
+    <None Remove="ClientApp\src\features\shared\formGroups\**" />
+    <None Remove="ClientApp\src\features\shared\queryStringBuilder\**" />
+    <None Remove="ClientApp\src\shared\numericValidators\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\ControllerCommon.cs" />
     <Compile Remove="Controllers\Releases\ReleaseTablesController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\features\categories\categoryChildren\counterInput.component.html" />
+    <None Remove="ClientApp\src\features\categories\categoryChildren\counterInput.component.ts" />
+    <None Remove="ClientApp\src\features\categories\categorySeries\xcategorySeries.component.ts" />
+    <None Remove="ClientApp\src\features\categories\services\categoryFormsConfiguration.service.ts" />
+    <None Remove="ClientApp\src\features\shared\formsConfiguration\formsConfigurationService.interfaces.ts" />
   </ItemGroup>
 
   <ItemGroup>

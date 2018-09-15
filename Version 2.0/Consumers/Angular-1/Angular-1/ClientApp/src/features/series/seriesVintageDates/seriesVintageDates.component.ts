@@ -39,7 +39,7 @@ export class SeriesVintageDatesComponent extends ComponentBase implements OnInit
 
   get routeParamsToFormBindings(): RouteToFormBinding[] {
     return [
-      new RouteToFormBinding("id", "id")
+      new RouteToFormBinding("id")
     ];
   }
 

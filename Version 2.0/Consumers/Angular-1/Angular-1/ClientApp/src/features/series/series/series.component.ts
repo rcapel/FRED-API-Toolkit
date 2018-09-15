@@ -38,7 +38,7 @@ export class SeriesComponent extends ComponentBase implements OnInit, OnDestroy 
 
   get routeParamsToFormBindings(): RouteToFormBinding[] {
     return [
-      new RouteToFormBinding("id", "id")
+      new RouteToFormBinding("id")
     ];
   }
 

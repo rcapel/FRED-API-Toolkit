@@ -42,7 +42,7 @@ export class ReleaseSeriesComponent extends ComponentBase implements OnInit, OnD
 
   get routeParamsToFormBindings(): RouteToFormBinding[] {
     return [
-      new RouteToFormBinding("id", "id")
+      new RouteToFormBinding("id")
     ];
   }
 

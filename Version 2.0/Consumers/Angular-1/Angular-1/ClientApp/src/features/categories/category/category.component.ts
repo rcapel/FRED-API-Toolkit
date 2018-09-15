@@ -36,7 +36,7 @@ export class CategoryComponent extends ComponentBase implements OnInit, OnDestro
 
   get routeParamsToFormBindings(): RouteToFormBinding[] {
     return [
-      new RouteToFormBinding("id", "id")
+      new RouteToFormBinding("id")
     ];
   }
 

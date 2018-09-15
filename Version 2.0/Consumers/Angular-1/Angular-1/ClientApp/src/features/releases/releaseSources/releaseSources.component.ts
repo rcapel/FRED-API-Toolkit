@@ -38,7 +38,7 @@ export class ReleaseSourcesComponent extends ComponentBase implements OnInit, On
 
   get routeParamsToFormBindings(): RouteToFormBinding[] {
     return [
-      new RouteToFormBinding("id", "id")
+      new RouteToFormBinding("id")
     ];
   }
 

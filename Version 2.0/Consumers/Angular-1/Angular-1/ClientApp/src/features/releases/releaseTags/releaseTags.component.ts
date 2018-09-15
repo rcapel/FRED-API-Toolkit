@@ -42,7 +42,7 @@ export class ReleaseTagsComponent extends ComponentBase implements OnInit, OnDes
 
   get routeParamsToFormBindings(): RouteToFormBinding[] {
     return [
-      new RouteToFormBinding("id", "id")
+      new RouteToFormBinding("id")
     ];
   }
 

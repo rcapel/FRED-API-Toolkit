@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, /*throwError*/ } from 'rxjs';
+//import { catchError } from 'rxjs/operators';
 
 import { CategoryService } from '../../../fredapi/categories/category.service';
 import { ICategoryResponse } from '../../../fredapi/categories/category.interfaces';
@@ -23,6 +25,11 @@ export class CategoryResolver implements Resolve<ICategoryResponse>{
     //  return Observable.of(null);
     //}
     return this.service.get(+categoryId);
+      //.pipe(catchError(this.handleError));
   }
+
+  //private handleError(error: HttpErrorResponse): Observable<never> {
+  //  return throwError(error);
+  //}
 
 }
