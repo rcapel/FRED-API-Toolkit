@@ -62,6 +62,7 @@ export class CategoryChildrenComponent extends ComponentBase implements OnInit, 
     private service: CategoryService) {
 
     super(router, route, formBuilder, configurationService, bindingService);
+    this.canRefresh = false;
   }
 
   parseData(data) {

@@ -62,6 +62,7 @@ export class CategoryRelatedComponent extends ComponentBase implements OnInit, O
     private service: CategoryService) {
 
     super(router, route, formBuilder, configurationService, bindingService);
+    this.canRefresh = false;
   }
 
   parseData(data) {
