@@ -7,11 +7,11 @@
     <form (ngSubmit)="onSubmit()" [formGroup]="theForm" novalidate>
       <div class="row">
         <div class="col-md-2">
-          <div class="form-group" [ngClass]="{'is-invalid text-danger': idValidationMessages}">
+          <div class="form-group" [ngClass]="{'is-invalid text-danger': searchTextValidationMessages}">
             <label for="searchText">Series Search Text</label>
             <input type="text" class="form-control" id="searchText" formControlName="searchText" />
-            <span class="text-danger" *ngIf="idValidationMessages">
-              {{ idValidationMessages }}
+            <span class="text-danger" *ngIf="searchTextValidationMessages">
+              {{ searchTextValidationMessages }}
             </span>
           </div>
         </div>

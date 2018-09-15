@@ -19,12 +19,12 @@ export class SeriesSearchTagsResolver extends ResolverBase implements Resolve<IT
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ITagResponse> {
-    let seriesId: string = route.paramMap.get('id');
+    let searchText: string = route.paramMap.get('series_search_text');
     let queryString = this.buildQueryString(route, SeriesSearchTagsComponent.queryParamsToFormBindingValues);
 
     console.log("resolver queryString = " + queryString);
 
-    return this.service.getSearchTags(seriesId, queryString);
+    return this.service.getSearchTags(searchText, queryString);
   }
 
 }
