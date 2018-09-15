@@ -19,6 +19,19 @@ import { SeriesService } from '../../../fredapi/series/series.service';
 export class SeriesSearchComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Series Search";
+  static queryParamsToFormBindingValues: RouteToFormBinding[] = [
+    new RouteToFormBinding("search_type", "searchType"),
+    new RouteToFormBinding("realtime_start", "startDate"),
+    new RouteToFormBinding("realtime_end", "endDate"),
+    new RouteToFormBinding("limit"),
+    new RouteToFormBinding("offset"),
+    new RouteToFormBinding("order_by", "orderBy"),
+    new RouteToFormBinding("sort_order", "sortOrder"),
+    new RouteToFormBinding("filter_variable", "filterVariable"),
+    new RouteToFormBinding("filter_value", "filterValue"),
+    new RouteToFormBinding("tag_names", "tagNames"),
+    new RouteToFormBinding("exclude_tag_names", "excludeTagNames")
+  ];
 
   // response
   response: IContainerExtensions;
@@ -48,19 +61,7 @@ export class SeriesSearchComponent extends ComponentBase implements OnInit, OnDe
   }
 
   get queryParamsToFormBindings(): RouteToFormBinding[] {
-    return [
-      new RouteToFormBinding("search_type", "searchType"),
-      new RouteToFormBinding("realtime_start", "startDate"),
-      new RouteToFormBinding("realtime_end", "endDate"),
-      new RouteToFormBinding("limit"),
-      new RouteToFormBinding("offset"),
-      new RouteToFormBinding("order_by", "orderBy"),
-      new RouteToFormBinding("sort_order", "sortOrder"),
-      new RouteToFormBinding("filter_variable", "filterVariable"),
-      new RouteToFormBinding("filter_value", "filterValue"),
-      new RouteToFormBinding("tag_names", "tagNames"),
-      new RouteToFormBinding("exclude_tag_names", "excludeTagNames")
-    ];
+    return SeriesSearchComponent.queryParamsToFormBindingValues;
   }
 
   get navigationRoute(): any[] {

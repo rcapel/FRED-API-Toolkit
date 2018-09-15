@@ -19,6 +19,17 @@ import { SeriesService } from '../../../fredapi/series/series.service';
 export class SeriesSearchTagsComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Series Search Tags";
+  static queryParamsToFormBindingValues: RouteToFormBinding[] = [
+    new RouteToFormBinding("realtime_start", "startDate"),
+    new RouteToFormBinding("realtime_end", "endDate"),
+    new RouteToFormBinding("limit"),
+    new RouteToFormBinding("offset"),
+    new RouteToFormBinding("order_by", "orderBy"),
+    new RouteToFormBinding("sort_order", "sortOrder"),
+    new RouteToFormBinding("tag_names", "tagNames"),
+    new RouteToFormBinding("tag_group_id", "tagGroupId"),
+    new RouteToFormBinding("tag_search_text", "tagSearchText")
+  ];
 
   // response
   response: IContainerExtensions;
@@ -47,17 +58,7 @@ export class SeriesSearchTagsComponent extends ComponentBase implements OnInit, 
   }
 
   get queryParamsToFormBindings(): RouteToFormBinding[] {
-    return [
-      new RouteToFormBinding("realtime_start", "startDate"),
-      new RouteToFormBinding("realtime_end", "endDate"),
-      new RouteToFormBinding("limit"),
-      new RouteToFormBinding("offset"),
-      new RouteToFormBinding("order_by", "orderBy"),
-      new RouteToFormBinding("sort_order", "sortOrder"),
-      new RouteToFormBinding("tag_names", "tagNames"),
-      new RouteToFormBinding("tag_group_id", "tagGroupId"),
-      new RouteToFormBinding("tag_search_text", "tagSearchText")
-    ];
+    return SeriesSearchTagsComponent.queryParamsToFormBindingValues;
   }
 
   get navigationRoute(): any[] {

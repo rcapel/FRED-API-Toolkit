@@ -19,6 +19,10 @@ import { SourceService } from '../../../fredapi/sources/source.service';
 export class SourceComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Source";
+  static queryParamsToFormBindingValues: RouteToFormBinding[] = [
+    new RouteToFormBinding("realtime_start", "startDate"),
+    new RouteToFormBinding("realtime_end", "endDate")
+  ];
 
   // response
   response: IContainerExtensions;
@@ -43,10 +47,7 @@ export class SourceComponent extends ComponentBase implements OnInit, OnDestroy 
   }
 
   get queryParamsToFormBindings(): RouteToFormBinding[] {
-    return [
-      new RouteToFormBinding("realtime_start", "startDate"),
-      new RouteToFormBinding("realtime_end", "endDate")
-    ];
+    return SourceComponent.queryParamsToFormBindingValues;
   }
 
   get navigationRoute(): any[] {

@@ -19,6 +19,10 @@ import { SeriesService } from '../../../fredapi/series/series.service';
 export class SeriesComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Series";
+  static queryParamsToFormBindingValues: RouteToFormBinding[] = [
+    new RouteToFormBinding("realtime_start", "startDate"),
+    new RouteToFormBinding("realtime_end", "endDate")
+  ];
 
   // response
   response: IContainerExtensions;
@@ -43,10 +47,7 @@ export class SeriesComponent extends ComponentBase implements OnInit, OnDestroy 
   }
 
   get queryParamsToFormBindings(): RouteToFormBinding[] {
-    return [
-      new RouteToFormBinding("realtime_start", "startDate"),
-      new RouteToFormBinding("realtime_end", "endDate")
-    ];
+    return SeriesComponent.queryParamsToFormBindingValues;
   }
 
   get navigationRoute(): any[] {
