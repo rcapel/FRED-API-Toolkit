@@ -19,6 +19,17 @@ import { CategoryService } from '../../../fredapi/categories/category.service';
 export class CategoryTagsComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Category Tags";
+  static queryParamsToFormBindingValues: RouteToFormBinding[] = [
+    new RouteToFormBinding("realtime_start", "startDate"),
+    new RouteToFormBinding("realtime_end", "endDate"),
+    new RouteToFormBinding("limit"),
+    new RouteToFormBinding("offset"),
+    new RouteToFormBinding("order_by", "orderBy"),
+    new RouteToFormBinding("sort_order", "sortOrder"),
+    new RouteToFormBinding("tag_names", "tagNames"),
+    new RouteToFormBinding("tag_group_id", "tagGroupId"),
+    new RouteToFormBinding("search_text", "searchText")
+  ];
 
   // response
   response: IContainerExtensions;
@@ -47,17 +58,7 @@ export class CategoryTagsComponent extends ComponentBase implements OnInit, OnDe
   }
 
   get queryParamsToFormBindings(): RouteToFormBinding[] {
-    return [
-      new RouteToFormBinding("realtime_start", "startDate"),
-      new RouteToFormBinding("realtime_end", "endDate"),
-      new RouteToFormBinding("limit"),
-      new RouteToFormBinding("offset"),
-      new RouteToFormBinding("order_by", "orderBy"),
-      new RouteToFormBinding("sort_order", "sortOrder"),
-      new RouteToFormBinding("tag_names", "tagNames"),
-      new RouteToFormBinding("tag_group_id", "tagGroupId"),
-      new RouteToFormBinding("search_text", "searchText")
-    ];
+    return CategoryTagsComponent.queryParamsToFormBindingValues;
   }
 
   get navigationRoute(): any[] {

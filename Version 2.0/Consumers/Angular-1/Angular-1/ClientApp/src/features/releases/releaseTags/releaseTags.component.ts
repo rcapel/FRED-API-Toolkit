@@ -19,6 +19,18 @@ import { ReleaseService } from '../../../fredapi/releases/release.service';
 export class ReleaseTagsComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Release Tags";
+  static queryParamsToFormBindingValues: RouteToFormBinding[] = [
+    new RouteToFormBinding("realtime_start", "startDate"),
+    new RouteToFormBinding("realtime_end", "endDate"),
+    new RouteToFormBinding("limit"),
+    new RouteToFormBinding("offset"),
+    new RouteToFormBinding("order_by", "orderBy"),
+    new RouteToFormBinding("sort_order", "sortOrder"),
+    new RouteToFormBinding("tag_names", "tagNames"),
+    new RouteToFormBinding("exclude_tag_names", "excludeTagNames"),
+    new RouteToFormBinding("tag_group_id", "tagGroupId"),
+    new RouteToFormBinding("search_text", "searchText")
+  ];
 
   // response
   response: IContainerExtensions;
@@ -47,18 +59,7 @@ export class ReleaseTagsComponent extends ComponentBase implements OnInit, OnDes
   }
 
   get queryParamsToFormBindings(): RouteToFormBinding[] {
-    return [
-      new RouteToFormBinding("realtime_start", "startDate"),
-      new RouteToFormBinding("realtime_end", "endDate"),
-      new RouteToFormBinding("limit"),
-      new RouteToFormBinding("offset"),
-      new RouteToFormBinding("order_by", "orderBy"),
-      new RouteToFormBinding("sort_order", "sortOrder"),
-      new RouteToFormBinding("tag_names", "tagNames"),
-      new RouteToFormBinding("exclude_tag_names", "excludeTagNames"),
-      new RouteToFormBinding("tag_group_id", "tagGroupId"),
-      new RouteToFormBinding("search_text", "searchText")
-    ];
+    return ReleaseTagsComponent.queryParamsToFormBindingValues;
   }
 
   get navigationRoute(): any[] {

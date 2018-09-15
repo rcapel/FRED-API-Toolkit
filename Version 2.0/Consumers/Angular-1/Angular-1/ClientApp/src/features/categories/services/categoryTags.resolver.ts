@@ -4,30 +4,27 @@ import { Observable } from 'rxjs';
 
 import { CategoryService } from '../../../fredapi/categories/category.service';
 import { ITagResponse } from '../../../fredapi/tags/tag.interfaces';
+import { ResolverBase } from '../../baseClasses/resolverBase/resolver.base';
+import { RouteToFormBindingService } from '../../../shared/routeToFormBinding/routeToFormBinding.service';
+import { CategoryTagsComponent } from '../categoryTags/categoryTags.component';
 
 @Injectable()
-export class CategoryTagsResolver implements Resolve<ITagResponse>{
+export class CategoryTagsResolver extends ResolverBase implements Resolve<ITagResponse>{
 
   constructor(
-    private service: CategoryService
+    private service: CategoryService,
+    protected bindingService: RouteToFormBindingService
   ) {
+    super(bindingService);
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ITagResponse> {
     let categoryId: string = route.paramMap.get("id");
-    let queryString: string = "?";
-    let map: ParamMap = route.queryParamMap;
-    //queryString += this.addQueryParam("realtime_start", map);
-    //queryString += this.addQueryParam("realtime_end", map);
-    queryString = queryString.substring(0, queryString.length - 1);
+    let queryString = this.buildQueryString(route, CategoryTagsComponent.queryParamsToFormBindingValues);
 
-    console.log(queryString);
+    console.log("resolver queryString = " + queryString);
 
     return this.service.getTags(+categoryId, queryString);
-  }
-
-  private addQueryParam(name: string, map: ParamMap): string {
-    return map.has(name) ? name + "=" + map.get(name) + "&" : "";
   }
 
 }

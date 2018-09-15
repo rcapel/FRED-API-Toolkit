@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 
 import { CategoryService } from '../../../fredapi/categories/category.service';
 import { ISeriesResponse } from '../../../fredapi/series/series.interfaces';
+import { ResolverBase } from '../../baseClasses/resolverBase/resolver.base';
 import { RouteToFormBindingService } from '../../../shared/routeToFormBinding/routeToFormBinding.service';
 import { CategorySeriesComponent } from '../categorySeries/categorySeries.component';
-import { ResolverBase } from '../../baseClasses/resolverBase/resolver.base';
 
 @Injectable()
 export class CategorySeriesResolver extends ResolverBase implements Resolve<ISeriesResponse>{

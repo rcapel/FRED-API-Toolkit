@@ -19,6 +19,10 @@ import { ReleaseService } from '../../../fredapi/releases/release.service';
 export class ReleaseSourcesComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Release Sources";
+  static queryParamsToFormBindingValues: RouteToFormBinding[] = [
+    new RouteToFormBinding("realtime_start", "startDate"),
+    new RouteToFormBinding("realtime_end", "endDate")
+  ];
 
   // response
   response: IContainerExtensions;
@@ -43,10 +47,7 @@ export class ReleaseSourcesComponent extends ComponentBase implements OnInit, On
   }
 
   get queryParamsToFormBindings(): RouteToFormBinding[] {
-    return [
-      new RouteToFormBinding("realtime_start", "startDate"),
-      new RouteToFormBinding("realtime_end", "endDate")
-    ];
+    return ReleaseSourcesComponent.queryParamsToFormBindingValues;
   }
 
   get navigationRoute(): any[] {

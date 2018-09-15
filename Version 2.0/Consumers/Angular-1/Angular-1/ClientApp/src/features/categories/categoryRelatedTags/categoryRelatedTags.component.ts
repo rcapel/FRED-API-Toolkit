@@ -19,6 +19,18 @@ import { CategoryService } from '../../../fredapi/categories/category.service';
 export class CategoryRelatedTagsComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Category Related Tags";
+  static queryParamsToFormBindingValues: RouteToFormBinding[] = [
+    new RouteToFormBinding("realtime_start", "startDate"),
+    new RouteToFormBinding("realtime_end", "endDate"),
+    new RouteToFormBinding("limit"),
+    new RouteToFormBinding("offset"),
+    new RouteToFormBinding("order_by", "orderBy"),
+    new RouteToFormBinding("sort_order", "sortOrder"),
+    new RouteToFormBinding("tag_names", "tagNames"),
+    new RouteToFormBinding("exclude_tag_names", "excludeTagNames"),
+    new RouteToFormBinding("tag_group_id", "tagGroupId"),
+    new RouteToFormBinding("search_text", "searchText")
+  ];
 
   // response
   response: IContainerExtensions;
@@ -49,18 +61,7 @@ export class CategoryRelatedTagsComponent extends ComponentBase implements OnIni
   }
 
   get queryParamsToFormBindings(): RouteToFormBinding[] {
-    return [
-      new RouteToFormBinding("realtime_start", "startDate"),
-      new RouteToFormBinding("realtime_end", "endDate"),
-      new RouteToFormBinding("limit"),
-      new RouteToFormBinding("offset"),
-      new RouteToFormBinding("order_by", "orderBy"),
-      new RouteToFormBinding("sort_order", "sortOrder"),
-      new RouteToFormBinding("tag_names", "tagNames"),
-      new RouteToFormBinding("exclude_tag_names", "excludeTagNames"),
-      new RouteToFormBinding("tag_group_id", "tagGroupId"),
-      new RouteToFormBinding("search_text", "searchText")
-    ];
+    return CategoryRelatedTagsComponent.queryParamsToFormBindingValues;
   }
 
   get navigationRoute(): any[] {
