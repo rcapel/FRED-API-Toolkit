@@ -19,10 +19,10 @@ describe("FilterValuePipe", () => {
     expect(transformed).toBe("macro");
   });
 
-  it("should return 'regional' when value is 2", () => {
+  it("should return 'seasonal_adjustment' when value is 2", () => {
     let transformed = pipe.transform(2);
 
-    expect(transformed).toBe("regional");
+    expect(transformed).toBe("seasonal_adjustment");
   });
 
   it("should return undefined when value is less than 0", () => {
