@@ -129,6 +129,14 @@ export class FormsConfigurationService {
     }
   }
 
+  searchType: IFormsConfiguration = {
+    configuration: {
+      searchType: "full_text"
+    },
+    controlValidation: {
+    }
+  }
+
   includeReleaseDatesWithNoData: IFormsConfiguration = {
     configuration: {
       includeReleaseDatesWithNoData: "false"
