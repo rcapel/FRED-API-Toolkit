@@ -11,23 +11,15 @@ export class FilterValuesComponent {
   @Input() values: IFilters;
   @Input() orderByType: string;
 
-  @Input() realtime_start: Date;
-  @Input() realtime_end: Date;
-  @Input() order_by: string;
-  @Input() sort_order: number;
-  @Input() count: number;
-  @Input() offset: number;
-  @Input() limit: number;
-
-  @Input() excludeStartDate: string = "false";
-  @Input() excludeEndDate: string = "false";
-  @Input() excludeOrderBy: string = "false";
-  @Input() excludeSortOrder: string = "false";
-  @Input() excludeCount: string = "false";
-  @Input() excludeOffset: string = "false";
-  @Input() excludeLimit: string = "false";
-  @Input() excludeUnits: string = "true";
-  @Input() excludeOutputType: string = "true";
-  @Input() excludeFileType: string = "true";
+  @Input() showStartDate: boolean = true;
+  @Input() showEndDate: boolean = true;
+  @Input() showOrderBy: boolean = true;
+  @Input() showSortOrder: boolean = true;
+  @Input() showCount: boolean = true;
+  @Input() showOffset: boolean = true;
+  @Input() showLimit: boolean = true;
+  @Input() showUnits: boolean = false;
+  @Input() showOutputType: boolean = false;
+  @Input() showFileType: boolean = false;
 
 }
