@@ -76,7 +76,7 @@ export abstract class ComponentBase {
   }
 
   onSubmit() {
-    let queryParams = this.bindingService.getQueryParams(this.theForm, this.queryParamsToFormBindings);
+    let queryParams = this.bindingService.buildQueryParamsFromForm(this.theForm, this.queryParamsToFormBindings);
     this.removeDefaultQueryParams(queryParams, "");
     this.router.navigate(this.navigationRoute, { queryParams: queryParams });
 

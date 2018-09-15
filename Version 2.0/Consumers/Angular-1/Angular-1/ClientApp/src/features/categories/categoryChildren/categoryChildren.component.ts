@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { ComponentBase } from '../../componentBase/component.base';
+import { ComponentBase } from '../../baseClasses/componentBase/component.base';
 
 import { ICategory } from '../../../fredapi/categories/category.interfaces';
 import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
