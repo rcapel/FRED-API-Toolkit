@@ -17,7 +17,7 @@ export class RouteToFormBindingService {
     }
   }
 
-  createBindingObject(theForm: FormGroup, bindings: RouteToFormBinding[]): { [key: string]: string } {
+  getQueryParams(theForm: FormGroup, bindings: RouteToFormBinding[]): { [key: string]: string } {
     let result = {};
     for (let binding of bindings) {
       let formName = binding.getFormName();// === "" ? binding.paramName : binding.formName;
@@ -29,12 +29,12 @@ export class RouteToFormBindingService {
     return result;
   }
 
-  getQueryStringFrom(bindingObject: { [key: string]: string }): string {
+  getQueryStringFrom(queryParams: { [key: string]: string }): string {
     let queryString: string = "?";
-    for (let key in bindingObject) {
+    for (let key in queryParams) {
       let ampersand = queryString.length > 1 ? "&" : "";
-      if (bindingObject[key] && bindingObject[key] !== "") {
-        queryString += `${ampersand}${key}=${bindingObject[key]}`;
+      if (queryParams[key] && queryParams[key] !== "") {
+        queryString += `${ampersand}${key}=${queryParams[key]}`;
       }
     }
     return queryString;
