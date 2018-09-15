@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
+using static FRED.Api.Core.FREDData;
 
 namespace AngularConsumer1.Controllers.Releases
 {
@@ -41,7 +42,7 @@ namespace AngularConsumer1.Controllers.Releases
 		[HttpGet("{id}")]
 		public async Task<IActionResult> GetAsync(int id, DateTime? realtime_start, DateTime? realtime_end,
 			int? limit, int? offset, string order_by, string sort_order,
-			string tag_names, string tag_group_id, string search_text)
+			string filter_variable, string filter_value, string tag_names, string exclude_tag_names)
 		{
 			SeriesResponse result = new SeriesResponse();
 
@@ -49,6 +50,24 @@ namespace AngularConsumer1.Controllers.Releases
 			{
 				api.Arguments.ApiKey = appSettings.ApiKey;
 				api.Arguments.release_id = id;
+
+				api.Arguments.realtime_start = realtime_start ?? api.Arguments.realtime_start;
+				api.Arguments.realtime_end = realtime_end ?? api.Arguments.realtime_end;
+				api.Arguments.limit = limit ?? api.Arguments.limit;
+				api.Arguments.offset = offset ?? api.Arguments.offset;
+
+				var orderBy = ParseEnum<series_order_by_values>(order_by);
+				api.Arguments.order_by = orderBy ?? api.Arguments.order_by;
+
+				var sortOrder = ParseEnum<sort_order_values>(sort_order);
+				api.Arguments.sort_order = sortOrder ?? api.Arguments.sort_order;
+
+				var filterVariable = ParseEnum<filter_variable_values>(filter_variable);
+				api.Arguments.filter_variable = filterVariable ?? api.Arguments.filter_variable;
+
+				api.Arguments.filter_value = filter_value ?? api.Arguments.filter_value;
+				api.Arguments.tag_names = tag_names ?? api.Arguments.tag_names;
+				api.Arguments.exclude_tag_names = exclude_tag_names ?? api.Arguments.exclude_tag_names;
 
 				result.container = await api.FetchAsync();
 

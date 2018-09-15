@@ -39,9 +39,7 @@ namespace AngularConsumer1.Controllers.Series
 		[ProducesResponseType(200, Type = typeof(string))]
 		[ProducesResponseType(500, Type = typeof(string))]
 		[HttpGet("{id}")]
-		public async Task<IActionResult> GetAsync(string id, DateTime? realtime_start, DateTime? realtime_end,
-			int? limit, int? offset, string order_by, string sort_order,
-			string tag_names, string tag_group_id, string search_text)
+		public async Task<IActionResult> GetAsync(string id, DateTime? realtime_start, DateTime? realtime_end)
 		{
 			ReleaseResponse result = new ReleaseResponse();
 
@@ -49,6 +47,9 @@ namespace AngularConsumer1.Controllers.Series
 			{
 				api.Arguments.ApiKey = appSettings.ApiKey;
 				api.Arguments.series_id = id;
+
+				api.Arguments.realtime_start = realtime_start ?? api.Arguments.realtime_start;
+				api.Arguments.realtime_end = realtime_end ?? api.Arguments.realtime_end;
 
 				result.container = await api.FetchAsync();
 

@@ -1,6 +1,8 @@
 ﻿using AngularConsumer1.Models;
 using FRED.Api.Core.ApiFacades;
+using System;
 using System.Collections.Generic;
+using static FRED.Api.Core.FREDData;
 
 namespace AngularConsumer1.Controllers
 {
@@ -34,6 +36,20 @@ namespace AngularConsumer1.Controllers
 			}
 			result.FetchMessage = api.FetchMessage;
 			result.Url = api.Url;
+		}
+
+		protected T? ParseEnum<T>(string enumString) where T : struct
+		{
+			if (enumString == null)
+				return null;
+
+			T enumValue;
+			if (Enum.TryParse<T>(enumString, out enumValue))
+			{
+				return enumValue;
+			}
+
+			return null;
 		}
 
 		#endregion

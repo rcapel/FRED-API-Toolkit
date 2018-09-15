@@ -50,44 +50,24 @@ namespace AngularConsumer1.Controllers.Categories
 			{
 				api.Arguments.ApiKey = appSettings.ApiKey;
 				api.Arguments.category_id = id;
-				api.Arguments.realtime_start = realtime_start == null ? api.Arguments.realtime_start : realtime_start;
-				api.Arguments.realtime_end = realtime_end == null ? api.Arguments.realtime_end : realtime_end;
-				api.Arguments.limit = limit == null ? api.Arguments.limit : limit;
-				api.Arguments.offset = offset == null ? api.Arguments.offset : offset;
-				if (order_by != null)
-				{
-					series_order_by_values orderBy = 0;
-					if (Enum.TryParse<series_order_by_values>(order_by, out orderBy))
-					{
-						api.Arguments.order_by = orderBy;
-					}
-				}
-				if (sort_order != null)
-				{
-					sort_order_values sortOrder = 0;
-					if (Enum.TryParse<sort_order_values>(sort_order, out sortOrder))
-					{
-						api.Arguments.sort_order = sortOrder;
-					}
-				}
-				if (filter_variable != null)
-				{
-					filter_variable_values filterVariable = 0;
-					if (Enum.TryParse<filter_variable_values>(filter_variable, out filterVariable))
-					{
-						api.Arguments.filter_variable = filterVariable;
-					}
-				}
-				if (filter_value != null)
-				{
-					filter_value_values filterValue = 0;
-					if (Enum.TryParse<filter_value_values>(filter_value, out filterValue))
-					{
-						api.Arguments.filter_value = filterValue;
-					}
-				}
-				api.Arguments.tag_names = tag_names == null ? api.Arguments.tag_names : tag_names;
-				api.Arguments.exclude_tag_names = exclude_tag_names == null ? api.Arguments.exclude_tag_names : exclude_tag_names;
+
+				api.Arguments.realtime_start = realtime_start ?? api.Arguments.realtime_start;
+				api.Arguments.realtime_end = realtime_end ?? api.Arguments.realtime_end;
+				api.Arguments.limit = limit ?? api.Arguments.limit;
+				api.Arguments.offset = offset ?? api.Arguments.offset;
+
+				var orderBy = ParseEnum<series_order_by_values>(order_by);
+				api.Arguments.order_by = orderBy ?? api.Arguments.order_by;
+
+				var sortOrder = ParseEnum<sort_order_values>(sort_order);
+				api.Arguments.sort_order = sortOrder ?? api.Arguments.sort_order;
+
+				var filterVariable = ParseEnum<filter_variable_values>(filter_variable);
+				api.Arguments.filter_variable = filterVariable ?? api.Arguments.filter_variable;
+
+				api.Arguments.filter_value = filter_value ?? api.Arguments.filter_value;
+				api.Arguments.tag_names = tag_names ?? api.Arguments.tag_names;
+				api.Arguments.exclude_tag_names = exclude_tag_names ?? api.Arguments.exclude_tag_names;
 
 				result.container = await api.FetchAsync();
 
@@ -101,24 +81,6 @@ namespace AngularConsumer1.Controllers.Categories
 
 			return Ok(result);
 		}
-
-		#endregion
-
-		#region private methods
-
-		//private Tuple<bool, T> ParseEnum<T>(string enumString)
-		//{
-		//	Tuple<bool, string> result = null;
-
-		//	if (enumString != null)
-		//	{
-		//		T result = 0;
-		//		if (Enum.TryParse<sort_order_values>(enumString, out result))
-		//		{
-		//			api.Arguments.sort_order = result;
-		//		}
-		//	}
-		//}
 
 		#endregion
 
