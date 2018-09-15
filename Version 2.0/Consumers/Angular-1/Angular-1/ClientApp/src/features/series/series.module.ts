@@ -51,7 +51,7 @@ import { SeriesVintageDatesResolver } from './services/seriesVintageDates.resolv
       { path: 'seriesRelease/:id', component: SeriesReleaseComponent, resolve: { seriesRelease: SeriesReleaseResolver } },
       { path: 'seriesSearch/:search_text', component: SeriesSearchComponent, resolve: { seriesSearch: SeriesSearchResolver } },
       { path: 'seriesSearchRelatedTags/:series_search_text/:tag_names', component: SeriesSearchRelatedTagsComponent, resolve: { seriesSearchRelatedTags: SeriesSearchRelatedTagsResolver } },
-      { path: 'seriesSearchTags/:id', component: SeriesSearchTagsComponent, resolve: { seriesSearchTags: SeriesSearchTagsResolver } },
+      { path: 'seriesSearchTags/:series_search_text', component: SeriesSearchTagsComponent, resolve: { seriesSearchTags: SeriesSearchTagsResolver } },
       { path: 'seriesTags/:id', component: SeriesTagsComponent, resolve: { seriesTags: SeriesTagsResolver } },
       { path: 'seriesUpdates', component: SeriesUpdatesComponent, resolve: { seriesUpdates: SeriesUpdatesResolver } },
       { path: 'seriesVintageDates/:id', component: SeriesVintageDatesComponent, resolve: { seriesVintageDates: SeriesVintageDatesResolver } }
