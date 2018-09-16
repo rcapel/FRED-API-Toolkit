@@ -49,7 +49,7 @@ export class RouteToFormBindingService {
         queryString += `${ampersand}${key}=${queryParams[key]}`;
       }
     }
-    return queryString;
+    return queryString === "?" ? "" : queryString;
   }
 
   private patchValue(data: ParamMap, binding: RouteToFormBinding, theForm: FormGroup) {

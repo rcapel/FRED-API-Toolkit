@@ -120,7 +120,7 @@ export class FormsConfigurationService {
       searchText: ["", [Validators.required]]
     },
     controlValidation: {
-      tagNames: {
+      searchText: {
         validationMessages: {
           required: "Search text is required."
         },
@@ -140,6 +140,20 @@ export class FormsConfigurationService {
   includeReleaseDatesWithNoData: IFormsConfiguration = {
     configuration: {
       includeReleaseDatesWithNoData: "false"
+    },
+    controlValidation: {
+    }
+  }
+
+  seriesObservations: IFormsConfiguration = {
+    configuration: {
+      observationStartDate: "",
+      observationEndDate: "",
+      units: "",
+      frequency: "",
+      aggregationMethod: "avg",
+      outputType: "1",
+      vintageDates: ""
     },
     controlValidation: {
     }
