@@ -1,46 +1,83 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { ComponentBase } from '../../baseClasses/componentBase/component.base';
 
 import { ITagContainer, ITag } from '../../../fredapi/tags/tag.interfaces';
 import { IContainerExtensions } from '../../../fredapi/shared/shared.interfaces';
+
+import { FormBuildAndValidationService } from '../../../shared/formBuildAndValidation/formBuildAndValidation.service';
+import { FormsConfigurationService, IFormsConfiguration } from '../../shared/formsConfiguration/formsConfiguration.service';
+import { RouteToFormBindingService, RouteToFormBinding } from '../../../shared/routeToFormBinding/routeToFormBinding.service';
+import { SeriesService } from '../../../fredapi/series/series.service';
 
 @Component({
   selector: 'seriesSearchRelatedTags',
   templateUrl: './seriesSearchRelatedTags.component.html'
 })
-export class SeriesSearchRelatedTagsComponent implements OnInit {
+export class SeriesSearchRelatedTagsComponent extends ComponentBase implements OnInit, OnDestroy {
 
   heading: string = "Series Search Related Tags";
-
-  // request arguments
-  searchText: string;
-  tagNames: string;
-  startDate: string;
-  endDate: string;
+  static queryParamsToFormBindingValues: RouteToFormBinding[] = [
+    new RouteToFormBinding("realtime_start", "startDate"),
+    new RouteToFormBinding("realtime_end", "endDate"),
+    new RouteToFormBinding("limit"),
+    new RouteToFormBinding("offset"),
+    new RouteToFormBinding("order_by", "orderBy"),
+    new RouteToFormBinding("sort_order", "sortOrder"),
+    new RouteToFormBinding("exclude_tag_names", "excludeTagNames"),
+    new RouteToFormBinding("tag_group_id", "tagGroupId"),
+    new RouteToFormBinding("tag_search_text", "tagSearchText")
+  ];
 
   // response
   response: IContainerExtensions;
   container: ITagContainer;
   tags: ITag[];
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute) {
+  get dataName(): string {
+    return "seriesSearchRelatedTags";
   }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(data => {
-      this.searchText = data.get("series_search_text");
-      this.tagNames = data.get("tag_names");
-    });
-    this.route.queryParamMap.subscribe(data => {
-      //this.startDate = data.get("realtime_start");
-      //this.endDate = data.get("realtime_end");
-    });
-    this.route.data.subscribe(data => {
-      this.parseData(data['seriesSearchRelatedTags']);
-    }
-    );
+  get formsConfigurations(): IFormsConfiguration[] {
+    return [
+      this.configurationService.searchTextRequired,
+      this.configurationService.tagNamesRequired,
+      this.configurationService.dateRange,
+      this.configurationService.getList("series_count"),
+      this.configurationService.excludeTagNames,
+      this.configurationService.tagGroupId,
+      this.configurationService.tagSearchText
+    ];
+  }
+
+  get routeParamsToFormBindings(): RouteToFormBinding[] {
+    return [
+      new RouteToFormBinding("series_search_text", "searchText"),
+      new RouteToFormBinding("tag_names", "tagNames")
+    ];
+  }
+
+  get queryParamsToFormBindings(): RouteToFormBinding[] {
+    return SeriesSearchRelatedTagsComponent.queryParamsToFormBindingValues;
+  }
+
+  get navigationRoute(): any[] {
+    let searchText = this.theForm.get("searchText").value;
+    let tagNames = this.theForm.get("tagNames").value;
+    return ["/seriesSearchRelatedTags/", searchText, tagNames];
+  }
+
+  constructor(
+    router: Router,
+    route: ActivatedRoute,
+    formBuilder: FormBuildAndValidationService,
+    configurationService: FormsConfigurationService,
+    bindingService: RouteToFormBindingService,
+    private service: SeriesService) {
+
+    super(router, route, formBuilder, configurationService, bindingService);
   }
 
   parseData(data) {
@@ -50,8 +87,14 @@ export class SeriesSearchRelatedTagsComponent implements OnInit {
     this.tags = data.container && data.container.tags;
   }
 
-  onSubmit() {
-    this.router.navigate(["/seriesSearchRelatedTags/" + this.searchText + "/" + this.tagNames]);
+  callService(queryString: string): Observable<any> {
+    let searchText = this.theForm.get("searchText").value;
+    let tagNames = this.theForm.get("tagNames").value;
+    return this.service.getSearchRelatedTags(searchText, tagNames, queryString);
+  }
+
+  removeDefaultQueryParams(queryParams: { [key: string]: string }, orderByDefault: string): void {
+    super.removeDefaultQueryParams(queryParams, "series_count");
   }
 
 }

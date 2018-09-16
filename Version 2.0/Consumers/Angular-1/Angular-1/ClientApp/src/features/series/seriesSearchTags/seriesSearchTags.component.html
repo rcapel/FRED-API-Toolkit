@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-md-2">
           <div class="form-group" [ngClass]="{'is-invalid text-danger': searchTextValidationMessages}">
-            <label for="searchText">Series Search Text</label>
+            <label for="searchText">Search Text</label>
             <input type="text" class="form-control" id="searchText" formControlName="searchText" />
             <span class="text-danger" *ngIf="searchTextValidationMessages">
               {{ searchTextValidationMessages }}
@@ -57,7 +57,7 @@
           </div>
           <div class="col-md-2">
             <div class="form-group">
-              <label for="sortOrder1">Sort Order</label>
+              <label for="sortOrder">Sort Order</label>
               <div class="form-check">
                 <input class="form-check-input" type="radio" id="sortOrder1" formControlName="sortOrder" value="asc">
                 <label class="form-check-label" for="sortOrder1">
@@ -96,8 +96,7 @@
             </div>
           </div>
         </div>
-      </div>
-      <div>
+      </div>      <div>
         <br />
         <input type="submit" class="btn btn-sm btn-default" value="Fetch" [disabled]="!theForm.valid" />
       </div>

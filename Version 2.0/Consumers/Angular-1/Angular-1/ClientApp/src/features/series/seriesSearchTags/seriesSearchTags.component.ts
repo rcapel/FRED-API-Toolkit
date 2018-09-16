@@ -86,7 +86,7 @@ export class SeriesSearchTagsComponent extends ComponentBase implements OnInit, 
 
   callService(queryString: string): Observable<any> {
     let searchText = this.theForm.get("searchText").value;
-    return this.service.getTags(searchText, queryString);
+    return this.service.getSearchTags(searchText, queryString);
   }
 
   removeDefaultQueryParams(queryParams: { [key: string]: string }, orderByDefault: string): void {
