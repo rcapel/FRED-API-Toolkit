@@ -149,7 +149,7 @@ export class FormsConfigurationService {
     configuration: {
       observationStartDate: "",
       observationEndDate: "",
-      units: "",
+      units: "lin",
       frequency: "",
       aggregationMethod: "avg",
       outputType: "1",
