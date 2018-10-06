@@ -2,9 +2,8 @@ import { FormGroup } from "@angular/forms";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { Subscription, Observable } from "rxjs";
 
-import { OrderByEnumerables } from "../../shared/enumerables/orderBy.enumerables";
-import { FilterEnumerables } from "../../shared/enumerables/filter.enumerables";
-import { TagEnumerables } from "../../shared/enumerables/tag.enumerables";
+import { OrderByEnumerables } from "../../../fredapi/shared/enumerables/orderBy.enumerables";
+import { Enumerables } from "../../../fredapi/shared/enumerables/enumerables";
 import { FormBuildAndValidationService } from "../../../shared/formBuildAndValidation/formBuildAndValidation.service";
 import { FormsConfigurationService, IFormsConfiguration } from "../../shared/formsConfiguration/formsConfiguration.service";
 import { RouteToFormBindingService, RouteToFormBinding } from "../../../shared/routeToFormBinding/routeToFormBinding.service";
@@ -18,14 +17,20 @@ export abstract class ComponentBase {
   protected canRefresh = true;
 
   theForm: FormGroup;
+
   seriesOrderByEnumerables: string[] = OrderByEnumerables.series;
   tagsOrderByEnumerables: string[] = OrderByEnumerables.tags;
   releasesOrderByEnumerables: string[] = OrderByEnumerables.releases;
   releasesDatesOrderByEnumerables: string[] = OrderByEnumerables.releasesDates;
   seriesSearchOrderByEnumerables: string[] = OrderByEnumerables.seriesSearch;
   sourcesOrderByEnumerables: string[] = OrderByEnumerables.sources;
-  filterEnumerables: string[] = FilterEnumerables.filterVariables;
-  tagGroupIdEnumerables: string[] = TagEnumerables.tagGroupIds;
+
+  filterVariableEnumerables: string[] = Enumerables.filterVariables;
+  tagGroupIdEnumerables: string[] = Enumerables.tagGroupIds;
+  unitEnumerables: string[] = Enumerables.units;
+  frequencyEnumerables: string[] = Enumerables.frequencies;
+  aggregationMethodEnumerables: string[] = Enumerables.aggregationMethods;
+  outputTypeEnumerables: string[] = Enumerables.outputTypes;
 
   get idValidationMessages(): string {
     return this.configurationService.idValidationMessages;

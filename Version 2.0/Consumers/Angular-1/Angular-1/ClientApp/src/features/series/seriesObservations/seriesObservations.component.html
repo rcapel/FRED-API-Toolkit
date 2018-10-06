@@ -5,6 +5,126 @@
   </div>
   <div class="card-body">
     <div *ngIf="container">
+      <form (ngSubmit)="onSubmit()" [formGroup]="theForm" novalidate>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group" [ngClass]="{'is-invalid text-danger': idValidationMessages}">
+              <label for="seriesId">Series Id</label>
+              <input type="text" class="form-control" id="seriesId" formControlName="id" />
+              <span class="text-danger" *ngIf="idValidationMessages">
+                {{ idValidationMessages }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <a data-toggle="collapse" href="#optionalArguments">Optional Arguments</a>
+          </div>
+        </div>
+        <div class="collapse" id="optionalArguments">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" class="form-control" id="startDate" formControlName="startDate" />
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="date" class="form-control" id="endDate" formControlName="endDate" />
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div class="form-group">
+                <label for="limit">Limit</label>
+                <input type="number" min="0" max="1000" class="form-control" id="limit" formControlName="limit" />
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div class="form-group">
+                <label for="offset">Offset</label>
+                <input type="number" min="0" class="form-control" id="offset" formControlName="offset" />
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="sortOrder">Sort Order</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="sortOrder1" formControlName="sortOrder" value="asc">
+                  <label class="form-check-label" for="sortOrder1">
+                    Ascending
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="sortOrder2" formControlName="sortOrder" value="desc">
+                  <label class="form-check-label" for="sortOrder2">
+                    Descending
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="observationStartDate">Observation Start</label>
+                <input type="date" class="form-control" id="observationStartDate" formControlName="observationStartDate" />
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="observationEndDate">Observation End</label>
+                <input type="date" class="form-control" id="observationEndDate" formControlName="observationEndDate" />
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="units">Units</label>
+                <select class="form-control" id="units" formControlName="units">
+                  <option *ngFor="let value of unitEnumerables" value="{{value}}">{{value}}</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="frequency">Frequency</label>
+                  <select class="form-control" id="frequency" formControlName="frequency">
+                    <option *ngFor="let value of frequencyEnumerables" value="{{value}}">{{value}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="aggregationMethod">Aggregation Method</label>
+                  <select class="form-control" id="aggregationMethod" formControlName="aggregationMethod">
+                    <option *ngFor="let value of aggregationMethodEnumerables" value="{{value}}">{{value}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="outputType">Output Type</label>
+                  <select class="form-control" id="outputType" formControlName="outputType">
+                    <option *ngFor="let value of outputTypeEnumerables" value="{{value}}">{{value}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="vintageDates">Vintage Dates</label>
+                  <input type="date" class="form-control" id="vintageDates" formControlName="vintageDates" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <br />
+            <input type="submit" class="btn btn-sm btn-default" value="Fetch" [disabled]="!theForm.valid" />
+          </div>
+        </div>
+      </form>
+      <hr />
       <filterValues [values]="container" orderByType="observations"></filterValues>
       <hr />
       <br />
