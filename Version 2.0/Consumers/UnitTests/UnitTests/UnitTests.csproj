@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <Reference Include="FREDApi">
-      <HintPath>..\..\FREDApi\FREDApi\bin\Debug\netcoreapp2.1\FREDApi.dll</HintPath>
+      <HintPath>..\..\..\FREDApi\FREDApi\bin\Debug\netcoreapp2.1\FREDApi.dll</HintPath>
     </Reference>
   </ItemGroup>
 

@@ -11,7 +11,7 @@ namespace FREDApi.UnitTests
 	{
 		#region fields
 
-		private string apiKey = "";
+		private string apiKey = "703291e2bde84bab0d4e313fbb896a2f";
 
 		#endregion
 
