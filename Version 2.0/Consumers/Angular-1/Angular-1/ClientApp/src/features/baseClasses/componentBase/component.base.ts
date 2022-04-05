@@ -7,7 +7,9 @@ import { Enumerables } from "../../../fredapi/shared/enumerables/enumerables";
 import { FormBuildAndValidationService } from "../../../shared/formBuildAndValidation/formBuildAndValidation.service";
 import { FormsConfigurationService, IFormsConfiguration } from "../../shared/formsConfiguration/formsConfiguration.service";
 import { RouteToFormBindingService, RouteToFormBinding } from "../../../shared/routeToFormBinding/routeToFormBinding.service";
+import { Directive } from "@angular/core";
 
+@Directive()
 export abstract class ComponentBase {
   private paramMapSubscription: Subscription;
   private queryParamMapSubscription: Subscription;
