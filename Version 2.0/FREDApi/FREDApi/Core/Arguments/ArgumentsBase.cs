@@ -113,7 +113,7 @@ namespace FRED.Api.Core.Arguments
 					valueString = value.ToString().ToLower();
 				}
 
-				if (property.Name == "sort_order" || property.Name == "units") 
+				if (property.Name == "sort_order" || property.Name == "units" || property.Name == "frequency") 
 				{
 					builder.Append("&" + property.Name + "=" + value);
 				}
