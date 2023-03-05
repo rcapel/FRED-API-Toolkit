@@ -114,8 +114,8 @@ namespace AngularConsumer1
 
                 if (env.IsDevelopment())
                 {
-					//spa.Options.StartupTimeout = new System.TimeSpan(0, 0, 120);
-					spa.UseAngularCliServer(npmScript: "start");
+					spa.Options.StartupTimeout = new System.TimeSpan(0, 0, 120);
+                    spa.UseAngularCliServer(npmScript: "start");
                 }
             });
         }
